@@ -1,0 +1,8 @@
+{
+  // Disable only LLM / AI inline suggestions (Copilot ghost text etc.)
+  // Regular autocomplete, snippets, and quick-suggestions remain enabled.
+  "editor.inlineSuggest.enabled": false,
+  "github.copilot.enable": {
+    "*": false
+  }
+}

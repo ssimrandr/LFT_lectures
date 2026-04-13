@@ -1,0 +1,166 @@
+% Lecture 1 — example LaTeX file
+% Location: week01/lecture01.tex
+% Compile: from week01/ run `latexmk -pdf lecture01.tex` or `xelatex lecture01.tex`
+
+\documentclass[11pt]{article}
+
+% Encoding and fonts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Math
+\usepackage{amsmath,amssymb,amsthm}
+
+% Graphics and colors
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{caption}
+
+% Better typography
+\usepackage{microtype}
+
+% Page layout
+\usepackage[margin=1in]{geometry}
+
+% Hyperlinks
+\usepackage[hidelinks]{hyperref}
+
+% Lists
+\usepackage{enumitem}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+% Metadata
+\title{Lecture 1 — Introduction}
+\author{Course / Simran Singh}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  In this lecture we begin by motivating the study of lattice field theory first introducing the Euclidean path integral for quantum mechanics, promoting the discussion to field theory and discussing how it can be used to compute expectation values and correlation functions. We then motivate the discretization of spacetime and how it helps regulate the path integral.
+  Finally, we introduce the lattice scalar field theory as a simple example to illustrate how to put a theory on a discrete spacetime lattice.
+\end{abstract}
+
+\section{Overview}
+The first half of these notes are based on \cite{wiese2009lattice} while the second half on \cite{rothe2012lattice}.
+
+
+
+ 
+
+\section{Real time path integral}
+In this section we will briefly discuss the real-time path integral and its properties - as applied to quantum mechanics. We will see that the real-time path integral is a powerful tool for computing transition amplitudes and correlation functions, but it suffers from convergence issues due to the oscillatory nature of the integrand. This motivates the \textit{Wick rotation} to \textit{Euclidean time}, which we will discuss in the next section.
+
+We begin by considering the Schrödinger equation for a quantum system with Hamiltonian $H$:
+\begin{equation}
+i\hbar \frac{\partial}{\partial t} |\psi(t)\rangle = H |\psi(t)\rangle.
+\end{equation}
+Assuming the Hamiltonian to be time-independent, the formal solution to this equation can be written as
+\begin{equation}
+|\psi(t)\rangle = e^{-iHt/\hbar} |\psi(0)\rangle.
+\end{equation}
+Using this we can introduce the notion of a \textit{time-evolution} operator given by,
+\begin{equation}
+  U(t',t) \equiv e^{-iH(t'-t)/\hbar},
+\end{equation}
+whose matrix elements between an initial state $|x_i, t_i\rangle$ and a final state $|x_f, t_f\rangle$ give us \textit{transition amplitude} or the \textit{propagator}, expressed as
+\begin{equation}\label{eqn:trans_amp}
+\langle x_f |U(t_f-t_i)| x_i \rangle = \langle x_f | e^{-iH(t_f - t_i)/\hbar} | x_i \rangle.
+\end{equation}
+By inserting a complete set of energy eigenstates and computing $\langle x |U(t_f-t_i)| x \rangle$, i.e., the amplitude of finding the particle at the same place after a certain interval of time - one realizes that the propagator is related to the energy spectrum by a Fourier transform\footnote{\textit{Hint:} Insert a complete set of energy eigenstates (which satisfy $H | n \rangle = E_n |n \rangle$) with $\mathbb{I} = \sum_n |n\rangle \langle n|$ and use their orthonormality property $\langle n|m \rangle = \delta_{nm}$ to show this.}.
+If one could diagonalize the Hamiltonian easily, one could directly evaluate Eq.~\eqref{eqn:trans_amp} in terms of the energy eigenstates of $H$ - this is a very challenging task and only for very trivial theories or non-trivial theories with very small system sizes is the diagonalization of $H$ possible. Something that we can do is recognize that the Hamiltonian for most systems of interest is made up of (non-commuting) parts that are easier to treat in their own bases. For the example we will use below - that of a non-relativistic quantum mechanical particle - the Hamiltonian becomes the kinetic and potential energy given by,
+\begin{equation}\label{eqn:hamiltonian}
+  H = \frac{p^2}{2 m} + V(x).
+\end{equation}
+Since we already know the action of $\frac{p^2}{2 m}$ on momentum eigenstates and $V(x)$ on position eigenstates, we can start to think about solving Eq.~\eqref{eqn:trans_amp} by splitting the terms in the exponential and inserting a complete set of momentum and position eigenstates between the two separated exponentials. This would have worked in one step if $[p^2,V(x)]=0$ - but this is unfortunately not the case. We need to consider the Baker-Campbell-Hausdorff formula to split the exponential of the sum of two non-commuting operators into a product of exponentials. This is given by,
+\begin{equation}
+e^{A+B} = e^A e^B e^{-\frac{1}{2}[A,B]}  \cdots
+\end{equation}
+where the ellipsis denotes higher order commutators. But this is still not very helpful since $[A,B]$ is again an operator whose eigenstates we need to consider. This is where we use the following trick by inserting a complete set of intermediate states to get,
+\begin{align}
+  \langle x_f |U(t_f-t_i)| x_i \rangle &= \langle x_f | e^{-iH(t_f -t_1 - t_i + t_1)/\hbar} | x_i \rangle \\
+=& \langle x_f | e^{-iH(t_f -t_1)/\hbar} e^{-iH(t_1 - t_i)/\hbar} | x_i \rangle  \\
+=& \int dx_1 \langle x_f | e^{-iH(t_f -t_1)/\hbar} | x_1 \rangle \langle x_1 | e^{-iH(t_1 - t_i)/\hbar} | x_i \rangle 
+\end{align}
+We can repeat this process any number of times by inserting more intermediate states. Let us say we insert $N-1$ intermediate states at times $t_1, t_2, \cdots, t_{N-1}$ such that $t_f-t_i = N \epsilon$. Then we can write,
+\begin{equation}\label{eqn:full_transamp}
+\langle x_f |U(t_f-t_i)| x_i \rangle = \int dx_1 \cdots \int dx_{N-1} \langle x_f | e^{-iH\epsilon/\hbar} | x_{N-1} \rangle \cdots \langle x_1 | e^{-iH\epsilon/\hbar} | x_i \rangle
+\end{equation}
+Inserting the Hamiltonian from Eq.~\eqref{eqn:hamiltonian} and using the BCH formula to split the exponentials, neglecting higher order commutators ($\mathcal{O}(\epsilon^2)$), we can write,
+\begin{align}
+\langle x_{i+1} |U(t_{i+1}-t_i)| x_i \rangle &= \langle x_{i+1} | e^{-i\frac{p^2}{2 m}\epsilon/\hbar} e^{-iV(x)\epsilon/\hbar} | x_i \rangle + \mathcal{O}(\epsilon^2) \nonumber \\ 
+&= \int  dp \;\langle x_{i+1} | e^{-i\frac{p^2}{2 m}\epsilon/\hbar} | p \rangle \langle p | e^{-iV(x)\epsilon/\hbar} | x_i \rangle  \nonumber \\
+&= \int  dp \; e^{-i\frac{p^2}{2 m}\epsilon/\hbar} e^{-iV(x_i)\epsilon/\hbar} \langle x_{i+1} | p \rangle \langle p | x_i \rangle \nonumber \\
+&= \int dp \;e^{-i\frac{p^2}{2 m}\epsilon/\hbar} e^{-iV(x_i)\epsilon/\hbar} \frac{1}{2\pi \hbar} e^{ip(x_{i+1}-x_i)/\hbar}. 
+\end{align}
+In the above, we have used the position representation of the momentum eigenstates, $\langle x | p \rangle = \frac{1}{\sqrt{2\pi \hbar}} e^{ipx/\hbar}$. Note that the integral over $p$ is not well-defined because of being highly oscillatory\footnote{You are encouraged to check this integral's Lebesgue and square integrability.}. However, a small rotation of the infinitesimal time step $\epsilon$ into the complex plane, $\epsilon \to \epsilon - i a$ with $a > 0$, makes the integral convergent. This gives us the factor $e^{-a\frac{p^2}{2 m}\epsilon/\hbar}$ which damps the oscillations and allows us to evaluate the integral. Now we complete the square in the exponent, carry out the $1$D Gaussian integral and set $a \to 0$ to get,
+\begin{equation}\label{eqn:infinitesimal_matrixel}
+  \langle x_{i+1} |U(t_{i+1}-t_i)| x_i \rangle = \sqrt{\frac{m}{2 \pi i \hbar \epsilon}} e^{ \frac{i}{\hbar}\epsilon \left[\frac{m}{2}\left(\frac{x_{i+1}-x_i}{\epsilon} \right)^2 - V(x_i) \right] } \;.
+\end{equation}
+Considering the limit $\epsilon \to 0$, one can recognize the term in the square brackets of the exponential as the \textit{action} of the theory given by,
+\begin{align} \label{eqn:action}
+S[x] &= \int dt \left[\frac{m}{2} (\partial_t x)^2 - V(x) \right] \\
+&= \lim_{\epsilon \to 0} \sum_i \epsilon \left[\frac{m}{2}\left(\frac{x_{i+1}-x_i}{\epsilon} \right)^2 - V(x_i) \right] \nonumber
+\end{align}
+Finally, inserting Eq.~\eqref{eqn:infinitesimal_matrixel} into Eq.~\eqref{eqn:full_transamp} and taking the \textit{time continuum limit}, we arrive at the \textit{path integral} or the \textit{functional integral} representation of the transition amplitude given by,
+\begin{equation}\label{eqn:real_PI}
+\langle x_f |U(t_f-t_i)| x_i \rangle = \int \mathcal{D}x \; e^{i S[x]/\hbar}
+\end{equation}
+where the \textit{path integral measure} in this simple quantum mechanical case is defined as,
+\begin{equation}
+  \int \mathcal{D}(x) = \lim_{\epsilon \to 0} \sqrt{\frac{m}{2 \pi i \hbar \epsilon}}^{N-1} \int dx_1 \int dx_2 \cdots \int dx_{N-1}.
+\end{equation}
+This represents an integration over all possible paths at intermediate time steps, weighted by an oscillatory phase $e^{i S[x]/\hbar}$. In the \textit{classical limit}, where $S[x] \gg \hbar$, or in standard terms $\hbar \to 0$, the largest contribution to the path integral comes from the paths corresponding to the solutions to the classical equations of motion.
+
+\section{Euclidean path integral}
+The original motivation to study purely-imaginary (Euclidean) time path integral comes from recognizing the connection to statistical mechanics. If one considers the \textit{partition function} in quantum statistical mechanics,
+\begin{equation}\label{eqn:part_fn}
+Z = \text{Tr} e^{-\beta H},  
+\end{equation}
+where $H$ is the Hamiltonian and $\beta = \frac{1}{T}$ (we set $k_B=1$) is the inverse temperature, one immediately recognizes a mathematical connection to the real time transition amplitude $\langle x |U(t_f-t_i)| x \rangle$, if we identify,
+\begin{equation}
+  \beta = \frac{i}{\hbar} (t_f - t_i).
+\end{equation}
+With this identification, one can divide the Euclidean time interval into infinitesimal time steps $\beta = N a/\hbar$, and following the same procedure as done in the previous section: inserting intermediate position eigenstates, using the BCH formula to ignore commutators of $p^2$ and $V(x)$ and carrying out the - now already \textit{well defined} Gaussian integral, we get the Euclidean result for Eq.~\eqref{eqn:real_PI} as,
+\begin{equation}
+  Z = \int \mathcal{D}x \; e^{-S_E[x]/\hbar}.
+\end{equation}
+Notice that the subscript $E$ on the Euclidean action is \textit{not just notational}! Our excursion to imaginary time changed the form of the action to,
+\begin{equation}
+  S_E[x] = \int d \tau \; \left[\frac{m}{2} {(\partial_{\tau} x)}^2 + V(x)\right],
+\end{equation}
+where $\tau = i t$. Furthermore, because the partition function in Eq.~\eqref{eqn:part_fn} includes a trace over all states $\int dx \; \langle x |e^{-\beta H/\hbar} | x \rangle$, the measure also includes an extra term giving us,
+
+\begin{equation}
+  \int \mathcal{D}(x) = \lim_{a \to 0} \sqrt{\frac{m}{2 \pi \hbar a}}^N \int dx \int dx_1 \int dx_2 \cdots \int dx_{N-1}.
+\end{equation}
+
+After having formally defined the Euclidean path integral for the quantum mechanical system, we need to upgrade the notation to field theory notation. In a field theory the position $x$ just becomes a label defining the value of a field in spacetime. Because of this we need to consider the derivatives of this field with respect to not just time but also space. This gives us the following dictionary between what we studied above for a non-relativistic quantum mechanical particle to a quantum field theory governing a field $\phi(x)$, 
+
+\begin{equation}
+  \begin{array}{rcl}
+    t & \longrightarrow & x = (t, \vec{x}) \\
+    x & \longrightarrow & \phi(x) \\
+    S[x]=\int dt \; L(x, \partial_t x) & \longrightarrow & S[\phi]=\int d^4x \; L(\phi, \partial_{\mu} \phi) \\
+    \mathcal{D}x = \displaystyle\prod_i \int dx_i & \longrightarrow & \mathcal{D}\phi = \displaystyle\prod_x \int d\phi(x)
+  \end{array}
+\end{equation}
+
+\textcolor{red}{missing: connection to Green's functions and why even this well-defined Euclidean path integral gives divergences}
+\section{Lattice (scalar) field theory}
+Actually using the Euclidean path integral to compute physical quantities is very hard --- either you go the perturbative way and deal with renormalizing Green's functions order by order --- or you directly try to make sense of the path integral --- this is what lattice field theory offers you --- on the one hand it regulates divergences by placing a cutoff and on the other hand it gives a practical sense to the formal path integral measure.
+\textcolor{red}{missing: why lattice is a regulator - why it makes the measure practical - the dictionary between continuum and lattice, momentum, action etc - what breaks in symmetries - how we recover the orginal theory}
+
+
+\bibliographystyle{plain}
+\bibliography{../references}
+
+\end{document}
