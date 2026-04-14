@@ -63,9 +63,6 @@
 The first half of these notes are based on \cite{wiese2009lattice} while the second half on \cite{rothe2012lattice}.
 
 
-
- 
-
 \section{Real time path integral}
 In this section we will briefly discuss the real-time path integral and its properties - as applied to quantum mechanics. We will see that the real-time path integral is a powerful tool for computing transition amplitudes and correlation functions, but it suffers from convergence issues due to the oscillatory nature of the integrand. This motivates the \textit{Wick rotation} to \textit{Euclidean time}, which we will discuss in the next section.
 
@@ -147,7 +144,7 @@ Notice that the subscript $E$ on the Euclidean action is \textit{not just notati
 \begin{equation}
   S_E[x] = \int d \tau \; \left[\frac{m}{2} {(\partial_{\tau} x)}^2 + V(x)\right],
 \end{equation}
-where $\tau = i t$. Furthermore, because the partition function in Eq.~\eqref{eqn:part_fn} includes a trace over all states $\int dx \; \langle x |e^{-\beta H/\hbar} | x \rangle$, the measure also includes an extra term giving us,
+where $\tau = i t$. Furthermore, because the partition function in Eq.~\eqref{eqn:part_fn} includes a trace over all states $\int dx \; \langle x |e^{-\beta H/\hbar} | x \rangle$, the measure also includes an extra term giving us \sideex{There is an exercise related to counting the number of integrals one needs for a given field theory on a given spacetime lattice!},
 
 \begin{equation}
   \int \mathcal{D}(x) = \lim_{a \to 0} \sqrt{\frac{m}{2 \pi \hbar a}}^N \int dx \int dx_1 \int dx_2 \cdots \int dx_{N-1}.
@@ -175,7 +172,7 @@ From the more field-theoretic poin-of-view, one can also compute two-point (or h
 \end{equation}
 is of very high importance in lattice studies as this quantity contains information about the particle spectrum of the theory. The decay of this two-point function gives us information on the mass gap of the theory. 
 
-This brings us to the problem of dealing with divergences - computing Green's functions (both in Minkowski or Euclidean spacetime) are tricky because of short-distance or large-momentum (called Ultra-violet or UV) divergences. If you try to directly compute this you will simply get a bunch of infinities! But this should be confusing because we know that quantities like Eq.~\eqref{eqn:green_function} contain information on physical quantities like masses of particles - which are certainly not infinite. Thus we are forced to introduce some regulators like a UV-cutoff which render the computation of these quantities finite and, very importantly, we need to understand how these quantities change as we remove the regulator while keeping the Green's function finite.
+This brings us to the problem of dealing with divergences - computing Green's functions (both in Minkowski or Euclidean spacetime) are tricky because of short-distance or large-momentum (called Ultra-violet or UV) divergences \sideex{There is an exercise related to UV divergence simple quantities and how a lattice tackles this}. If you try to directly compute this you will simply get a bunch of infinities! But this should be confusing because we know that quantities like Eq.~\eqref{eqn:green_function} contain information on physical quantities like masses of particles - which are certainly not infinite. Thus we are forced to introduce some regulators like a UV-cutoff which render the computation of these quantities finite and, very importantly, we need to understand how these quantities change as we remove the regulator while keeping the Green's function finite.
  
 Now we are ready to introduce regularization scheme that is in the title of this course-Lattice field theory.
 
@@ -183,7 +180,7 @@ Now we are ready to introduce regularization scheme that is in the title of this
 In this part of the lecture we will see how introducing a spacetime lattice regulates the formal path integral measure and how it removes the above-mentioned UV divergences. For this we will consider the case of the scalar $\phi$-field theory. Note that this is meant to be a \textit{warm-up} for the rest of the course - in general we will not be dealing with scalar fields - but with the fermion and gauge fields in the subsequent lectures.
 
 To begin we consider the (continuum) Euclidean action corresponding to the scalar field $\phi$ field in 4 spacetime dimensions (from now on $x$ denotes the 4 vector $(x_1,x_2,x_3,x_4)$),
-\begin{equation}
+\begin{equation}\label{eqn:act_scal}
   S_E[\phi] = \frac{1}{2} \int d^4 x \; \phi(x) \left(-\Box + M^2 \right) \phi(x),
 \end{equation}
 where $\Box$ denotes the 4-dimensional Laplacian $\displaystyle\sum^4_{\mu=1} \; \partial_{\mu} \partial_{\mu}$. then the corresponding partition function is (setting $\hbar=1$ from now onward), 
@@ -191,7 +188,7 @@ where $\Box$ denotes the 4-dimensional Laplacian $\displaystyle\sum^4_{\mu=1} \;
   Z = \int \displaystyle\prod_x \; d\phi(x) \; e^{-S[\phi]}.
 \end{equation}
 In order to see how these quantities look like on a discrete spacetime lattice, consider the two-dimensional version in Fig.~\ref{fig:lattice}. This gives us the following prescription \sideex{In the exercise sheet you will have the opportunity to derive the expressions in momentum space for the derivatives.}:
-\begin{equation}
+\begin{equation}\label{eqn:cont_latt_dic}
   \begin{array}{rcl}
     x_{\mu} & \longrightarrow & n_{\mu} a\,, \\
     \phi(x) & \longrightarrow & \phi(n a)\,, \\
@@ -201,6 +198,23 @@ In order to see how these quantities look like on a discrete spacetime lattice, 
     \partial_{\mu}\phi(x) & \longrightarrow & \Delta^s_{\mu} = \frac{\phi(na + \hat{\mu}a) - \phi(na-\hat{\mu}a)}{2a} \,, \\
     \mathcal{D}\phi & \longrightarrow & \displaystyle\prod_n \int d\phi(n a).
   \end{array}
+\end{equation}
+
+We can immediately see from the Eq.~\eqref{eqn:cont_latt_dic}, that there are many choices of constructing the lattice Laplacian operator $\Box_L$ - we can use the forward difference operators, the backward difference operators, the symmetric or a combination of any two of these. Since we are in any case summing over all spacetime points when computing the action, and we have periodic boundary conditions - some of the combinations will give the same result. For this lecture we choose the conventional choice of,
+\begin{equation}\label{eqn:laplatt}
+  \Box_L \hat{\phi}(na) = \Delta^b_{\mu}\Delta^f_{\mu} = \frac{1}{a^2} \displaystyle\sum_{\mu} \left(\phi(na + \hat{\mu}a) + \phi(na - \hat{\mu}a) - 2\phi(na) \right) \,.
+\end{equation}
+In order to write down the full lattice action for the scalar field theory, we need to consider the dimesnionality of the lattice parameters like the field value $\phi(na)$ and the lattice mass $M$. We need to maintain the dimensionless-ness of the Euclidean lattice action. Looking at Eq.~\eqref{eqn:action} and Eq.~\eqref{eqn:laplatt}, we get \sideex{There is an exercise related to this!}
+\begin{equation}\label{eqn:dimless_Mphi}
+  \begin{array}{rcl}
+    \hat{\phi}_n &=& a \phi(na) \\
+    \hat{M} &=& a M\, \\
+    \hat{\Box} &=& a^2 \Box_L \,,
+  \end{array}
+\end{equation}
+defining the dimensionless lattice quantities with hats and removing the label $L$ from the box operator. Using this one can re-write the Euclidean lattice action as \sidefact{The factor $2d$ ($= 8$ in 4 dimensions) comes from the diagonal part of $-\hat{\Box}$, summing over all directions.},
+\begin{equation}\label{eqn:latt_action}
+ S_E = -\frac{1}{2} \displaystyle\sum_{n,\hat{\mu}} \hat{\phi}_n \hat{\phi}_{n+\hat{\mu}} + \frac{1}{2}\left(8 + \hat{M}^2\right) \displaystyle\sum_n \hat{\phi}_n \hat{\phi}_n .
 \end{equation}
 
 \begin{figure}[h]
@@ -252,8 +266,30 @@ In order to see how these quantities look like on a discrete spacetime lattice, 
     and periodic boundary conditions. Matter fields live on lattice sites as indicated by $\phi(x)$. Dashed red lines indicate that opposite edges are identified: $\phi(x + L\hat{\mu}) = \phi(x)$. }
   \label{fig:lattice}
 \end{figure}
-\FloatBarrier
-\textcolor{red}{missing:  the dictionary between continuum and lattice, momentum, - what breaks in symmetries - how we recover the orginal theory}
+
+Before moving on to seeing how this spacetime discretization helps in considering observables coming from the path integral - we need to discuss what happens to the allowed values of momentum when one discretizes space. The easiest way to see this is to consider an infinte line segment and write down the equations for the Fourier transform and the inverse Fourier transform of a function along this line,
+\begin{align}\label{eqn:FT_iFT}
+  \tilde{f}(p) =& \frac{1}{2 \pi}\int^{\infty}_{-\infty} dx \; f(x) \, e^{-ipx} \nonumber \\
+  f(x) =& \int^{\infty}_{-\infty} dp \; \tilde{f}(p)\, e^{ipx} \,.
+\end{align}
+In order to see what happens to the momentum when we discretize space \sideex{There is an exercise related to this!} - we need to consider two limits.
+First consider the case where the line segment is not continuous but is made up of discrete points with spacing $a$, but the points still span infinity. In this case the first equation in Eq.~\eqref{eqn:FT_iFT} becomes,
+\begin{equation}
+  \tilde{f}(p) = \frac{a}{2 \pi} \displaystyle\sum_{n=-\infty}^{\infty} \; f(na) \, e^{-inpa} \,.
+\end{equation}
+This immediately tells us that $\tilde{f}(p)$ is periodic with period $2\pi/a$ ! This means that we can limit the integration in momenta over one period - called the Brillouin Zone $\bigl[-\pi/a , \pi/a \bigr)$ and the integration limits for any momentum integral is now limited! This is how a discrete spacetime lattice regularizes the theory - by removing the UV-divergences arising due to the presence of very short-distance scales or very large momenta. 
+
+However, we are not done yet as the lattice also has a \textit{finite extent}. This will further restrict the allowed momenta values on the lattice! For this we remind ourselves that our theory lives on a lattice with periodic boundary conditions. For the line segment, this means $f(x+L) = f(x)$. Combining this with the second equation in Eq.~\eqref{eqn:FT_iFT}, one finds that the finite extent of the line segment limits the number of allowed momenta to be $p = \frac{2 \pi n}{L}$ for $n \in \bigl[-L/2a , L/2a \bigr)$ (recall that $L=Na$)\sidefact{You will see a more detailed treatment of lattice momenta in Nico Dichter's treatment of fermions on the lattice on 24.06.}.
+
+Finally, to compute the two-point function for the theory, we rewrite the action in Eq.~\eqref{eqn:latt_action} in the form,
+\begin{equation}\label{eqn:compact_lat_act}
+S_E = \frac{1}{2} \displaystyle\sum_{n,m} \hat{\phi}_n K_{nm} \hat{\phi}_m  \,
+\end{equation}
+where the matrix elements $K_{nm}$ are given by reading off what is \textit{sandwiched} between the $\phi$'s in Eq.~\eqref{eqn:latt_action} and considering only positive directions, 
+\begin{equation}
+  K_{nm} = - \displaystyle\sum_{\mu>0} \left(\delta_{n+\hat{\mu},m} + \delta_{n-\hat{\mu},m} - 2 \delta_{mn} \right) + \hat{M}^2 \delta_{mn}
+\end{equation}
+\textcolor{red}{missing:   - what breaks in symmetries - how we recover the orginal theory}
 
 
 \bibliographystyle{unsrt}

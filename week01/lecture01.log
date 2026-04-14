@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.11)  14 APR 2026 13:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.11)  14 APR 2026 22:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -679,22 +679,46 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 72.
+(Font)              <10.95> on input line 69.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 88.
+(Font)              <9> on input line 85.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 88.
+(Font)              <5> on input line 85.
  [1
 
 {/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-Package marginnote Info: Margin note 4.1 is on absolute page 5 on input line 167.
-Package marginnote Info: right page because not two side mode on input line 167.
-Package marginnote Info: xpos seems to be 297.05728pt on input line 167.
- [4] [5]
-Package marginnote Info: Margin note 6.1 is on absolute page 6 on input line 193.
-Package marginnote Info: right page because not two side mode on input line 193.
-Package marginnote Info: xpos seems to be 449.13145pt on input line 193.
- (/Users/simransingh/LFT_lectures/week01/lecture01.bbl
+Package marginnote Info: Margin note 4.1 is on absolute page 4 on input line 147.
+Package marginnote Info: right page because not two side mode on input line 147.
+Package marginnote Info: xpos seems to be 118.86836pt on input line 147.
+Package marginnote Info: Margin note 4.2 is on absolute page 5 on input line 164.
+Package marginnote Info: right page because not two side mode on input line 164.
+Package marginnote Info: xpos seems to be 297.05728pt on input line 164.
+ [4]
+Package marginnote Info: Margin note 5.1 is on absolute page 5 on input line 175.
+Package marginnote Info: right page because not two side mode on input line 175.
+Package marginnote Info: xpos seems to be 412.81575pt on input line 175.
+ [5]
+Package marginnote Info: Margin note 6.1 is on absolute page 6 on input line 190.
+Package marginnote Info: right page because not two side mode on input line 190.
+Package marginnote Info: xpos seems to be 449.13145pt on input line 190.
+Package marginnote Info: Margin note 6.2 is on absolute page 6 on input line 208.
+Package marginnote Info: right page because not two side mode on input line 208.
+Package marginnote Info: xpos seems to be 343.13136pt on input line 208.
+Package marginnote Info: Margin note 6.3 is on absolute page 6 on input line 215.
+Package marginnote Info: right page because not two side mode on input line 215.
+Package marginnote Info: xpos seems to be 442.89738pt on input line 215.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[6]
+Package marginnote Info: Margin note 7.1 is on absolute page 7 on input line 275.
+Package marginnote Info: right page because not two side mode on input line 275.
+Package marginnote Info: xpos seems to be 413.82874pt on input line 275.
+Package marginnote Info: Margin note 7.2 is on absolute page 8 on input line 282.
+Package marginnote Info: right page because not two side mode on input line 282.
+Package marginnote Info: xpos seems to be 114.36055pt on input line 282.
+ [7] (/Users/simransingh/LFT_lectures/week01/lecture01.bbl
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 7.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -703,23 +727,23 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [6]) [7] (/Users/simransingh/LFT_lectures/week01/lecture01.aux)
+) [8] (/Users/simransingh/LFT_lectures/week01/lecture01.aux)
 Package rerunfilecheck Info: File `lecture01.out' has not changed.
 (rerunfilecheck)             Checksum: F029AD92E084402E472CD20AB35FCE23;617.
  ) 
 Here is how much of TeX's memory you used:
- 24052 strings out of 478994
- 443676 string characters out of 5858184
- 746262 words of memory out of 5000000
- 40896 multiletter control sequences out of 15000+600000
- 474546 words of font info for 150 fonts, out of 8000000 for 9000
+ 24087 strings out of 478994
+ 444095 string characters out of 5858184
+ 753299 words of memory out of 5000000
+ 40909 multiletter control sequences out of 15000+600000
+ 475133 words of font info for 157 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,11n,88p,864b,724s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 87i,11n,88p,955b,724s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on /Users/simransingh/LFT_lectures/week01/lecture01.pdf (7 pages, 340173 bytes).
+Output written on /Users/simransingh/LFT_lectures/week01/lecture01.pdf (8 pages, 352171 bytes).
 PDF statistics:
- 224 PDF objects out of 1000 (max. 8388607)
- 190 compressed objects within 2 object streams
- 45 named destinations out of 1000 (max. 500000)
+ 244 PDF objects out of 1000 (max. 8388607)
+ 208 compressed objects within 3 object streams
+ 53 named destinations out of 1000 (max. 500000)
  37421 words of extra memory for PDF output out of 42996 (max. 10000000)
 

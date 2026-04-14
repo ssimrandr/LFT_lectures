@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex lecture01"] 1776167946 "lecture01.aux" "lecture01.bbl" "lecture01" 1776167946
+["bibtex lecture01"] 1776199265 "lecture01.aux" "lecture01.bbl" "lecture01" 1776199266
   "../references.bib" 1776156186 1537 e8ce718231043580972a571308311e0a ""
   "/usr/local/texlive/2021/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "lecture01.aux" 1776167946 2846 981f8fb78eb83f7002e8248fc9038921 "pdflatex"
+  "lecture01.aux" 1776199266 3679 a95a11fe93751abe2e0c8db45d55f355 "pdflatex"
   (generated)
-  "lecture01.blg"
   "lecture01.bbl"
-["pdflatex"] 1776167946 "/Users/simransingh/LFT_lectures/week01/lecture01.tex" "/Users/simransingh/LFT_lectures/week01/lecture01.pdf" "lecture01" 1776167946
-  "/Users/simransingh/LFT_lectures/week01/lecture01.aux" 1776167946 2846 981f8fb78eb83f7002e8248fc9038921 ""
-  "/Users/simransingh/LFT_lectures/week01/lecture01.tex" 1776167945 19488 0ef090e5c8a5ff2143bda40c93f868da ""
+  "lecture01.blg"
+["pdflatex"] 1776199265 "/Users/simransingh/LFT_lectures/week01/lecture01.tex" "/Users/simransingh/LFT_lectures/week01/lecture01.pdf" "lecture01" 1776199266
+  "/Users/simransingh/LFT_lectures/week01/lecture01.aux" 1776199266 3679 a95a11fe93751abe2e0c8db45d55f355 ""
+  "/Users/simransingh/LFT_lectures/week01/lecture01.tex" 1776199264 24418 31027b5bbde39600795b9eb5e7277711 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1202520719 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
@@ -223,14 +223,14 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1616695603 5169178 a2ce6e2d73f603b690db6777d06dbccb ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1647004587 2724741 cec9b769bbe884b54f9369a5b7b7b84d ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "lecture01.aux" 1776167946 2846 981f8fb78eb83f7002e8248fc9038921 "pdflatex"
-  "lecture01.bbl" 1776167946 699 5bef610b739e6f0e3fff42e7b3698609 "bibtex lecture01"
-  "lecture01.out" 1776167946 617 f029ad92e084402e472cd20ab35fce23 "pdflatex"
-  "lecture01.tex" 1776167945 19488 0ef090e5c8a5ff2143bda40c93f868da ""
+  "lecture01.aux" 1776199266 3679 a95a11fe93751abe2e0c8db45d55f355 "pdflatex"
+  "lecture01.bbl" 1776199265 699 5bef610b739e6f0e3fff42e7b3698609 "bibtex lecture01"
+  "lecture01.out" 1776199266 617 f029ad92e084402e472cd20ab35fce23 "pdflatex"
+  "lecture01.tex" 1776199264 24418 31027b5bbde39600795b9eb5e7277711 ""
   (generated)
+  "/Users/simransingh/LFT_lectures/week01/lecture01.pdf"
+  "lecture01.pdf"
+  "lecture01.aux"
+  "lecture01.out"
   "lecture01.log"
   "/Users/simransingh/LFT_lectures/week01/lecture01.log"
-  "lecture01.aux"
-  "/Users/simransingh/LFT_lectures/week01/lecture01.pdf"
-  "lecture01.out"
-  "lecture01.pdf"
