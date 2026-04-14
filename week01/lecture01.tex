@@ -16,12 +16,22 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{caption}
+\usepackage{placeins}
+
+% TikZ for diagrams
+\usepackage{tikz}
+\usetikzlibrary{calc, decorations.pathreplacing}
 
 % Better typography
 \usepackage{microtype}
 
 % Page layout
-\usepackage[margin=1in]{geometry}
+\usepackage[left=1in, right=2in, top=1in, bottom=1in, marginparwidth=1.4in, marginparsep=0.2in]{geometry}
+
+% Margin notes
+\usepackage{marginnote}
+\newcommand{\sidefact}[1]{\marginnote{\footnotesize\textcolor{green!50!black}{#1}}}
+\newcommand{\sideex}[1]{\marginnote{\footnotesize\textcolor{red!50!black}{#1}}}
 
 % Hyperlinks
 \usepackage[hidelinks]{hyperref}
@@ -105,7 +115,7 @@ In the above, we have used the position representation of the momentum eigenstat
 \begin{equation}\label{eqn:infinitesimal_matrixel}
   \langle x_{i+1} |U(t_{i+1}-t_i)| x_i \rangle = \sqrt{\frac{m}{2 \pi i \hbar \epsilon}} e^{ \frac{i}{\hbar}\epsilon \left[\frac{m}{2}\left(\frac{x_{i+1}-x_i}{\epsilon} \right)^2 - V(x_i) \right] } \;.
 \end{equation}
-Considering the limit $\epsilon \to 0$, one can recognize the term in the square brackets of the exponential as the \textit{action} of the theory given by,
+Considering the limit $\epsilon \to 0$, one can recognize the term in the square brackets of the exponential as the Lagrangian of the theory, that when integrated over time gives us the \text{action} as,
 \begin{align} \label{eqn:action}
 S[x] &= \int dt \left[\frac{m}{2} (\partial_t x)^2 - V(x) \right] \\
 &= \lim_{\epsilon \to 0} \sum_i \epsilon \left[\frac{m}{2}\left(\frac{x_{i+1}-x_i}{\epsilon} \right)^2 - V(x_i) \right] \nonumber
@@ -150,17 +160,103 @@ After having formally defined the Euclidean path integral for the quantum mechan
     t & \longrightarrow & x = (t, \vec{x}) \\
     x & \longrightarrow & \phi(x) \\
     S[x]=\int dt \; L(x, \partial_t x) & \longrightarrow & S[\phi]=\int d^4x \; L(\phi, \partial_{\mu} \phi) \\
-    \mathcal{D}x = \displaystyle\prod_i \int dx_i & \longrightarrow & \mathcal{D}\phi = \displaystyle\prod_x \int d\phi(x)
+    \mathcal{D}x = \displaystyle\prod_i \int dx_i & \longrightarrow & \mathcal{D}\phi = \displaystyle\prod_x \int d\phi(x).
   \end{array}
 \end{equation}
 
-\textcolor{red}{missing: connection to Green's functions and why even this well-defined Euclidean path integral gives divergences}
+Now that we have established a connection between the Euclidean path integral of a quantum field theory to the partition function of a classical statistical-mechanical system, we can exploit this correspondance to compute thermal expectation values of observables. This is possible because of the interpretation of $e^{-S_E[\phi]/\hbar}$ as the probability weight for a given \textit{configuration} $\phi(x)$ - precisely analogous to the Boltzmann weight $e^{-\beta E}$ in classical statistical mechanics \sidefact{Computing such expectation values is the primary objective in lattice QCD research, especially the area focussed on QCD phase diagram. For further reading see~\cite{Aarts:2015tyj}}. Then the expectation value of an arbitrary observable $O(\phi)$ is formally given as,
+\begin{equation}
+  \langle O \rangle = \frac{\int \mathcal{D}\phi \; O(\phi) \; e^{-S_E[\phi]/\hbar}}{\int \mathcal{D}\phi \; e^{-S_E[\phi]/\hbar}}
+\end{equation}
+
+From the more field-theoretic poin-of-view, one can also compute two-point (or higher N-point) functions from the Euclidean path integral in analogy with what we are used to from the perturbative formulation of quantum field theories. In this way one can construct the Euclidean Green's functions that contain information about the particle spectrum. For example, the following two-point function (Green's function),
+\begin{equation}\label{eqn:green_function}
+  G_E(\vec{x},\tau;\vec{x}',0) = \langle \phi(\vec{x},\tau) \phi(\vec{x}',0) \rangle = \frac{\int \mathcal{D}\phi \; \phi(\vec{x},\tau) \phi(\vec{x}',0) \; e^{-S_E[\phi]/\hbar}}{\int \mathcal{D}\phi \; e^{-S_E[\phi]/\hbar}},
+\end{equation}
+is of very high importance in lattice studies as this quantity contains information about the particle spectrum of the theory. The decay of this two-point function gives us information on the mass gap of the theory. 
+
+This brings us to the problem of dealing with divergences - computing Green's functions (both in Minkowski or Euclidean spacetime) are tricky because of short-distance or large-momentum (called Ultra-violet or UV) divergences. If you try to directly compute this you will simply get a bunch of infinities! But this should be confusing because we know that quantities like Eq.~\eqref{eqn:green_function} contain information on physical quantities like masses of particles - which are certainly not infinite. Thus we are forced to introduce some regulators like a UV-cutoff which render the computation of these quantities finite and, very importantly, we need to understand how these quantities change as we remove the regulator while keeping the Green's function finite.
+ 
+Now we are ready to introduce regularization scheme that is in the title of this course-Lattice field theory.
+
 \section{Lattice (scalar) field theory}
-Actually using the Euclidean path integral to compute physical quantities is very hard --- either you go the perturbative way and deal with renormalizing Green's functions order by order --- or you directly try to make sense of the path integral --- this is what lattice field theory offers you --- on the one hand it regulates divergences by placing a cutoff and on the other hand it gives a practical sense to the formal path integral measure.
-\textcolor{red}{missing: why lattice is a regulator - why it makes the measure practical - the dictionary between continuum and lattice, momentum, action etc - what breaks in symmetries - how we recover the orginal theory}
+In this part of the lecture we will see how introducing a spacetime lattice regulates the formal path integral measure and how it removes the above-mentioned UV divergences. For this we will consider the case of the scalar $\phi$-field theory. Note that this is meant to be a \textit{warm-up} for the rest of the course - in general we will not be dealing with scalar fields - but with the fermion and gauge fields in the subsequent lectures.
+
+To begin we consider the (continuum) Euclidean action corresponding to the scalar field $\phi$ field in 4 spacetime dimensions (from now on $x$ denotes the 4 vector $(x_1,x_2,x_3,x_4)$),
+\begin{equation}
+  S_E[\phi] = \frac{1}{2} \int d^4 x \; \phi(x) \left(-\Box + M^2 \right) \phi(x),
+\end{equation}
+where $\Box$ denotes the 4-dimensional Laplacian $\displaystyle\sum^4_{\mu=1} \; \partial_{\mu} \partial_{\mu}$. then the corresponding partition function is (setting $\hbar=1$ from now onward), 
+\begin{equation}
+  Z = \int \displaystyle\prod_x \; d\phi(x) \; e^{-S[\phi]}.
+\end{equation}
+In order to see how these quantities look like on a discrete spacetime lattice, consider the two-dimensional version in Fig.~\ref{fig:lattice}. This gives us the following prescription \sideex{In the exercise sheet you will have the opportunity to derive the expressions in momentum space for the derivatives.}:
+\begin{equation}
+  \begin{array}{rcl}
+    x_{\mu} & \longrightarrow & n_{\mu} a\,, \\
+    \phi(x) & \longrightarrow & \phi(n a)\,, \\
+    \int d^4x & \longrightarrow & a^4 \displaystyle\sum_n \,,\\
+    \partial_{\mu}\phi(x) & \longrightarrow & \Delta^f_{\mu} = \frac{\phi(na + \hat{\mu}a) - \phi(na)}{a} \,, \\
+    \partial_{\mu}\phi(x) & \longrightarrow & \Delta^b_{\mu} = \frac{\phi(na) - \phi(na-\hat{\mu}a)}{a} \,, \\
+    \partial_{\mu}\phi(x) & \longrightarrow & \Delta^s_{\mu} = \frac{\phi(na + \hat{\mu}a) - \phi(na-\hat{\mu}a)}{2a} \,, \\
+    \mathcal{D}\phi & \longrightarrow & \displaystyle\prod_n \int d\phi(n a).
+  \end{array}
+\end{equation}
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[scale=1.4]
+    % Draw interior grid lines (solid)
+    \foreach \i in {0,1,2,3} {
+      \draw[gray!50, thin] (\i,0) -- (\i,3);
+      \draw[gray!50, thin] (0,\i) -- (3,\i);
+    }
+    % Periodic boundary: dashed lines beyond the lattice edges
+    % — horizontal wrap (left ↔ right)
+    \foreach \j in {0,1,2,3} {
+      \draw[red!60!black, dashed, thick] (3,\j) -- (3.6,\j);
+      \draw[red!60!black, dashed, thick] (-0.6,\j) -- (0,\j);
+    }
+    % — vertical wrap (bottom ↔ top)
+    \foreach \i in {0,1,2,3} {
+      \draw[red!60!black, dashed, thick] (\i,3) -- (\i,3.6);
+      \draw[red!60!black, dashed, thick] (\i,-0.6) -- (\i,0);
+    }
+    % Curved arrows showing identification of opposite edges
+    % — horizontal identification (row 1.5 as representative)
+   % \draw[->, red!60!black, thick, dashed,
+    %      out=40, in=140] (3.6,1.5) to
+     %     node[above, font=\footnotesize]{PBC} (-0.6,1.5);
+    % — vertical identification (col 1.5 as representative)
+    %\draw[->, red!60!black, thick, dashed,
+    %      out=-50, in=-130] (1.5,3.6) to
+     %     node[right, font=\footnotesize]{PBC} (1.5,-0.6);
+    % Draw lattice points
+    \foreach \i in {0,1,2,3} {
+      \foreach \j in {0,1,2,3} {
+        \fill[black] (\i,\j) circle (2.5pt);
+      }
+    }
+    % Label one lattice point with phi
+    \node[above right=3pt, blue!70!black] at (2,2) {$\phi(x)$};
+    \fill[blue!70!black] (2,2) circle (3pt);
+    % Lattice spacing brace between two horizontal neighbours
+    \draw[decorate, decoration={brace, amplitude=5pt, mirror}, thick]
+      (0,-0.85) -- (1,-0.85)
+      node[midway, below=6pt] {$a$};
+    % Axis labels
+    \draw[->, thick] (-0.9,0) -- (3.9,0) node[right] {$x_1$};
+    \draw[->, thick] (0,-0.9) -- (0,3.9) node[above] {$x_2$};
+  \end{tikzpicture}
+  \caption{A $4 \times 4$ two-dimensional lattice with spacing~$a$
+    and periodic boundary conditions. Matter fields live on lattice sites as indicated by $\phi(x)$. Dashed red lines indicate that opposite edges are identified: $\phi(x + L\hat{\mu}) = \phi(x)$. }
+  \label{fig:lattice}
+\end{figure}
+\FloatBarrier
+\textcolor{red}{missing:  the dictionary between continuum and lattice, momentum, - what breaks in symmetries - how we recover the orginal theory}
 
 
-\bibliographystyle{plain}
+\bibliographystyle{unsrt}
 \bibliography{../references}
 
 \end{document}
