@@ -39,6 +39,17 @@
 % Lists
 \usepackage{enumitem}
 
+% Header: page style
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % clear header and footer
+\lhead{\textit{LFT : Lecture 1}}
+\rhead{\textit{S. Singh}}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyfoot[C]{\thepage} % Add centered page number in footer
+
+
+
 % Theorem environments
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -46,8 +57,8 @@
 \newtheorem{definition}[theorem]{Definition}
 
 % Metadata
-\title{Lecture 1 — Introduction}
-\author{Course / Simran Singh}
+\title{Lecture 1 - Introduction to Euclidean path integrals and lattice scalar field theory}
+\author{Simran Singh}
 \date{\today}
 
 \begin{document}
@@ -56,11 +67,11 @@
 
 \begin{abstract}
   In this lecture we begin by motivating the study of lattice field theory first introducing the Euclidean path integral for quantum mechanics, promoting the discussion to field theory and discussing how it can be used to compute expectation values and correlation functions. We then motivate the discretization of spacetime and how it helps regulate the path integral.
-  Finally, we introduce the lattice scalar field theory as a simple example to illustrate how to put a theory on a discrete spacetime lattice.
+  Finally, we introduce the lattice scalar field theory as a simple example to illustrate how to put a theory on a discrete spacetime lattice. The first half of these notes are based on~\cite{wiese2009lattice} while the second half on~\cite{rothe2012lattice}.
 \end{abstract}
 
 \section{Overview}
-The first half of these notes are based on \cite{wiese2009lattice} while the second half on \cite{rothe2012lattice}.
+  The Standard Model of particle physics is a quantum field theory that describes three of the four fundamental forces of nature — the electromagnetic, weak and strong interactions. While we have made a lot of progress in studying the electromagnetic and weak forces using tools like perturbation theory, the strong force requires a non-perturbative treatment. Lattice quantum chromodynamics (lattice QCD) provides a \textit{first-principles}, non-perturbative treatment of QCD that has been very successful in its study of the strong force for the last $\sim 50$ years. The two basic ingredients to understand lattice field theory are: (i) Euclidean path integral formalism, and (ii) learning how to put theories on a discrete spacetime grid. In this first lecture we will try to motivate these two ideas starting from the real-time path integral of a simple quantum mechanical system, and building our way to a lattice scalar field theory. Once we warm up to these ideas, we will be in a position to put more complicated theories like gauge fields and fermions on the lattice.
 
 
 \section{Real time path integral}
@@ -161,12 +172,12 @@ After having formally defined the Euclidean path integral for the quantum mechan
   \end{array}
 \end{equation}
 
-Now that we have established a connection between the Euclidean path integral of a quantum field theory to the partition function of a classical statistical-mechanical system, we can exploit this correspondance to compute thermal expectation values of observables. This is possible because of the interpretation of $e^{-S_E[\phi]/\hbar}$ as the probability weight for a given \textit{configuration} $\phi(x)$ - precisely analogous to the Boltzmann weight $e^{-\beta E}$ in classical statistical mechanics \sidefact{Computing such expectation values is the primary objective in lattice QCD research, especially the area focussed on QCD phase diagram. For further reading see~\cite{Aarts:2015tyj}}. Then the expectation value of an arbitrary observable $O(\phi)$ is formally given as,
+Now that we have established a connection between the Euclidean path integral of a quantum field theory and the partition function of a classical statistical-mechanical system, we can exploit this correspondence to compute thermal expectation values of observables. This is possible because of the interpretation of $e^{-S_E[\phi]/\hbar}$ as the probability weight for a given \textit{configuration} $\phi(x)$ — precisely analogous to the Boltzmann weight $e^{-\beta E}$ in classical statistical mechanics \sidefact{Computing such expectation values is the primary objective in lattice QCD research, especially the area focused on the QCD phase diagram. For further reading see~\cite{Aarts:2015tyj}}. Then the expectation value of an arbitrary observable $O(\phi)$ is formally given as,
 \begin{equation}
   \langle O \rangle = \frac{\int \mathcal{D}\phi \; O(\phi) \; e^{-S_E[\phi]/\hbar}}{\int \mathcal{D}\phi \; e^{-S_E[\phi]/\hbar}}
 \end{equation}
 
-From the more field-theoretic poin-of-view, one can also compute two-point (or higher N-point) functions from the Euclidean path integral in analogy with what we are used to from the perturbative formulation of quantum field theories. In this way one can construct the Euclidean Green's functions that contain information about the particle spectrum. For example, the following two-point function (Green's function),
+From the more field-theoretic point of view, one can also compute two-point (or higher N-point) functions from the Euclidean path integral in analogy with what we are used to from the perturbative formulation of quantum field theories. In this way one can construct the Euclidean Green's functions that contain information about the particle spectrum. For example, the following two-point function (Green's function),
 \begin{equation}\label{eqn:green_function}
   G_E(\vec{x},\tau;\vec{x}',0) = \langle \phi(\vec{x},\tau) \phi(\vec{x}',0) \rangle = \frac{\int \mathcal{D}\phi \; \phi(\vec{x},\tau) \phi(\vec{x}',0) \; e^{-S_E[\phi]/\hbar}}{\int \mathcal{D}\phi \; e^{-S_E[\phi]/\hbar}},
 \end{equation}
@@ -184,7 +195,7 @@ To begin we consider the (continuum) Euclidean action corresponding to the scala
   S_E[\phi] = \frac{1}{2} \int d^4 x \; \phi(x) \left(-\Box + M^2 \right) \phi(x),
 \end{equation}
 where $\Box$ denotes the 4-dimensional Laplacian $\displaystyle\sum^4_{\mu=1} \; \partial_{\mu} \partial_{\mu}$. then the corresponding partition function is (setting $\hbar=1$ from now onward), 
-\begin{equation}
+\begin{equation}\label{eqn:cont_Z}
   Z = \int \displaystyle\prod_x \; d\phi(x) \; e^{-S[\phi]}.
 \end{equation}
 In order to see how these quantities look like on a discrete spacetime lattice, consider the two-dimensional version in Fig.~\ref{fig:lattice}. This gives us the following prescription \sideex{In the exercise sheet you will have the opportunity to derive the expressions in momentum space for the derivatives.}:
@@ -204,7 +215,7 @@ We can immediately see from the Eq.~\eqref{eqn:cont_latt_dic}, that there are ma
 \begin{equation}\label{eqn:laplatt}
   \Box_L \hat{\phi}(na) = \Delta^b_{\mu}\Delta^f_{\mu} = \frac{1}{a^2} \displaystyle\sum_{\mu} \left(\phi(na + \hat{\mu}a) + \phi(na - \hat{\mu}a) - 2\phi(na) \right) \,.
 \end{equation}
-In order to write down the full lattice action for the scalar field theory, we need to consider the dimesnionality of the lattice parameters like the field value $\phi(na)$ and the lattice mass $M$. We need to maintain the dimensionless-ness of the Euclidean lattice action. Looking at Eq.~\eqref{eqn:action} and Eq.~\eqref{eqn:laplatt}, we get \sideex{There is an exercise related to this!}
+In order to write down the full lattice action for the scalar field theory, we need to consider the dimensionality of the lattice parameters like the field value $\phi(na)$ and the lattice mass $M$. We need to maintain the dimensionlessness of the Euclidean lattice action. Looking at Eq.~\eqref{eqn:action} and Eq.~\eqref{eqn:laplatt}, we get \sideex{There is an exercise related to this!}
 \begin{equation}\label{eqn:dimless_Mphi}
   \begin{array}{rcl}
     \hat{\phi}_n &=& a \phi(na) \\
@@ -267,7 +278,7 @@ defining the dimensionless lattice quantities with hats and removing the label $
   \label{fig:lattice}
 \end{figure}
 
-Before moving on to seeing how this spacetime discretization helps in considering observables coming from the path integral - we need to discuss what happens to the allowed values of momentum when one discretizes space. The easiest way to see this is to consider an infinte line segment and write down the equations for the Fourier transform and the inverse Fourier transform of a function along this line,
+Before moving on to seeing how this spacetime discretization helps in considering observables coming from the path integral - we need to discuss what happens to the allowed values of momentum when one discretizes space. The easiest way to see this is to consider an infinite line segment and write down the equations for the Fourier transform and the inverse Fourier transform of a function along this line,
 \begin{align}\label{eqn:FT_iFT}
   \tilde{f}(p) =& \frac{1}{2 \pi}\int^{\infty}_{-\infty} dx \; f(x) \, e^{-ipx} \nonumber \\
   f(x) =& \int^{\infty}_{-\infty} dp \; \tilde{f}(p)\, e^{ipx} \,.
@@ -280,18 +291,76 @@ First consider the case where the line segment is not continuous but is made up 
 This immediately tells us that $\tilde{f}(p)$ is periodic with period $2\pi/a$ ! This means that we can limit the integration in momenta over one period - called the Brillouin Zone $\bigl[-\pi/a , \pi/a \bigr)$ and the integration limits for any momentum integral is now limited! This is how a discrete spacetime lattice regularizes the theory - by removing the UV-divergences arising due to the presence of very short-distance scales or very large momenta. 
 
 However, we are not done yet as the lattice also has a \textit{finite extent}. This will further restrict the allowed momenta values on the lattice! For this we remind ourselves that our theory lives on a lattice with periodic boundary conditions. For the line segment, this means $f(x+L) = f(x)$. Combining this with the second equation in Eq.~\eqref{eqn:FT_iFT}, one finds that the finite extent of the line segment limits the number of allowed momenta to be $p = \frac{2 \pi n}{L}$ for $n \in \bigl[-L/2a , L/2a \bigr)$ (recall that $L=Na$)\sidefact{You will see a more detailed treatment of lattice momenta in Nico Dichter's treatment of fermions on the lattice on 24.06.}.
-
+% Dotted separator inserted at user's request (line ~294)
+\noindent\makebox[\linewidth]{\dotfill}\par
+\vspace{0.5\baselineskip}
 Finally, to compute the two-point function for the theory, we rewrite the action in Eq.~\eqref{eqn:latt_action} in the form,
 \begin{equation}\label{eqn:compact_lat_act}
 S_E = \frac{1}{2} \displaystyle\sum_{n,m} \hat{\phi}_n K_{nm} \hat{\phi}_m  \,
 \end{equation}
 where the matrix elements $K_{nm}$ are given by reading off what is \textit{sandwiched} between the $\phi$'s in Eq.~\eqref{eqn:latt_action} and considering only positive directions, 
-\begin{equation}
-  K_{nm} = - \displaystyle\sum_{\mu>0} \left(\delta_{n+\hat{\mu},m} + \delta_{n-\hat{\mu},m} - 2 \delta_{mn} \right) + \hat{M}^2 \delta_{mn}
+\begin{equation}\label{eqn:K_mat}
+  K_{nm} = - \displaystyle\sum_{\mu>0} \left(\delta_{n+\hat{\mu},m} + \delta_{n-\hat{\mu},m} - 2 \delta_{mn} \right) + \hat{M}^2 \delta_{mn}\,.
 \end{equation}
-\textcolor{red}{missing:   - what breaks in symmetries - how we recover the orginal theory}
 
+Using this we can write the lattice partition function as (compare to Eq.~\eqref{eqn:cont_Z}),
+\begin{equation}
+  Z = \int \displaystyle \prod_{l} d\phi_l \; \exp\left({-\frac{1}{2} \displaystyle\sum_{n,m} \hat{\phi}_n K_{nm} \hat{\phi}_m}\right)
+\end{equation}
+In the field theory treatment of N-point functions, one typically introduces a \textit{source term} for the fields, $J_n \phi_n$, in order to get a generating functional, \sidefact{You can find more about this type of calculation and more information on generating functionals in classic QFT textbooks like\cite{peskin1995introduction}.}
+\begin{equation}\label{eqn:gen_func}
+  Z[J] = \int \displaystyle \prod_{l} d\phi_l \; \exp\left({-\frac{1}{2} \displaystyle\sum_{n,m} \hat{\phi}_n K_{nm} \hat{\phi}_m + J_n \phi_n }\right)\,.
+\end{equation}
+Because of the Gaussian-like nature of the individual terms in the exponent, the integral(s) in Eq.~\eqref{eqn:gen_func} can be computed easily\footnote{This will be an exercise in the \textit{next sheet}!} to get,
+\begin{equation}\label{eqn:int_gen_func}
+  Z[J] = \frac{1}{\sqrt{K}} \exp\left({\displaystyle\sum_{n,m} J_m K^{-1}_{m,n} J_n }\right)
+\end{equation}
+Now we just have to use one more fact about generating functionals-that their derivatives with respect to $J_l$ give rise to N-point functions and then set $J=0$. Since we are interested in the two-point function, after some algebra we get,
+\begin{equation}
+  \langle \hat{\phi}_n \hat{\phi}_m \rangle = \frac{\delta Z[J]}{\delta J_n \delta J_m}|_{J=0} = K^{-1}_{m,n}
+\end{equation} 
+Hence, all that is left to do is find the inverse of the matrix in Eq.~\eqref{eqn:K_mat}! For this we will use two ingredients: (i) use the fact that $\sum_{l} K_{m,l} K^{-1}_{l,n} = \delta_{m,n}$ and, (ii) do the computation in momentum basis using the lattice version of the Fourier transform as discussed before. One can construct the Fourier transform of Eq.~\eqref{eqn:K_mat} in a straightforward manner to get,
+\begin{equation}
+  K(\hat{p}) = 4 \displaystyle\sum^4_{\mu=1} \; \sin^2(\hat{p}_{\mu}/2) + \hat{M}^2\,.
+\end{equation}
 
+Plugging the inverse of this equation into the momentum space representation of the matrix inverse identity, one gets \sideex{It would be a nice exercise to show this!}
+\begin{equation}\label{eqn:Kinv_kspace}
+  K^{-1}_{nm}=\langle \hat{\phi}_n \hat{\phi}_m \rangle
+  =\int_{-\pi,\pi} \!\frac{d^4 \hat{p}}{(2\pi)^4}\;\frac{e^{i \hat{p}\cdot (n-m)}}{\,4\displaystyle\sum_{\mu=1}^4 \sin^2\!\left(\tfrac{\hat{p}_\mu}{2}\right)+\hat{M}^2\,}\,.
+\end{equation}
+With this we have our first well-defined and finite lattice quantity - the two-point Green's function written completely in terms of lattice regulated variables like the dimensionless mass $\hat{M}$, lattice sites $m,n$, lattice momenta $\hat{p}$,
+\begin{equation}\label{eqn:G_def}
+  G(n,m;\hat{M}) \equiv \langle \hat{\phi}_n \;\hat{\phi}_m \rangle = K^{-1}_{nm} \,.
+\end{equation}
+
+We finally come to the \textit{formally} last part of the procedure - removing the lattice structure while keeping, for example, the Green's functions finite. This is something we will discuss in detail in a future lecture and forms the most important step of a lattice computation. \sidefact{However, if you start reading LFT research papers you will see that it is a very rare finding that someone actually takes the continuum limit in their calculations - most lattice physicists just simulate one large and fine lattice and publish their results}
+For now, because we have a very simple free scalar field theory, the continuum limit of the Green's function in Eq.~\eqref{eqn:Kinv_kspace} is easy to show analytically, by demanding that we take the limit $a \to 0$ in such a way that the physical mass of the scalar and the lattice volume remain fixed while removing the cutoff. This means that the bare lattice quantities necessarily change as a function of $a$!
+
+Re-introducting the lattice structure like the spacing in Eq.~\eqref{eqn:G_def}, we get,
+\begin{equation}\label{eqn:Gdef_a}
+\langle \phi(x)\phi(y) \rangle \equiv \lim_{a \to 0} \frac{1}{a^2} G\left(\frac{x}{a};\frac{y}{a}; M a\right)\,,
+\end{equation}
+where we know that the left-hand-side of the equation is a finite quantity and in order to make the right-hand-side finite, we require
+\begin{equation}
+  \lim_{a \to 0} G\left(\frac{x}{a};\frac{y}{a}; M a\right) \to 0 \,.
+\end{equation}
+This is seen by replacing the dimensionless quantities by the dimensionful versions and introducing the accompanying factors of $a$ to get
+\begin{equation}\label{eqn:G_with_a}
+G\left(\frac{x}{a};\frac{y}{a}; M a\right) = a^2 \int_{-\pi/a}^{\pi/a} \frac{d^4 p}{(2\pi)^4} \frac{e^{i p \cdot (x-y)}}{\bar{p}_\mu^2 + M^2}\,,
+\end{equation}
+where $\bar{p}_\mu$ is given by
+\begin{equation}
+\bar{p}_\mu = \frac{2}{a} \sin\left(\frac{p_\mu a}{2}\right)\,.
+\tag{3.19b}
+\end{equation}
+
+Because the momentum integral in Eq.~\eqref{eqn:G_with_a} is limited to the finite interval $[-\pi/a, \pi/a]$, high-momentum modes (of order $1/a$) are excluded and the integrand is controlled by momenta that are tiny compared with the inverse lattice spacing. In this regime $\bar{p}_\mu$ reduces to the ordinary continuum momentum $p_\mu$; letting the lattice spacing $a$ go to zero then reproduces the usual continuum propagator:
+\begin{equation}
+\langle \phi(x)\phi(y) \rangle = \int_{-\infty}^{\infty} \frac{d^4 p}{(2\pi)^4} \frac{e^{i p \cdot (x-y)}}{p^2 + M^2}\,.
+\end{equation}
+
+This exercise was just to show that the lattice regularization is a valid procedure and with the correct procedure we recover our usual continuum physics. Hence, lattice field theories offer us a way to go beyond perturbation theory and compute finite quantities while giving a practical meaning to the path integral measure.
 \bibliographystyle{unsrt}
 \bibliography{../references}
 
