@@ -3,8 +3,80 @@
 % Replace with your lecture content. Compile from inside week02/ with latexmk or xelatex.
 
 \documentclass[11pt]{article}
+
+% Encoding and fonts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Math
+\usepackage{amsmath,amssymb,amsthm}
+
+% Graphics and colors
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{placeins}
+
+% TikZ for diagrams
+\usepackage{tikz}
+\usetikzlibrary{calc, decorations.pathreplacing}
+
+% Better typography
+\usepackage{microtype}
+
+% Page layout
+\usepackage[left=1in, right=2in, top=1in, bottom=1in, marginparwidth=1.4in, marginparsep=0.2in]{geometry}
+
+% Margin notes
+\usepackage{marginnote}
+\newcommand{\sidefact}[1]{\marginnote{\footnotesize\textcolor{green!50!black}{#1}}}
+\newcommand{\sideex}[1]{\marginnote{\footnotesize\textcolor{red!50!black}{#1}}}
+
+% Hyperlinks
+\usepackage[hidelinks]{hyperref}
+
+% Lists
+\usepackage{enumitem}
+
+% Header: page style
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % clear header and footer
+\lhead{\textit{LFT: Lecture 2}}
+\rhead{\textit{S. Singh}}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyfoot[C]{\thepage} % Add centered page number in footer
+
+
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+% Metadata
+\title{Lecture 2 - Gauge theories on a lattice}
+\author{Simran Singh}
+\date{\today}
+
 \begin{document}
-% TODO: add lecture content
+
+\maketitle
+
+\begin{abstract}
+    In this lecture we begin by discussing spacetime symmetries and symmteries obeyed by scalar fields and gauge fields. We then discuss how the lattice discretization breaks various symmetries and which symmetries are non-negotiable to break even on the lattice. This includes gauge symmetries and shows us how demanding gauge invariance on the lattice gives new structure on the lattice - not present in the continuum version of the theory. We will then discuss the basics of lattice gauge theories starting from defining links and plaquettes, building the Wilson gauge action. We then end with explaining how to fix a gauge on the lattice using maximal trees, finally introducing some important observables like the Wilson and Polyakov loops.
+\end{abstract}
+
+\section{Overview: Symmerties on the lattice}
+As we have seen previously, the discrete spacetime lattice, with properly defined lattice fields and observables provides us with a powerful tool to compute finite quanties whose correct continuum extrapolation leads to expected results. However, as one can expect - the discrete lattice explicitly breaks certain continuum symmetries which must be recovered in the continuum. We can broadly divide these symmetries into two parts: spacetime and field. Further, when considering spacetime symmetries one should keep in mind that we are doing \textit{Euclidean}(or Lagrangian) lattice field theory - which means Lorentz transformations are now simple rotations as space and time are on equal footing. This is a positive outcome because unlike Lorentz invariance which is completely broken on the lattice - the rotation symmetry is only broken to its discrete version - recovered when in the continuum. 
+Some field symmetries on the other hand may not be affected by the discretization of spacetime like the $\phi(x) \to -\phi(x)$ symmetry of the free scalar field. In this lecture we will consider what happens when we demand local gauge invariance on the lattice.
+\section{Local gauge invariance in the lattice free scalar field theory}
+\section{Special structure of gauge fields on the lattice: links and plaquettes}
+\section{Wilson gauge action}
+\section{Gauge fixing via maximal trees}
+\section{Important observables: Wilson and Polyakov loops}
 
 \bibliographystyle{unsrt}
 \bibliography{../references}
