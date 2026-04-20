@@ -69,14 +69,200 @@
     In this lecture we begin by discussing spacetime symmetries and symmteries obeyed by scalar fields and gauge fields. We then discuss how the lattice discretization breaks various symmetries and which symmetries are non-negotiable to break even on the lattice. This includes gauge symmetries and shows us how demanding gauge invariance on the lattice gives new structure on the lattice - not present in the continuum version of the theory. We will then discuss the basics of lattice gauge theories starting from defining links and plaquettes, building the Wilson gauge action. We then end with explaining how to fix a gauge on the lattice using maximal trees, finally introducing some important observables like the Wilson and Polyakov loops.
 \end{abstract}
 
-\section{Overview: Symmerties on the lattice}
+\section{Overview: Symmetries on the Lattice}
 As we have seen previously, the discrete spacetime lattice, with properly defined lattice fields and observables provides us with a powerful tool to compute finite quanties whose correct continuum extrapolation leads to expected results. However, as one can expect - the discrete lattice explicitly breaks certain continuum symmetries which must be recovered in the continuum. We can broadly divide these symmetries into two parts: spacetime and field. Further, when considering spacetime symmetries one should keep in mind that we are doing \textit{Euclidean}(or Lagrangian) lattice field theory - which means Lorentz transformations are now simple rotations as space and time are on equal footing. This is a positive outcome because unlike Lorentz invariance which is completely broken on the lattice - the rotation symmetry is only broken to its discrete version - recovered when in the continuum. 
 Some field symmetries on the other hand may not be affected by the discretization of spacetime like the $\phi(x) \to -\phi(x)$ symmetry of the free scalar field. In this lecture we will consider what happens when we demand local gauge invariance on the lattice.
-\section{Local gauge invariance in the lattice free scalar field theory}
-\section{Special structure of gauge fields on the lattice: links and plaquettes}
-\section{Wilson gauge action}
-\section{Gauge fixing via maximal trees}
-\section{Important observables: Wilson and Polyakov loops}
+
+\section{Continuum Abelian Gauge Theory: A Recap}
+Before discussing how to make our theory locally gauge invariant, it is good to remind ourselves what gauge fields are and what action describes them - in the continuum. One should recall that the Standard Model of particle physics is mad eup of matter fields (like scalar and fermions) and force fields (photons and gluons). Quantum electrodynamics (QED) describes the interaction sof fermions (electrons, muons so on) with photons which are described by an \textit{abelian gauge field theory}. While quantum chromodynamics (QCD) describes the dynamics of quarks and gluons, where the gluons are described by \textit{non-abelian gauge fields}. 
+
+Due to the mathematical simplicity of abelian gauge fields, we will restrict ourselves in this lecture to studying those. Euclidean abelian gauge field theory is described by the following action,
+\begin{equation}
+    S[A] = -\frac{1}{4}\int d^4x \; F_{\mu \nu}F_{\mu \nu}\,,
+\end{equation}
+where $F_{\mu \nu} = \partial_{\mu} A_{\nu} - \partial_{\nu} A_{\mu}$ is the anti-symmetric field strength tensor and $A_{\mu}(x)$ is the vector potential. The field strength tensor $F_{\mu \nu}$ has the property that it is invariant under the follwing transformation,
+\begin{equation}\label{eqn:full_GT}
+    A_{\mu}'(x) = \Omega(x)\,A_{\mu}(x)\,\Omega^{\dagger}(x) - i \Omega(x)\,\partial_{\mu}\Omega^{\dagger}(x) \,,
+\end{equation}
+when $\Omega(x)$ are elements in the abelian group $\mathcal{G} = U(1)$. These are then just phase factors and commute with each other, $\Omega(x) \Lambda(x) = \Lambda(x) \Omega(x)$ and have the property that $\Omega^{\dagger}(x) = \Omega^{-1}(x)$. Choosing such a phase factor to be $\Omega(x) = e^{i \alpha(x)}$, and using the abelian property (which allows us to move these phase factors past each other), Eq.~\eqref{eqn:full_GT} becomes,
+\begin{equation}\label{eqn:usual_GT}
+    A_{\mu}'(x) = A_{\mu}(x) + \partial_{\mu} \alpha(x)\,.
+\end{equation}
+The transformation represented by Eq.~\eqref{eqn:usual_GT} is what is usually known as \textit{local gauge invariance} and you might remember this from your course in Electrodynamics, as these transformations leave the physical observables like electric and magnetic fields invariant. 
+
+This gauge invariance introduces a propblem when we try to naively construct the path inetgral for the gauge theory. To see this, notice that for every configuration $A_\mu(x)$, there exist infinitely many gauge-equivalent 
+configurations related by Eq.~\eqref{eqn:usual_GT} that give identical physics - 
+the same action, the same observables. These gauge-equivalent configurations form 
+an \textit{orbit of the gauge group} $\mathcal{G}$. The measure $\mathcal{D}A_\mu$ integrates 
+over all configurations, including all copies within each orbit, so it factorizes as
+
+\begin{equation}
+    \mathcal{D}A_\mu = \mathcal{D}A^{\mathrm{phys}}_\mu \cdot \mathcal{D}\alpha, 
+    \qquad 
+    \mathcal{D}\alpha = \prod_x d\alpha(x)\,,
+\end{equation}
+
+where $\mathcal{D}A^{\mathrm{phys}}_\mu$ is the measure over gauge-inequivalent 
+configurations and $\mathcal{D}\alpha$ is the measure over the gauge group. Since 
+the action is gauge invariant, the integral over $\mathcal{D}\alpha$ yields only 
+the volume of the gauge group,
+%
+\begin{equation}
+    Z = \mathrm{Vol}(\mathcal{G}) \int \mathcal{D}A^{\mathrm{phys}}_\mu \; e^{-S[A]}\,,
+\end{equation}
+%
+which diverges since $\alpha(x) \in \mathbb{R}$ at every spacetime point, making 
+$\mathrm{Vol}(\mathcal{G}) = \infty$. This infinite overcounting must be dealt 
+with - in the continuum this is achieved via the Faddeev-Popov procedure\footnote{This is something you learn in your QFT or Advanced QFT courses}. 
+
+We will see below that on the lattice, gauge invariance is built in exactly and the problem is resolved differently: the link variables $U \in SU(N)$ become the fundamental degrees of freedom instead of the vector potential and take values in a compact group, so $\mathrm{Vol}(\mathcal{G})$ is finite and the path integral is naturally 
+regulated without the need for gauge fixing.
+
+\section{Local Gauge Invariance in the Lattice Free Scalar Field Theory}
+In this section we will begin by considering some internal symmetries of the scalar field theory given by a complex scalar field $\phi(x) = \left( \phi_1(x) + i \phi_2(x) \right)/\sqrt{2}$, whose (Euclidean) action is given by, 
+\begin{equation}
+    S_E[\phi] = \int d^4 x \; \left\{  \partial_{\mu}\phi^*(x)\partial_{\mu}\phi(x) + M^2  |\phi|^2(x) \right\}\,.
+\end{equation}
+Looking at the action, it is easy to see that, a rotation by a global phase $\phi(x) \to e^{i \alpha}\phi(x)$, leaves the action invariant. 
+
+However, if one wants to couple the free scalar field with with gauge fields, then to have a consistent theory, the entire action must respect local gauge invariance as discussed in the previous section \sidefact{You can learn more about continuum scalar quantum electrodynamics in Chapter 9 of the book by M. Schwartz\cite{schwartz2014qft}.}. The way gauge invariance acts on matter fields is by applying local, space dependent phases to the fields: $\phi(x) \to e^{i \alpha(x)}\phi(x)$. One immediately sees that under this transformation, the kinetic term of the free scalar field is not invariant and transforms as,
+\begin{equation}
+    \partial_{\mu} \phi'(x) = e^{i \alpha(x)} \left( \partial_\mu\phi(x) + \partial_\mu\alpha(x) \right) \,.
+\end{equation}
+The mass term on the other hand is unchanged under the transformation. The procedure to make the full action gauge invariant is by modifying the derivative term from $\partial_{\mu} \to D_{\mu}$, where $D_{\mu} = \partial_{\mu} + i A_{\mu}$. Assume that the gauge transformation is given by $A_{\mu}(x) \to A_{\mu}(x) + \partial_{\mu} \lambda(x)$, then $D_{\mu}$ transforms as,
+\begin{align}
+    D_{\mu}\phi(x) &\to D'_{\mu}\phi'(x) \nonumber \\
+    &= \left(\partial_{\mu} + i A_{\mu} + i \partial_{\mu} \lambda(x)  \right) e^{i \alpha(x)} \phi(x) \nonumber \\
+    &= e^{i \alpha(x)} \left(\partial_{\mu} + i A_{\mu} + i \partial_{\mu} \lambda(x) + i \partial_{\mu}\alpha(x)  \right) \phi(x)\,.
+\end{align} 
+In order to recover gauge invariance - we need to choose $\lambda(x) = -\alpha(x)$ giving us the following rules,
+\begin{equation}\label{eqn:gauge_dic}
+  \begin{array}{rcl}
+    A_{\mu} & \longrightarrow & A_{\mu}(x) + \partial_{\mu} \lambda(x) \,, \\
+    \phi(x) & \longrightarrow & e^{-i\lambda(x)}\phi(x)\,, \\
+    D_{\mu}\phi(x) & \longrightarrow & e^{-i\lambda(x)} D_{\mu}\phi(x).
+  \end{array}
+\end{equation}
+In the continuum, this would result in the following gauge invariant action,
+\begin{equation}
+    S_E[\phi,A] = \int d^4x \; D_{\mu}\phi^*(x) D_{\mu}\phi^(x) + M^2 \phi^*(x) \phi^(x) -\frac{1}{4} F_{\mu \nu}F_{\mu \nu} \,,
+\end{equation}
+with the resulting path inetgral,
+\begin{equation}
+    Z = \int \mathcal{D} A^{\mathrm{phys}}_{\mu} \mathcal{D} \phi \; e^{-S_E[\phi, A]} \,.
+\end{equation}
+
+In order to construct a lattice version of the gauge invariant action for the interacting scalar and gauge field theory, we need to consider (i) what happens to the lattice derivative and more importantly, (ii) what observable should we choose to represent the gauge degrees of freedom on the lattice.  
+
+To begin the discussion, we should look at Eq.~\eqref{eqn:gauge_dic} again and realise that the second transformation should also hold on the lattice the phase factor just becomes a function of lattice sites giving,
+\begin{align}
+    \phi'(na) &= e^{-i\lambda(na)}\phi(na) \nonumber \\
+    \phi'^{*}(na) &= \phi^*(na) e^{i\lambda(na)} \,.
+\end{align}
+Considering the (dimensionless) lattice action from the previous lecture - now with a complex scalar field,
+\begin{equation}\label{eqn:latt_action}
+ S_E = - \displaystyle\sum_{n,\hat{\mu}} \hat{\phi}^*_n \hat{\phi}_{n+\hat{\mu}} + \hat{\phi}^*_{n+\hat{\mu}} \hat{\phi}_n+ \left(8 + \hat{M}^2\right) \displaystyle\sum_n \hat{\phi}^*_n \hat{\phi}_n \,,
+\end{equation}
+it is easy to see that under a gauge trasnformation, only the \textit{hopping} term of the action transforms non-trivially. We further use the notation of group elements $\Omega(n) = e^{-i \lambda(n)}$ to see,
+\begin{equation}
+    \displaystyle\sum_{n,\hat{\mu}} \hat{\phi}^*_n \hat{\phi}_{n+\hat{\mu}} \to \displaystyle\sum_{n,\hat{\mu}} \hat{\phi}^*_n \Omega^{\dagger}(n) \Omega(n+\hat{\mu}) \hat{\phi}_{n+\hat{\mu}}\,.
+\end{equation}
+It should be clear that $\Omega^{\dagger}(n) \Omega(n+\hat{\mu}) \neq 1$. This leads us to consider the parallel transporter or a Wilson line, which for an abelian gauge theory is simply,
+\begin{equation}\label{eqn:wilson_line}
+    U(x,y) = e^{i e \int^y_x \sum_{\mu} dz_{\mu} A_\mu(z)}\,.
+\end{equation} 
+The physical relevance of this quantity is that it tells us how to \textit{transport} a field in gauge space from one spacetime point to another. Moreover, under a gauge trasnformation, it transforms like,
+\begin{equation}\label{eqn:wilson_line_GT}
+    U(x,y) \to \Omega(x) U(x,y) \Omega^{\dagger}(y) \,.
+\end{equation}
+This gives us a hint on how to construct the lattice hopping term, such that gauge invariance is preserved. The quantity one should consider is $\phi^*(x) U(x,y) \phi(y)$, which remains invariant under a gauge transformation,
+\begin{align}\label{eqn:invar_GT}
+    \phi^*(x) U(x,y) \phi(y) &\to \phi^*(x) \Omega(x) \Omega^{\dagger}(x) U(x,y) \Omega^{\dagger}(y) \Omega(y) \phi(y) \nonumber \\
+    &= \phi^*(x) U(x,y) \phi(y)
+\end{align}
+
+Hence, the gauge invariant action for the complex scalar field is given by,
+\begin{equation}
+    S_E = - \displaystyle\sum_{n,\hat{\mu}} \hat{\phi}^*_n U(n, n+\hat{\mu})\hat{\phi}_{n+\hat{\mu}} + \hat{\phi}^*_{n+\hat{\mu}} U(n+\hat{\mu},n) \hat{\phi}_n + \left(8 + \hat{M}^2\right) \displaystyle\sum_n \hat{\phi}^*_n \hat{\phi}_n \,.
+\end{equation}
+
+In the next section we will consider how these Wilson lines look on the lattice and how to construct the action for the abelian lattice gauge theory.
+
+
+\section{Gauge Fields on the Lattice: Links, Plaquettes and the Wilson Action}
+
+In lattice gauge theory, the fundamental gauge degrees of freedom are not the continuum vector potentials $A_\mu(x)$, but rather group-valued variables associated with the links and plaquettes of the lattice. These variables encode the parallel transport of fields and the curvature (field strength) in a gauge-invariant way.
+
+\subsection*{Link Variables}
+On a hypercubic lattice, each site is labeled by an integer vector $n$ and each direction by $\hat{\mu}$. The link variable $U_{n, n+\hat{\mu}}$ is an element of the gauge group and is associated with the oriented link from site $n$ to site $n+\hat{\mu}$. For an abelian theory ($U(1)$),
+\begin{equation}
+    U_{n, n+\hat{\mu}} = e^{i a e A_\mu(n)}
+\end{equation}
+where $a$ is the lattice spacing and $e$ is the gauge coupling (keeping with the notation of Eq.~\eqref{eqn:wilson_line}). As we have already seen, link variable act as parallel transporters for matter fields between neighboring sites. A pictorial representation of links can be seen in Fig.~\ref{fig:links}, where the link (blue) and its conjugate (red) are shown. Notice that since the links are directional, it makes sense to choose a convention for positve directions. For the rest of this lecture series we will choose up and right to be the links, with down and left representing the conjuagtes. This is why the links are colored in the figure. 
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[thick, node distance=2.5cm]
+        % Left diagram
+        \filldraw (0,0) circle (2pt) node[above] {$n$};
+        \filldraw (2,0) circle (2pt) node[above] {$n+\hat{\mu}$};
+        \draw[->,ultra thick, >=stealth, blue] (0,0) -- (2,0);
+        \node at (1,-0.6) {$U_{n,n+\hat{\mu}}$};
+        % Right diagram
+        \filldraw (4.5,0) circle (2pt) node[above] {$n$};
+        \filldraw (6.5,0) circle (2pt) node[above] {$n+\hat{\mu}$};
+        \draw[<-,ultra thick, >=stealth, red] (4.5,0) -- (6.5,0);
+        \node at (5.5,-0.6) {$U_{n+\hat{\mu},n} = U^{\dagger}_{n,n+\hat{\mu}}$};
+    \end{tikzpicture}
+    \caption{Links: fundamental gauge degrees of freedom on the lattice}
+    \label{fig:links}
+\end{figure}
+Before we move on to the next section, we will also adopt the following definition to represent a link (this is just following the conventions of the lattice community). In these conventions, $U_{\mu}(n) \equiv U_{n, n+\hat{\mu}}$ and $U^{\dagger}_{\mu}(n) = U^{-1}_{\mu}(n) \equiv U_{n,n-\hat{\mu}}$.
+\subsection*{Plaquette Variables}
+The smallest nontrivial closed loop on the lattice is the plaquette, a square formed by four links in the $\mu$-$\nu$ plane. The plaquette variable at site $n$ is defined as \sidefact{For non-abelian gauge theories like $SU(N)$, it is a product of matrices and one needs to take a trace over the product to recover gauge invariance.}
+\begin{equation}\label{eqn:plaq}
+    U_{\mu\nu}(n) = U_{\mu}(n) U_{\nu}(n+\hat{\mu})U^{\dagger}_{\mu}(n+\hat{\nu})U^{\dagger}_{\nu}(n)
+\end{equation}
+For $U(1)$, this is just the product of four phases around the plaquette. The plaquette is a gauge invariant observable and can be shown to be related to the continuum field strength tensor as follows, \sideex{This is part of an exercise in the next sheet.}
+\begin{equation}\label{eqn:plaq_fmunu}
+    U_{\mu\nu}(n) \approx e^{i a^2 F_{\mu \nu} (n)}\,,
+\end{equation}
+where the lattice field strength tensor is given in terms of differences of the gauge connection,
+\begin{equation}\label{eqn:disc_fmunu}
+    F_{\mu \nu} = \frac{1}{a} \left[ A_{\nu}(n+\hat{\mu}) - A_{\nu}(n) - (A_{\mu}(n+\hat{\nu}) - A_{\mu}(n)) \right]
+\end{equation}
+\subsection*{The Wilson Action}
+The Wilson action is the standard gauge-invariant action for pure gauge theory on the lattice. It is constructed as a sum over all plaquettes:
+\begin{equation}
+    S_W = -\frac{\beta}{N} \sum_{n} \sum_{\mu<\nu} \mathrm{Re}\,\mathrm{Tr}\, U_{\mu\nu}(n)
+\end{equation}
+where $\beta = 2N/g^2$ for $SU(N)$ and $\beta = 1/g^2$ for $U(1)$. The trace ensures gauge invariance, and the sum over $\mu<\nu$ runs over all plaquette orientations. In the continuum limit ($a \to 0$), the Wilson action reproduces the Yang-Mills action.
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[thick]
+        % Plaquette square
+        \filldraw (0,0) circle (2pt) node[below left] {$n$};
+        \filldraw (2,0) circle (2pt) node[below right] {$n+\hat{\mu}$};
+        \filldraw (2,2) circle (2pt) node[above right] {$n+\hat{\mu}+\hat{\nu}$};
+        \filldraw (0,2) circle (2pt) node[above left] {$n+\hat{\nu}$};
+        % Directed edges (anti-clockwise)
+        \draw[->, ultra thick, >=stealth, blue] (0,0) -- (2,0);
+        \draw[->, ultra thick, >=stealth, blue] (2,0) -- (2,2);
+        \draw[->, ultra thick, >=stealth, red] (2,2) -- (0,2);
+        \draw[->, ultra thick, >=stealth, red] (0,2) -- (0,0);
+        % Anti-clockwise incomplete circular arrow inside
+        \draw[->, thick, >=stealth] (1,1) +(150:0.7) arc (150:470:0.7);
+        % Label at the center of the semicircle
+        \node at (1,1) {$U_{\mu \nu}(n)$};
+    \end{tikzpicture}
+    \caption{Plaquette: smallest gauge-invariant quantity constructed from links}
+    \label{fig:Plaquette}
+\end{figure}
+
+\section{The Haar Measure}
+\section{Gauge Fixing via Maximal Trees}
+\section{Important Observables: Wilson and Polyakov Loops}
 
 \bibliographystyle{unsrt}
 \bibliography{../references}
