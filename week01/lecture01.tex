@@ -89,12 +89,12 @@ Using this we can introduce the notion of a \textit{time-evolution} operator giv
 \begin{equation}
   U(t',t) \equiv e^{-iH(t'-t)/\hbar},
 \end{equation}
-whose matrix elements between an initial state $|x_i, t_i\rangle$ and a final state $|x_f, t_f\rangle$ give us \textit{transition amplitude} or the \textit{propagator}, expressed as
+whose matrix elements between an initial state $|x_i, t_i\rangle$ and a final state $|x_f, t_f\rangle$ give us the \textit{transition amplitude} or the \textit{propagator}, expressed as
 \begin{equation}\label{eqn:trans_amp}
 \langle x_f |U(t_f-t_i)| x_i \rangle = \langle x_f | e^{-iH(t_f - t_i)/\hbar} | x_i \rangle.
 \end{equation}
 By inserting a complete set of energy eigenstates and computing $\langle x |U(t_f-t_i)| x \rangle$, i.e., the amplitude of finding the particle at the same place after a certain interval of time - one realizes that the propagator is related to the energy spectrum by a Fourier transform\footnote{\textit{Hint:} Insert a complete set of energy eigenstates (which satisfy $H | n \rangle = E_n |n \rangle$) with $\mathbb{I} = \sum_n |n\rangle \langle n|$ and use their orthonormality property $\langle n|m \rangle = \delta_{nm}$ to show this.}.
-If one could diagonalize the Hamiltonian easily, one could directly evaluate Eq.~\eqref{eqn:trans_amp} in terms of the energy eigenstates of $H$ - this is a very challenging task and only for very trivial theories or non-trivial theories with very small system sizes is the diagonalization of $H$ possible. Something that we can do is recognize that the Hamiltonian for most systems of interest is made up of (non-commuting) parts that are easier to treat in their own bases. For the example we will use below - that of a non-relativistic quantum mechanical particle - the Hamiltonian becomes the kinetic and potential energy given by,
+If one could diagonalize the Hamiltonian easily, one could directly evaluate Eq.~\eqref{eqn:trans_amp} in terms of the energy eigenstates of $H$ - this is a very challenging task and only for very trivial theories or non-trivial theories with very small system sizes is the diagonalization of $H$ possible. Something that we can do is recognize that the Hamiltonian for most systems of interest is made up of (non-commuting) parts that are easier to treat in their own bases. For the example we will use below - that of a non-relativistic quantum mechanical particle - the Hamiltonian becomes the sum of kinetic and potential energy given by,
 \begin{equation}\label{eqn:hamiltonian}
   H = \frac{p^2}{2 m} + V(x).
 \end{equation}
@@ -119,7 +119,7 @@ Inserting the Hamiltonian from Eq.~\eqref{eqn:hamiltonian} and using the BCH for
 &= \int  dp \; e^{-i\frac{p^2}{2 m}\epsilon/\hbar} e^{-iV(x_i)\epsilon/\hbar} \langle x_{i+1} | p \rangle \langle p | x_i \rangle \nonumber \\
 &= \int dp \;e^{-i\frac{p^2}{2 m}\epsilon/\hbar} e^{-iV(x_i)\epsilon/\hbar} \frac{1}{2\pi \hbar} e^{ip(x_{i+1}-x_i)/\hbar}. 
 \end{align}
-In the above, we have used the position representation of the momentum eigenstates, $\langle x | p \rangle = \frac{1}{\sqrt{2\pi \hbar}} e^{ipx/\hbar}$. Note that the integral over $p$ is not well-defined because of being highly oscillatory\footnote{You are encouraged to check this integral's Lebesgue and square integrability.}. However, a small rotation of the infinitesimal time step $\epsilon$ into the complex plane, $\epsilon \to \epsilon - i a$ with $a > 0$, makes the integral convergent. This gives us the factor $e^{-a\frac{p^2}{2 m}\epsilon/\hbar}$ which damps the oscillations and allows us to evaluate the integral. Now we complete the square in the exponent, carry out the $1$D Gaussian integral and set $a \to 0$ to get,
+In the above, we have used the position representation\sidefact{The more accurate term is configuration space, but we have used position space for readability.} of the momentum eigenstates, $\langle x | p \rangle = \frac{1}{\sqrt{2\pi \hbar}} e^{ipx/\hbar}$. Note that the integral over $p$ is not well-defined because of being highly oscillatory\footnote{You are encouraged to check this integral's Lebesgue and square integrability.}. However, a small rotation of the infinitesimal time step $\epsilon$ into the complex plane, $\epsilon \to \epsilon - i a$ with $a > 0$, makes the integral convergent. This gives us the factor $e^{-a\frac{p^2}{2 m}/\hbar}$ which damps the oscillations and allows us to evaluate the integral. Now we complete the square in the exponent, carry out the $1$D Gaussian integral and set $a \to 0$ to get,
 \begin{equation}\label{eqn:infinitesimal_matrixel}
   \langle x_{i+1} |U(t_{i+1}-t_i)| x_i \rangle = \sqrt{\frac{m}{2 \pi i \hbar \epsilon}} e^{ \frac{i}{\hbar}\epsilon \left[\frac{m}{2}\left(\frac{x_{i+1}-x_i}{\epsilon} \right)^2 - V(x_i) \right] } \;.
 \end{equation}
@@ -143,7 +143,7 @@ The original motivation to study purely-imaginary (Euclidean) time path integral
 \begin{equation}\label{eqn:part_fn}
 Z = \text{Tr} e^{-\beta H},  
 \end{equation}
-where $H$ is the Hamiltonian and $\beta = \frac{1}{T}$ (we set $k_B=1$) is the inverse temperature, one immediately recognizes a mathematical connection to the real time transition amplitude $\langle x |U(t_f-t_i)| x \rangle$, if we identify,
+where $H$ is the Hamiltonian and $\beta = \frac{1}{T}$ (we set $k_B=1$) is the inverse temperature, one immediately recognizes a mathematical connection to the real time transition amplitude $\langle x |U(t_f-t_i)| x \rangle$, if we integrate over all states and if we identify,
 \begin{equation}
   \beta = \frac{i}{\hbar} (t_f - t_i).
 \end{equation}
@@ -174,7 +174,7 @@ After having formally defined the Euclidean path integral for the quantum mechan
 
 Now that we have established a connection between the Euclidean path integral of a quantum field theory and the partition function of a classical statistical-mechanical system, we can exploit this correspondence to compute thermal expectation values of observables. This is possible because of the interpretation of $e^{-S_E[\phi]/\hbar}$ as the probability weight for a given \textit{configuration} $\phi(x)$ — precisely analogous to the Boltzmann weight $e^{-\beta E}$ in classical statistical mechanics \sidefact{Computing such expectation values is the primary objective in lattice QCD research, especially the area focused on the QCD phase diagram. For further reading see~\cite{Aarts:2015tyj}}. Then the expectation value of an arbitrary observable $O(\phi)$ is formally given as,
 \begin{equation}
-  \langle O \rangle = \frac{\int \mathcal{D}\phi \; O(\phi) \; e^{-S_E[\phi]/\hbar}}{\int \mathcal{D}\phi \; e^{-S_E[\phi]/\hbar}}
+  \langle O \rangle = \frac{\int \mathcal{D}\phi \; O(\phi) \; e^{-S_E[\phi]/\hbar}}{\int \mathcal{D}\phi \; e^{-S_E[\phi]/\hbar}}\,.
 \end{equation}
 
 From the more field-theoretic point of view, one can also compute two-point (or higher N-point) functions from the Euclidean path integral in analogy with what we are used to from the perturbative formulation of quantum field theories. In this way one can construct the Euclidean Green's functions that contain information about the particle spectrum. For example, the following two-point function (Green's function),
@@ -183,9 +183,9 @@ From the more field-theoretic point of view, one can also compute two-point (or 
 \end{equation}
 is of very high importance in lattice studies as this quantity contains information about the particle spectrum of the theory. The decay of this two-point function gives us information on the mass gap of the theory. 
 
-This brings us to the problem of dealing with divergences - computing Green's functions (both in Minkowski or Euclidean spacetime) are tricky because of short-distance or large-momentum (called Ultra-violet or UV) divergences \sideex{There is an exercise related to UV divergence simple quantities and how a lattice tackles this}. If you try to directly compute this you will simply get a bunch of infinities! But this should be confusing because we know that quantities like Eq.~\eqref{eqn:green_function} contain information on physical quantities like masses of particles - which are certainly not infinite. Thus we are forced to introduce some regulators like a UV-cutoff which render the computation of these quantities finite and, very importantly, we need to understand how these quantities change as we remove the regulator while keeping the Green's function finite.
+This brings us to the problem of dealing with divergences - computing Green's functions (both in Minkowski or Euclidean spacetime) are tricky because of short-distance or large-momentum (called Ultra-violet or UV) divergences \sideex{There is an exercise related to seeing this UV divergence in simple quantities and how a lattice tackles this.}. If you try to directly compute this you will simply get a bunch of infinities! But this should be confusing because we know that quantities like Eq.~\eqref{eqn:green_function} contain information on physical quantities like masses of particles - which are certainly not infinite. Thus we are forced to introduce some regulators like a UV-cutoff which render the computation of these quantities finite and, very importantly, we need to understand how these quantities change as we remove the regulator while keeping the Green's function finite.
  
-Now we are ready to introduce regularization scheme that is in the title of this course-Lattice field theory.
+Now we are ready to introduce the regularization scheme that is in the title of this course-Lattice field theory.
 
 \section{Lattice (scalar) field theory}
 In this part of the lecture we will see how introducing a spacetime lattice regulates the formal path integral measure and how it removes the above-mentioned UV divergences. For this we will consider the case of the scalar $\phi$-field theory. Note that this is meant to be a \textit{warm-up} for the rest of the course - in general we will not be dealing with scalar fields - but with the fermion and gauge fields in the subsequent lectures.
@@ -194,9 +194,9 @@ To begin we consider the (continuum) Euclidean action \sidefact{Using integratio
 \begin{equation}\label{eqn:act_scal}
   S_E[\phi] = \frac{1}{2} \int d^4 x \; \phi(x) \left(-\Box + M^2 \right) \phi(x),
 \end{equation}
-where $\Box$ denotes the 4-dimensional Laplacian $\displaystyle\sum^4_{\mu=1} \; \partial_{\mu} \partial_{\mu}$. then the corresponding partition function is (setting $\hbar=1$ from now onward), 
+where $\Box$ denotes the 4-dimensional Laplacian $\displaystyle\sum^4_{\mu=1} \; \partial_{\mu} \partial_{\mu}$. Then the corresponding partition function is (setting $\hbar=1$ from now onward), 
 \begin{equation}\label{eqn:cont_Z}
-  Z = \int \displaystyle\prod_x \; d\phi(x) \; e^{-S[\phi]}.
+  Z = \int \displaystyle\prod_x \; d\phi(x) \; e^{-S_E[\phi]}.
 \end{equation}
 In order to see how these quantities look like on a discrete spacetime lattice, consider the two-dimensional version in Fig.~\ref{fig:lattice}. This gives us the following prescription \sideex{In the exercise sheet you will have the opportunity to derive the expressions in momentum space for the derivatives.}:
 \begin{equation}\label{eqn:cont_latt_dic}
@@ -204,18 +204,18 @@ In order to see how these quantities look like on a discrete spacetime lattice, 
     x_{\mu} & \longrightarrow & n_{\mu} a\,, \\
     \phi(x) & \longrightarrow & \phi(n a)\,, \\
     \int d^4x & \longrightarrow & a^4 \displaystyle\sum_n \,,\\
-    \partial_{\mu}\phi(x) & \longrightarrow & \Delta^f_{\mu} = \frac{\phi(na + \hat{\mu}a) - \phi(na)}{a} \,, \\
-    \partial_{\mu}\phi(x) & \longrightarrow & \Delta^b_{\mu} = \frac{\phi(na) - \phi(na-\hat{\mu}a)}{a} \,, \\
-    \partial_{\mu}\phi(x) & \longrightarrow & \Delta^s_{\mu} = \frac{\phi(na + \hat{\mu}a) - \phi(na-\hat{\mu}a)}{2a} \,, \\
+    \partial_{\mu}\phi(x) & \longrightarrow & \Delta^f_{\mu}\phi(na) = \frac{\phi(na + \hat{\mu}a) - \phi(na)}{a} \,, \\
+    \partial_{\mu}\phi(x) & \longrightarrow & \Delta^b_{\mu}\phi(na) = \frac{\phi(na) - \phi(na-\hat{\mu}a)}{a} \,, \\
+    \partial_{\mu}\phi(x) & \longrightarrow & \Delta^s_{\mu}\phi(na) = \frac{\phi(na + \hat{\mu}a) - \phi(na-\hat{\mu}a)}{2a} \,, \\
     \mathcal{D}\phi & \longrightarrow & \displaystyle\prod_n \int d\phi(n a).
   \end{array}
 \end{equation}
 
-We can immediately see from the Eq.~\eqref{eqn:cont_latt_dic}, that there are many choices of constructing the lattice Laplacian operator $\Box_L$ - we can use the forward difference operators, the backward difference operators, the symmetric or a combination of any two of these. Since we are in any case summing over all spacetime points when computing the action, and we have periodic boundary conditions - some of the combinations will give the same result. For this lecture we choose the conventional choice of,
+We can immediately see from Eq.~\eqref{eqn:cont_latt_dic}, that there are many choices of constructing the lattice Laplacian operator $\Box_L$ - we can use the forward difference operators, the backward difference operators, the symmetric or a combination of any two of these. Since we are in any case summing over all spacetime points when computing the action, and we have periodic boundary conditions - some of the combinations will give the same result. For this lecture we choose the conventional choice of,
 \begin{equation}\label{eqn:laplatt}
-  \Box_L \hat{\phi}(na) = \Delta^b_{\mu}\Delta^f_{\mu} = \frac{1}{a^2} \displaystyle\sum_{\mu} \left(\phi(na + \hat{\mu}a) + \phi(na - \hat{\mu}a) - 2\phi(na) \right) \,.
+  \Box_L \hat{\phi}(na) = \Delta^b_{\mu}\Delta^f_{\mu}\phi(na) = \frac{1}{a^2} \displaystyle\sum_{\mu} \left(\phi(na + \hat{\mu}a) + \phi(na - \hat{\mu}a) - 2\phi(na) \right) \,.
 \end{equation}
-In order to write down the full lattice action for the scalar field theory, we need to consider the dimensionality of the lattice parameters like the field value $\phi(na)$ and the lattice mass $M$. We need to maintain the dimensionlessness of the Euclidean lattice action. Looking at Eq.~\eqref{eqn:action} and Eq.~\eqref{eqn:laplatt}, we get \sideex{There is an exercise related to this!}
+In order to write down the full lattice action for the scalar field theory, we need to consider the dimensionality of the lattice parameters like the field value $\phi(na)$ and the lattice mass $M$. We need to maintain the dimensionlessness of the Euclidean lattice action. Looking at Eq.~\eqref{eqn:act_scal} and Eq.~\eqref{eqn:laplatt}, we get \sideex{There is an exercise related to this!}
 \begin{equation}\label{eqn:dimless_Mphi}
   \begin{array}{rcl}
     \hat{\phi}_n &=& a \phi(na) \\
@@ -223,7 +223,7 @@ In order to write down the full lattice action for the scalar field theory, we n
     \hat{\Box} &=& a^2 \Box_L \,,
   \end{array}
 \end{equation}
-defining the dimensionless lattice quantities with hats and removing the label $L$ from the box operator. Using this one can re-write the Euclidean lattice action as \sidefact{The factor $2d$ ($= 8$ in 4 dimensions) comes from the diagonal part of $-\hat{\Box}$, summing over all directions.},
+defining the dimensionless lattice quantities with hats and removing the label $L$ from the box operator. Using this one can re-write the Euclidean lattice action as\sidefact{The factor $2d$ ($= 8$ in 4 dimensions) comes from the diagonal part of $-\hat{\Box}$, summing over all directions. Further notice that in Eq.~\eqref{eqn:laplatt}, the sum over $\mu$ runs only over postive directions, whereas in Eq.~\eqref{eqn:latt_action} $\mu$ runs over both negative and positive directions.}
 \begin{equation}\label{eqn:latt_action}
  S_E = -\frac{1}{2} \displaystyle\sum_{n,\hat{\mu}} \hat{\phi}_n \hat{\phi}_{n+\hat{\mu}} + \frac{1}{2}\left(8 + \hat{M}^2\right) \displaystyle\sum_n \hat{\phi}_n \hat{\phi}_n .
 \end{equation}
@@ -309,15 +309,15 @@ Using this we can write the lattice partition function as (compare to Eq.~\eqref
 \end{equation}
 In the field theory treatment of N-point functions, one typically introduces a \textit{source term} for the fields, $J_n \phi_n$, in order to get a generating functional, \sidefact{You can find more about this type of calculation and more information on generating functionals in classic QFT textbooks like\cite{peskin1995introduction}.}
 \begin{equation}\label{eqn:gen_func}
-  Z[J] = \int \displaystyle \prod_{l} d\phi_l \; \exp\left({-\frac{1}{2} \displaystyle\sum_{n,m} \hat{\phi}_n K_{nm} \hat{\phi}_m + J_n \phi_n }\right)\,.
+  Z[J] = \int \displaystyle \prod_{l} d\phi_l \; \exp\left({-\frac{1}{2} \displaystyle\sum_{n,m} \hat{\phi}_n K_{nm} \hat{\phi}_m + \displaystyle\sum_{n} J_n \phi_n }\right)\,.
 \end{equation}
 Because of the Gaussian-like nature of the individual terms in the exponent, the integral(s) in Eq.~\eqref{eqn:gen_func} can be computed easily\footnote{This will be an exercise in the \textit{next sheet}!} to get,
 \begin{equation}\label{eqn:int_gen_func}
-  Z[J] = \frac{1}{\sqrt{K}} \exp\left({\displaystyle\sum_{n,m} J_m K^{-1}_{m,n} J_n }\right)
+  Z[J] = \sqrt{\frac{(2\pi)^N}{\det K}} \exp\left(\frac{1}{2}{\displaystyle\sum_{n,m} J_m K^{-1}_{m,n} J_n }\right)
 \end{equation}
 Now we just have to use one more fact about generating functionals-that their derivatives with respect to $J_l$ give rise to N-point functions and then set $J=0$. Since we are interested in the two-point function, after some algebra we get,
 \begin{equation}
-  \langle \hat{\phi}_n \hat{\phi}_m \rangle = \frac{\delta Z[J]}{\delta J_n \delta J_m}|_{J=0} = K^{-1}_{m,n}
+  \langle \hat{\phi}_n \hat{\phi}_m \rangle = \frac{1}{Z[J]}\frac{\delta Z[J]}{\delta J_n \delta J_m}\Big|_{J=0} = K^{-1}_{m,n}
 \end{equation} 
 Hence, all that is left to do is find the inverse of the matrix in Eq.~\eqref{eqn:K_mat}! For this we will use two ingredients: (i) use the fact that $\sum_{l} K_{m,l} K^{-1}_{l,n} = \delta_{m,n}$ and, (ii) do the computation in momentum basis using the lattice version of the Fourier transform as discussed before. One can construct the Fourier transform of Eq.~\eqref{eqn:K_mat} in a straightforward manner to get,
 \begin{equation}
@@ -334,7 +334,7 @@ With this we have our first well-defined and finite lattice quantity - the two-p
   G(n,m;\hat{M}) \equiv \langle \hat{\phi}_n \;\hat{\phi}_m \rangle = K^{-1}_{nm} \,.
 \end{equation}
 
-We finally come to the \textit{formally} last part of the procedure - removing the lattice structure while keeping, for example, the Green's functions finite. This is something we will discuss in detail in a future lecture and forms the most important step of a lattice computation. \sidefact{However, if you start reading LFT research papers you will see that it is a very rare finding that someone actually takes the continuum limit in their calculations - most lattice physicists just simulate one large and fine lattice and publish their results}
+We finally come to the \textit{formally} last part of the procedure - removing the lattice structure while keeping, for example, the Green's functions finite. This is something we will discuss in detail in a future lecture and forms the most important step of a lattice computation. \sidefact{However, if you start reading LFT research papers you will see that it is not very common to find that someone actually takes the continuum limit in their calculations - most lattice physicists just simulate one large and fine lattice and publish their results.}
 For now, because we have a very simple free scalar field theory, the continuum limit of the Green's function in Eq.~\eqref{eqn:Kinv_kspace} is easy to show analytically, by demanding that we take the limit $a \to 0$ in such a way that the physical mass of the scalar and the lattice volume remain fixed while removing the cutoff. This means that the bare lattice quantities necessarily change as a function of $a$!
 
 Re-introducting the lattice structure like the spacing in Eq.~\eqref{eqn:G_def}, we get,

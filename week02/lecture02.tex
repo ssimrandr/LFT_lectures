@@ -66,21 +66,26 @@
 \maketitle
 
 \begin{abstract}
-    In this lecture we begin by discussing spacetime symmetries and symmteries obeyed by scalar fields and gauge fields. We then discuss how the lattice discretization breaks various symmetries and which symmetries are non-negotiable to break even on the lattice. This includes gauge symmetries and shows us how demanding gauge invariance on the lattice gives new structure on the lattice - not present in the continuum version of the theory. We will then discuss the basics of lattice gauge theories starting from defining links and plaquettes, building the Wilson gauge action. We then end with explaining how to fix a gauge on the lattice using maximal trees, finally introducing some important observables like the Wilson and Polyakov loops.
+    In this lecture we begin by discussing the fate of spacetime symmetries on a discrete lattice. We then briefly remind ourselves of the continuum abelian gauge theory and gauge transformations. Following this we see that demanding gauge invariance for the scalar field theory (on the lattice) gives new structure in constrast to what is done in the continuum. We then discuss the basics of lattice gauge theories starting from defining links and plaquettes, building the Wilson gauge action. If time permits, we then end with explaining how to fix a gauge on the lattice using maximal trees, finally introducing some important observables like the Wilson and Polyakov loops. This lecture is based on many references including \cite{rothe2012lattice,smit2002lattice,gattringer2010qcd,schwartz2014qft}.
 \end{abstract}
 
 \section{Overview: Symmetries on the Lattice}
-As we have seen previously, the discrete spacetime lattice, with properly defined lattice fields and observables provides us with a powerful tool to compute finite quanties whose correct continuum extrapolation leads to expected results. However, as one can expect - the discrete lattice explicitly breaks certain continuum symmetries which must be recovered in the continuum. We can broadly divide these symmetries into two parts: spacetime and field. Further, when considering spacetime symmetries one should keep in mind that we are doing \textit{Euclidean}(or Lagrangian) lattice field theory - which means Lorentz transformations are now simple rotations as space and time are on equal footing. This is a positive outcome because unlike Lorentz invariance which is completely broken on the lattice - the rotation symmetry is only broken to its discrete version - recovered when in the continuum. 
-Some field symmetries on the other hand may not be affected by the discretization of spacetime like the $\phi(x) \to -\phi(x)$ symmetry of the free scalar field. In this lecture we will consider what happens when we demand local gauge invariance on the lattice.
+As we have seen previously, the discrete spacetime lattice — with properly defined lattice fields and observables — provides us with a powerful tool to compute finite quantities whose correct continuum extrapolation leads to expected results. However, as one might expect, the discrete lattice explicitly breaks certain continuum symmetries, which must be recovered in the continuum limit.
+
+We can broadly divide these symmetries into two classes: spacetime and internal (field). When considering spacetime symmetries, one should keep in mind that we are working in \textit{Euclidean} space - obtained by Wick rotation from the Minkowski formulation\sidefact{See David Tong's lecture notes\cite{tongGaugeTheoryChapter4} on Lattice Field Theory for a insightful treatment on broken Lorentz invariance on the (Minkowski) lattice.} - so that the relevant continuum symmetry group is $\mathrm{SO}(4)$ rather than the Lorentz group $\mathrm{SO}(3,1)$. This is a crucial simplification: Lorentz invariance, involving non-compact boosts, is \textit{qualitatively} broken on any discrete lattice, a boosted time-slice generically misses all lattice sites, and there is no controlled sense in which the lattice approximates boost symmetry. By contrast, the full rotation group $\mathrm{SO}(4)$ is broken only to the discrete hypercubic group $H(4)$, and the resulting symmetry-violating operators are irrelevant in the renormalization group sense - suppressed by powers of the lattice spacing $a$ - so that $\mathrm{SO}(4)$ invariance is systematically recovered in the continuum limit.\sidefact{This discussion on $H(4)$ symmetry is taken from Guy Moore's lecture\cite{moore2022lattice} on LFT and is explained there in great detail.} 
+
+Internal symmetries, on the other hand, need not be affected by the discretization of spacetime at all. A simple example is the $\phi(x) \to -\phi(x)$ symmetry of the free scalar field, which holds identically on the lattice since it acts pointwise and does not involve derivatives or transport between sites. In this lecture, we will consider much more tricky example: what happens when we demand \textit{local gauge invariance} on the lattice.
+%As we have seen previously, the discrete spacetime lattice, with properly defined lattice fields and observables provides us with a powerful tool to compute finite quanties whose correct continuum extrapolation leads to expected results. However, as one can expect - the discrete lattice explicitly breaks certain continuum symmetries which must be recovered in the continuum. We can broadly divide these symmetries into two parts: spacetime and field. Further, when considering spacetime symmetries one should keep in mind that we are doing \textit{Euclidean}(or Lagrangian) lattice field theory - which means Lorentz transformations are now simple rotations as space and time are on equal footing. This is a positive outcome because unlike Lorentz invariance which is completely broken on the lattice - the rotation symmetry is only broken to its discrete version - recovered when in the continuum. 
+%Some field symmetries on the other hand may not be affected by the discretization of spacetime like the $\phi(x) \to -\phi(x)$ symmetry of the free scalar field. In this lecture we will consider what happens when we demand local gauge invariance on the lattice.
 
 \section{Continuum Abelian Gauge Theory: A Recap}\label{sec:cont_ym}
-Before discussing how to make our theory locally gauge invariant, it is good to remind ourselves what gauge fields are and what action describes them - in the continuum. One should recall that the Standard Model of particle physics is mad eup of matter fields (like scalar and fermions) and force fields (photons and gluons). Quantum electrodynamics (QED) describes the interaction sof fermions (electrons, muons so on) with photons which are described by an \textit{abelian gauge field theory}. While quantum chromodynamics (QCD) describes the dynamics of quarks and gluons, where the gluons are described by \textit{non-abelian gauge fields}. 
+Before discussing how to make our theory locally gauge invariant, it is good to remind ourselves what gauge fields are and what action describes them - in the continuum. One should recall that the Standard Model of particle physics is made up of matter fields (like scalar and fermions) and force fields (photons and gluons). Quantum electrodynamics (QED) describes the interaction of fermions (electrons, muons so on) with photons which are described by an \textit{abelian gauge field theory}. While quantum chromodynamics (QCD) describes the dynamics of quarks and gluons, where the gluons are described by \textit{non-abelian gauge fields}. 
 
 Due to the mathematical simplicity of abelian gauge fields, we will restrict ourselves in this lecture to studying those. Euclidean abelian gauge field theory is described by the following \textit{Yang-Mills} action\sidefact{You may notice that the Euclidean Yang-Mills action comes with a positive sign as opposed to the Minkowski version.},
 \begin{equation}\label{eqn:cont_act}
-    S[A] = \frac{1}{4}\int d^4x \; F_{\mu \nu}F_{\mu \nu}\,,
+    S[A] = \frac{1}{4}\int d^4x \; F_{\mu \nu}(x)F_{\mu \nu}(x)\,,
 \end{equation}
-where $F_{\mu \nu} = \partial_{\mu} A_{\nu} - \partial_{\nu} A_{\mu}$ is the anti-symmetric field strength tensor and $A_{\mu}(x)$ is the vector potential. The field strength tensor $F_{\mu \nu}$ has the property that it is invariant under the follwing transformation,
+where $F_{\mu \nu}(x) = \partial_{\mu} A_{\nu}(x) - \partial_{\nu} A_{\mu}(x)$ is the anti-symmetric field strength tensor and $A_{\mu}(x)$ is the vector potential. The field strength tensor $F_{\mu \nu}(x)$ has the property that it is invariant under the follwing \textit{gauge} transformation,
 \begin{equation}\label{eqn:full_GT}
     A_{\mu}'(x) = \Omega(x)\,A_{\mu}(x)\,\Omega^{\dagger}(x) - i \Omega(x)\,\partial_{\mu}\Omega^{\dagger}(x) \,,
 \end{equation}
@@ -88,9 +93,9 @@ when $\Omega(x)$ are elements in the abelian group $\mathcal{G} = U(1)$. These a
 \begin{equation}\label{eqn:usual_GT}
     A_{\mu}'(x) = A_{\mu}(x) + \partial_{\mu} \alpha(x)\,.
 \end{equation}
-The transformation represented by Eq.~\eqref{eqn:usual_GT} is what is usually known as \textit{local gauge invariance} and you might remember this from your course in Electrodynamics, as these transformations leave the physical observables like electric and magnetic fields invariant. 
+The transformation represented by Eq.~\eqref{eqn:usual_GT} is what is usually known as \textit{local gauge transformation} and you might remember this from your course in Electrodynamics, as these transformations leave physical observables like electric and magnetic fields invariant. As can also be easily checked, this transformation also leaves the action $S[A]$ invariant.
 
-This gauge invariance introduces a propblem when we try to naively construct the path inetgral for the gauge theory. To see this, notice that for every configuration $A_\mu(x)$, there exist infinitely many gauge-equivalent 
+This gauge invariance introduces a problem when we try to naively construct the path inetgral for the gauge theory. To see this, notice that for every configuration $A_\mu(x)$, there exist infinitely many gauge-equivalent 
 configurations related by Eq.~\eqref{eqn:usual_GT} that give identical physics - 
 the same action, the same observables. These gauge-equivalent configurations form 
 an \textit{orbit of the gauge group} $\mathcal{G}$. The measure $\mathcal{D}A_\mu$ integrates 
@@ -145,11 +150,11 @@ In order to recover gauge invariance - we need to choose $\lambda(x) = -\alpha(x
 \end{equation}
 In the continuum, this would result in the following gauge invariant action,
 \begin{equation}
-    S_E[\phi,A] = \int d^4x \; D_{\mu}\phi^*(x) D_{\mu}\phi^(x) + M^2 \phi^*(x) \phi^(x) -\frac{1}{4} F_{\mu \nu}F_{\mu \nu} \,,
+    S_E[\phi,A] = \int d^4x \; D_{\mu}\phi^*(x) D_{\mu}\phi(x) + M^2 \phi^*(x) \phi(x) +\frac{1}{4} F_{\mu \nu}(x)F_{\mu \nu}(x) \,,
 \end{equation}
 with the resulting path inetgral,
 \begin{equation}
-    Z = \int \mathcal{D} A^{\mathrm{phys}}_{\mu} \mathcal{D} \phi \; e^{-S_E[\phi, A]} \,.
+    Z = \int \mathcal{D} A \mathcal{D} \phi \; e^{-S_E[\phi, A]} \,.
 \end{equation}
 
 In order to construct a lattice version of the gauge invariant action for the interacting scalar and gauge field theory, we need to consider (i) what happens to the lattice derivative and more importantly, (ii) what observable should we choose to represent the gauge degrees of freedom on the lattice.  
@@ -161,7 +166,7 @@ To begin the discussion, we should look at Eq.~\eqref{eqn:gauge_dic} again and r
 \end{align}
 Considering the (dimensionless) lattice action from the previous lecture - now with a complex scalar field,
 \begin{equation}\label{eqn:latt_action}
- S_E = - \displaystyle\sum_{n,\hat{\mu}} \hat{\phi}^*_n \hat{\phi}_{n+\hat{\mu}} + \hat{\phi}^*_{n+\hat{\mu}} \hat{\phi}_n+ \left(8 + \hat{M}^2\right) \displaystyle\sum_n \hat{\phi}^*_n \hat{\phi}_n \,,
+ S_E = - \displaystyle\sum_{n,\hat{\mu}} \left( \hat{\phi}^*_n \hat{\phi}_{n+\hat{\mu}} + \hat{\phi}^*_{n+\hat{\mu}} \hat{\phi}_n \right) + \left(8 + \hat{M}^2\right) \displaystyle\sum_n \hat{\phi}^*_n \hat{\phi}_n \,,
 \end{equation}
 it is easy to see that under a gauge trasnformation, only the \textit{hopping} term of the action transforms non-trivially. We further use the notation of group elements $\Omega(n) = e^{-i \lambda(n)}$ to see,
 \begin{equation}
@@ -217,7 +222,7 @@ where $a$ is the lattice spacing and $e$ is the gauge coupling (keeping with the
     \caption{Links: fundamental gauge degrees of freedom on the lattice}
     \label{fig:links}
 \end{figure}
-Before we move on to the next section, we will also adopt the following definition to represent a link (this is just following the conventions of the lattice community). In these conventions, $U_{\mu}(n) \equiv U_{n, n+\hat{\mu}}$ and $U^{\dagger}_{\mu}(n) = U^{-1}_{\mu}(n) \equiv U_{n,n-\hat{\mu}}$.
+Before we move on to the next section, we will also adopt the following definition to represent a link (this is just following the conventions of the lattice community). In these conventions, $U_{\mu}(n) \equiv U_{n, n+\hat{\mu}}$ and $U^{\dagger}_{\mu}(n) = U^{-1}_{\mu}(n) = U_{-\mu}(n+\hat{\mu}) = \equiv U_{n+\hat{\mu},n}$.
 \subsection*{Plaquette Variables}
 The smallest nontrivial closed loop on the lattice is the plaquette, a square formed by four links in the $\mu$-$\nu$ plane. The plaquette variable at site $n$ is defined as \sidefact{For non-abelian gauge theories like $SU(N)$, it is a product of matrices and one needs to take a trace over the product to recover gauge invariance.}
 \begin{equation}\label{eqn:plaq}
@@ -256,16 +261,16 @@ where the lattice field strength tensor is given in terms of differences of the 
 
 \subsection*{The Wilson Action}
 The Wilson action is the standard gauge-invariant action for pure gauge theory on the lattice. To see how it can be constructed from plaquettes, one should look at Eq.~\eqref{eqn:plaq_fmunu} and recognize that an expansion of the exponential to third order gives us the term appearing in the continuum action in Eq.~\eqref{eqn:cont_act},
-\begin{equation}
+\begin{equation}\label{eqn:latt_cont_SW}
   \frac{1}{e^2}\sum_{n} \sum_{\mu<\nu} \left[1 -  \frac{1}{2} (U_{\mu\nu}(n) + U^{\dagger}_{\mu\nu}(n)) \right] \approx \frac{1}{4}\sum_{n,\mu,\nu} a^4 F_{\mu\nu}(n)F_{\mu\nu}(n)\,,
 \end{equation}
-where the term $1/e^2$, is lattice nomenclature is usually called the \textit{inverse coupling} denoted by $\beta$. Hence, the Wilson gauge action for abelian gauge theory is,
+where the term $1/e^2$, is lattice nomenclature is usually called the \textit{inverse coupling} denoted by $\beta$. Also notice that that on the right-hand-side of Eq.~\eqref{eqn:latt_cont_SW}, an extra factor of $\frac{1}{2}$ appears because the sum over directions now includes both positive and negative directions\sideex{There is an exercise in the second sheet related to the lattice Wilson action and it's naive continuum limit.}. Hence, the Wilson gauge action for abelian gauge theory is,
 \begin{equation}
    S_{\mathrm{W}}[U] = \beta \sum_{n} \sum_{\mu<\nu} \left[1 -  \frac{1}{2} (U_{\mu\nu}(n) + U^{\dagger}_{\mu\nu}(n)) \right]\,.
 \end{equation}
 Typically in simulations, the constant volume term is dropped. 
 
-Although we did not derive the corresponding expressions for non-abelian gauge fields like $SU(N)$ in this lecture, it is worth noting that the form of the Wilson action, plaquettes terms remains similar with one important difference being that the links are not phases anymore but $N \times N$ matrices for $SU(N)$ and to ensure gauge invariance, just a product of links over a closed loop is not sufficient - we must take a trace over the plaquette. You are encouraged to go through these calculations using as references~\cite{rothe2012lattice,gattringer2010qcd,smit2002lattice}.   
+Although we did not derive the corresponding expressions for non-abelian gauge fields like $SU(N)$ in this lecture, it is worth noting that the form of the Wilson action\sideex{The next exercise sheet also includes the treatment of non-abelian gauge theories.}, plaquettes terms remains similar with one important difference being that the links are not phases anymore but $N \times N$ matrices for $SU(N)$ and to ensure gauge invariance, just a product of links over a closed loop is not sufficient - we must take a trace over the plaquette. You are encouraged to go through these calculations using as references~\cite{rothe2012lattice,gattringer2010qcd,smit2002lattice}.  
 
 \section{The Lattice Path Integral for \texorpdfstring{$U(1)$}{U(1)} Gauge Theory}
 Now that we have formulated the lattice abelian gauge theory completely in terms of compact variables like links and plaquettes, we can write down the path integral for the pure gauge theory,

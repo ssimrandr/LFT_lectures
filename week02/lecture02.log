@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.11)  21 APR 2026 13:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.11)  21 APR 2026 22:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -689,18 +689,24 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
+Package marginnote Info: Margin note 1.1 is on absolute page 1 on input line 75.
+Package marginnote Info: right page because not two side mode on input line 75.
+Package marginnote Info: xpos seems to be 131.19289pt on input line 75.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 74.
+(Font)              <10.95> on input line 75.
+Package marginnote Info: Margin note 1.2 is on absolute page 1 on input line 76.
+Package marginnote Info: right page because not two side mode on input line 76.
+Package marginnote Info: xpos seems to be 308.18146pt on input line 76.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 76.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 76.
  [1
 
 {/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Package marginnote Info: Margin note 2.1 is on absolute page 2 on input line 79.
-Package marginnote Info: right page because not two side mode on input line 79.
-Package marginnote Info: xpos seems to be 286.38663pt on input line 79.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 116.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 116.
+Package marginnote Info: Margin note 2.1 is on absolute page 2 on input line 84.
+Package marginnote Info: right page because not two side mode on input line 84.
+Package marginnote Info: xpos seems to be 286.38663pt on input line 84.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -710,9 +716,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [2]
-Package marginnote Info: Margin note 3.1 is on absolute page 3 on input line 128.
-Package marginnote Info: right page because not two side mode on input line 128.
-Package marginnote Info: xpos seems to be 233.55193pt on input line 128.
+Package marginnote Info: Margin note 3.1 is on absolute page 3 on input line 133.
+Package marginnote Info: right page because not two side mode on input line 133.
+Package marginnote Info: xpos seems to be 233.55193pt on input line 133.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -730,15 +736,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [4]
-Package marginnote Info: Margin note 5.1 is on absolute page 5 on input line 223.
-Package marginnote Info: right page because not two side mode on input line 223.
-Package marginnote Info: xpos seems to be 439.20943pt on input line 223.
-Package marginnote Info: Margin note 5.2 is on absolute page 5 on input line 227.
-Package marginnote Info: right page because not two side mode on input line 227.
-Package marginnote Info: xpos seems to be 311.04022pt on input line 227.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
+Package marginnote Info: Margin note 5.1 is on absolute page 5 on input line 228.
+Package marginnote Info: right page because not two side mode on input line 228.
+Package marginnote Info: xpos seems to be 439.20943pt on input line 228.
+Package marginnote Info: Margin note 5.2 is on absolute page 5 on input line 232.
+Package marginnote Info: right page because not two side mode on input line 232.
+Package marginnote Info: xpos seems to be 311.04022pt on input line 232.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -748,12 +751,18 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [5]
+Package marginnote Info: Margin note 6.1 is on absolute page 6 on input line 267.
+Package marginnote Info: right page because not two side mode on input line 267.
+Package marginnote Info: xpos seems to be 161.78664pt on input line 267.
+Package marginnote Info: Margin note 6.2 is on absolute page 6 on input line 273.
+Package marginnote Info: right page because not two side mode on input line 273.
+Package marginnote Info: xpos seems to be 101.99565pt on input line 273.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 270.
+(Font)              <14.4> on input line 275.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 270.
+(Font)              <10> on input line 275.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 270.
+(Font)              <7> on input line 275.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -763,10 +772,19 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [6]
-Package marginnote Info: Margin note 7.1 is on absolute page 7 on input line 285.
-Package marginnote Info: right page because not two side mode on input line 285.
-Package marginnote Info: xpos seems to be 338.96353pt on input line 285.
- (/Users/simransingh/LFT_lectures/week02/lecture02.bbl)
+Package marginnote Info: Margin note 7.1 is on absolute page 7 on input line 290.
+Package marginnote Info: right page because not two side mode on input line 290.
+Package marginnote Info: xpos seems to be 338.96353pt on input line 290.
+ (/Users/simransingh/LFT_lectures/week02/lecture02.bbl
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 28.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -774,23 +792,31 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[7] (/Users/simransingh/LFT_lectures/week02/lecture02.aux)
+[7])
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[8] (/Users/simransingh/LFT_lectures/week02/lecture02.aux)
 Package rerunfilecheck Info: File `lecture02.out' has not changed.
 (rerunfilecheck)             Checksum: 7BC1962147A129523254818449807935;2084.
  ) 
 Here is how much of TeX's memory you used:
- 24307 strings out of 478994
- 447452 string characters out of 5858184
- 751005 words of memory out of 5000000
- 41117 multiletter control sequences out of 15000+600000
- 485952 words of font info for 176 fonts, out of 8000000 for 9000
+ 24384 strings out of 478994
+ 448564 string characters out of 5858184
+ 751199 words of memory out of 5000000
+ 41166 multiletter control sequences out of 15000+600000
+ 487195 words of font info for 187 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,12n,88p,997b,758s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /Users/simransingh/LFT_lectures/week02/lecture02.pdf (7 pages, 297792 bytes).
+ 87i,12n,88p,1432b,758s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on /Users/simransingh/LFT_lectures/week02/lecture02.pdf (8 pages, 327366 bytes).
 PDF statistics:
- 226 PDF objects out of 1000 (max. 8388607)
- 197 compressed objects within 2 object streams
- 54 named destinations out of 1000 (max. 500000)
- 43077 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 249 PDF objects out of 1000 (max. 8388607)
+ 217 compressed objects within 3 object streams
+ 57 named destinations out of 1000 (max. 500000)
+ 43589 words of extra memory for PDF output out of 51595 (max. 10000000)
 
