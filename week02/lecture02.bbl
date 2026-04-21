@@ -5,4 +5,21 @@ Matthew~D. Schwartz.
 \newblock {\em Quantum Field Theory and the Standard Model}.
 \newblock Cambridge University Press, Cambridge, UK, 2014.
 
+\bibitem{rothe2012lattice}
+Heinz~J. Rothe.
+\newblock {\em Lattice Gauge Theories: An Introduction}, volume~82 of {\em
+  World Scientific Lecture Notes in Physics}.
+\newblock World Scientific, 4th edition, 2012.
+
+\bibitem{gattringer2010qcd}
+Christof Gattringer and Christian~B. Lang.
+\newblock {\em Quantum Chromodynamics on the Lattice: An Introductory
+  Presentation}.
+\newblock Springer, Berlin, Heidelberg, 2010.
+
+\bibitem{smit2002lattice}
+Jan Smit.
+\newblock {\em Introduction to Quantum Fields on a Lattice}.
+\newblock Cambridge University Press, Cambridge, UK, 2002.
+
 \end{thebibliography}

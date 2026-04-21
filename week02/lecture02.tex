@@ -77,7 +77,7 @@ Some field symmetries on the other hand may not be affected by the discretizatio
 Before discussing how to make our theory locally gauge invariant, it is good to remind ourselves what gauge fields are and what action describes them - in the continuum. One should recall that the Standard Model of particle physics is mad eup of matter fields (like scalar and fermions) and force fields (photons and gluons). Quantum electrodynamics (QED) describes the interaction sof fermions (electrons, muons so on) with photons which are described by an \textit{abelian gauge field theory}. While quantum chromodynamics (QCD) describes the dynamics of quarks and gluons, where the gluons are described by \textit{non-abelian gauge fields}. 
 
 Due to the mathematical simplicity of abelian gauge fields, we will restrict ourselves in this lecture to studying those. Euclidean abelian gauge field theory is described by the following action,
-\begin{equation}
+\begin{equation}\label{eqn:cont_act}
     S[A] = -\frac{1}{4}\int d^4x \; F_{\mu \nu}F_{\mu \nu}\,,
 \end{equation}
 where $F_{\mu \nu} = \partial_{\mu} A_{\nu} - \partial_{\nu} A_{\mu}$ is the anti-symmetric field strength tensor and $A_{\mu}(x)$ is the vector potential. The field strength tensor $F_{\mu \nu}$ has the property that it is invariant under the follwing transformation,
@@ -223,21 +223,14 @@ The smallest nontrivial closed loop on the lattice is the plaquette, a square fo
 \begin{equation}\label{eqn:plaq}
     U_{\mu\nu}(n) = U_{\mu}(n) U_{\nu}(n+\hat{\mu})U^{\dagger}_{\mu}(n+\hat{\nu})U^{\dagger}_{\nu}(n)
 \end{equation}
-For $U(1)$, this is just the product of four phases around the plaquette. The plaquette is a gauge invariant observable and can be shown to be related to the continuum field strength tensor as follows, \sideex{This is part of an exercise in the next sheet.}
+For $U(1)$, this is just the product of four phases around the plaquette, shown in Fig.~\ref{fig:Plaquette}. The plaquette is a gauge invariant observable and can be shown to be related to the continuum field strength tensor as follows, \sideex{This is part of an exercise in the next sheet.}
 \begin{equation}\label{eqn:plaq_fmunu}
     U_{\mu\nu}(n) \approx e^{i a^2 F_{\mu \nu} (n)}\,,
 \end{equation}
-where the lattice field strength tensor is given in terms of differences of the gauge connection,
+where the lattice field strength tensor is given in terms of differences of the vector potential,
 \begin{equation}\label{eqn:disc_fmunu}
-    F_{\mu \nu} = \frac{1}{a} \left[ A_{\nu}(n+\hat{\mu}) - A_{\nu}(n) - (A_{\mu}(n+\hat{\nu}) - A_{\mu}(n)) \right]
+    F_{\mu \nu}(n) = \frac{1}{a} \left[ A_{\nu}(n+\hat{\mu}) - A_{\nu}(n) - (A_{\mu}(n+\hat{\nu}) - A_{\mu}(n)) \right] \,.
 \end{equation}
-\subsection*{The Wilson Action}
-The Wilson action is the standard gauge-invariant action for pure gauge theory on the lattice. It is constructed as a sum over all plaquettes:
-\begin{equation}
-    S_W = -\frac{\beta}{N} \sum_{n} \sum_{\mu<\nu} \mathrm{Re}\,\mathrm{Tr}\, U_{\mu\nu}(n)
-\end{equation}
-where $\beta = 2N/g^2$ for $SU(N)$ and $\beta = 1/g^2$ for $U(1)$. The trace ensures gauge invariance, and the sum over $\mu<\nu$ runs over all plaquette orientations. In the continuum limit ($a \to 0$), the Wilson action reproduces the Yang-Mills action.
-
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}[thick]
@@ -259,6 +252,22 @@ where $\beta = 2N/g^2$ for $SU(N)$ and $\beta = 1/g^2$ for $U(1)$. The trace ens
     \caption{Plaquette: smallest gauge-invariant quantity constructed from links}
     \label{fig:Plaquette}
 \end{figure}
+
+
+\subsection*{The Wilson Action}
+The Wilson action is the standard gauge-invariant action for pure gauge theory on the lattice. To see how it can be constructed from plaquettes, one should look at Eq.~\eqref{eqn:plaq_fmunu} and recognize that an expansion of the exponential to third order gives us the term appearing in the continuum action in Eq.~\eqref{eqn:cont_act},
+\begin{equation}
+  \frac{1}{e^2}\sum_{n} \sum_{\mu<\nu} \left[1 -  \frac{1}{2} (U_{\mu\nu}(n) + U^{\dagger}_{\mu\nu}(n)) \right] \approx \frac{1}{4}\sum_{n,\mu,\nu} a^4 F_{\mu\nu}(n)F_{\mu\nu}(n)\,,
+\end{equation}
+where the term $1/e^2$, is lattice nomenclature is usually called the \textit{inverse coupling} denoted by $\beta$. Hence, the Wilson gauge action for abelian gauge theory is,
+\begin{equation}
+   S_W = \beta \sum_{n} \sum_{\mu<\nu} \left[1 -  \frac{1}{2} (U_{\mu\nu}(n) + U^{\dagger}_{\mu\nu}(n)) \right]\,.
+\end{equation}
+Typically in simulations, the constant volume term is dropped. 
+
+Although we did not derive the corresponding expressions for non-abelian gauge fields like $SU(N)$ in this lecture, it is worth noting that the form of the Wilson action, plaquettes terms remains similar with one important difference being that the links are not phases anymore but $N \times N$ matrices for $SU(N)$ and to ensure gauge invariance, just a product of links over a closed loop is not sufficient - we must take a trace over the plaquette. You are encouraged to go through these calculations using as references~\cite{rothe2012lattice,gattringer2010qcd,smit2002lattice}.   
+
+
 
 \section{The Haar Measure}
 \section{Gauge Fixing via Maximal Trees}
