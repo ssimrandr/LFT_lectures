@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.11)  21 APR 2026 10:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.11)  21 APR 2026 13:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -694,6 +694,9 @@ LaTeX Font Info:    External font `lmex10' loaded for size
  [1
 
 {/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Package marginnote Info: Margin note 2.1 is on absolute page 2 on input line 79.
+Package marginnote Info: right page because not two side mode on input line 79.
+Package marginnote Info: xpos seems to be 286.38663pt on input line 79.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <9> on input line 116.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -744,7 +747,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[5] (/Users/simransingh/LFT_lectures/week02/lecture02.bbl
+[5]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 270.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 270.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 270.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -752,7 +762,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[6])
+[6]
+Package marginnote Info: Margin note 7.1 is on absolute page 7 on input line 285.
+Package marginnote Info: right page because not two side mode on input line 285.
+Package marginnote Info: xpos seems to be 338.96353pt on input line 285.
+ (/Users/simransingh/LFT_lectures/week02/lecture02.bbl)
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -762,21 +776,21 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [7] (/Users/simransingh/LFT_lectures/week02/lecture02.aux)
 Package rerunfilecheck Info: File `lecture02.out' has not changed.
-(rerunfilecheck)             Checksum: 28F09C862498C42C8FDD3E22AB12B805;1908.
+(rerunfilecheck)             Checksum: 7BC1962147A129523254818449807935;2084.
  ) 
 Here is how much of TeX's memory you used:
- 24237 strings out of 478994
- 446400 string characters out of 5858184
- 750565 words of memory out of 5000000
- 41074 multiletter control sequences out of 15000+600000
- 473030 words of font info for 151 fonts, out of 8000000 for 9000
+ 24307 strings out of 478994
+ 447452 string characters out of 5858184
+ 751005 words of memory out of 5000000
+ 41117 multiletter control sequences out of 15000+600000
+ 485952 words of font info for 176 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  87i,12n,88p,997b,758s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /Users/simransingh/LFT_lectures/week02/lecture02.pdf (7 pages, 286456 bytes).
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on /Users/simransingh/LFT_lectures/week02/lecture02.pdf (7 pages, 297792 bytes).
 PDF statistics:
- 213 PDF objects out of 1000 (max. 8388607)
- 185 compressed objects within 2 object streams
- 50 named destinations out of 1000 (max. 500000)
- 36933 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 226 PDF objects out of 1000 (max. 8388607)
+ 197 compressed objects within 2 object streams
+ 54 named destinations out of 1000 (max. 500000)
+ 43077 words of extra memory for PDF output out of 51595 (max. 10000000)
 

@@ -73,12 +73,12 @@
 As we have seen previously, the discrete spacetime lattice, with properly defined lattice fields and observables provides us with a powerful tool to compute finite quanties whose correct continuum extrapolation leads to expected results. However, as one can expect - the discrete lattice explicitly breaks certain continuum symmetries which must be recovered in the continuum. We can broadly divide these symmetries into two parts: spacetime and field. Further, when considering spacetime symmetries one should keep in mind that we are doing \textit{Euclidean}(or Lagrangian) lattice field theory - which means Lorentz transformations are now simple rotations as space and time are on equal footing. This is a positive outcome because unlike Lorentz invariance which is completely broken on the lattice - the rotation symmetry is only broken to its discrete version - recovered when in the continuum. 
 Some field symmetries on the other hand may not be affected by the discretization of spacetime like the $\phi(x) \to -\phi(x)$ symmetry of the free scalar field. In this lecture we will consider what happens when we demand local gauge invariance on the lattice.
 
-\section{Continuum Abelian Gauge Theory: A Recap}
+\section{Continuum Abelian Gauge Theory: A Recap}\label{sec:cont_ym}
 Before discussing how to make our theory locally gauge invariant, it is good to remind ourselves what gauge fields are and what action describes them - in the continuum. One should recall that the Standard Model of particle physics is mad eup of matter fields (like scalar and fermions) and force fields (photons and gluons). Quantum electrodynamics (QED) describes the interaction sof fermions (electrons, muons so on) with photons which are described by an \textit{abelian gauge field theory}. While quantum chromodynamics (QCD) describes the dynamics of quarks and gluons, where the gluons are described by \textit{non-abelian gauge fields}. 
 
-Due to the mathematical simplicity of abelian gauge fields, we will restrict ourselves in this lecture to studying those. Euclidean abelian gauge field theory is described by the following action,
+Due to the mathematical simplicity of abelian gauge fields, we will restrict ourselves in this lecture to studying those. Euclidean abelian gauge field theory is described by the following \textit{Yang-Mills} action\sidefact{You may notice that the Euclidean Yang-Mills action comes with a positive sign as opposed to the Minkowski version.},
 \begin{equation}\label{eqn:cont_act}
-    S[A] = -\frac{1}{4}\int d^4x \; F_{\mu \nu}F_{\mu \nu}\,,
+    S[A] = \frac{1}{4}\int d^4x \; F_{\mu \nu}F_{\mu \nu}\,,
 \end{equation}
 where $F_{\mu \nu} = \partial_{\mu} A_{\nu} - \partial_{\nu} A_{\mu}$ is the anti-symmetric field strength tensor and $A_{\mu}(x)$ is the vector potential. The field strength tensor $F_{\mu \nu}$ has the property that it is invariant under the follwing transformation,
 \begin{equation}\label{eqn:full_GT}
@@ -261,15 +261,33 @@ The Wilson action is the standard gauge-invariant action for pure gauge theory o
 \end{equation}
 where the term $1/e^2$, is lattice nomenclature is usually called the \textit{inverse coupling} denoted by $\beta$. Hence, the Wilson gauge action for abelian gauge theory is,
 \begin{equation}
-   S_W = \beta \sum_{n} \sum_{\mu<\nu} \left[1 -  \frac{1}{2} (U_{\mu\nu}(n) + U^{\dagger}_{\mu\nu}(n)) \right]\,.
+   S_{\mathrm{W}}[U] = \beta \sum_{n} \sum_{\mu<\nu} \left[1 -  \frac{1}{2} (U_{\mu\nu}(n) + U^{\dagger}_{\mu\nu}(n)) \right]\,.
 \end{equation}
 Typically in simulations, the constant volume term is dropped. 
 
 Although we did not derive the corresponding expressions for non-abelian gauge fields like $SU(N)$ in this lecture, it is worth noting that the form of the Wilson action, plaquettes terms remains similar with one important difference being that the links are not phases anymore but $N \times N$ matrices for $SU(N)$ and to ensure gauge invariance, just a product of links over a closed loop is not sufficient - we must take a trace over the plaquette. You are encouraged to go through these calculations using as references~\cite{rothe2012lattice,gattringer2010qcd,smit2002lattice}.   
 
+\section{The Lattice Path Integral for \texorpdfstring{$U(1)$}{U(1)} Gauge Theory}
+Now that we have formulated the lattice abelian gauge theory completely in terms of compact variables like links and plaquettes, we can write down the path integral for the pure gauge theory,
+\begin{equation}\label{eqn:lat_PI}
+    Z = \int \mathcal{D}U \; e^{-S_{\mathrm{W}}[U]} \,,
+\end{equation}
+where the path integral measure is given by $\mathcal{D}U \equiv \displaystyle\prod_{n, \mu} dU_{\mu}(n)$. 
 
+In order to understand the properties of this measure, we begin by demanding that the path integral $Z$ is a gauge invariant object. One can either argue this by remembering that physical quantities should be gauge invariant or by viewing gauge transformation as change of variables and recalling that integrals are invariant under change of variables. Since we know that the action is gauge invariant by construction, $S_{\mathrm{W}}[U] = S_{\mathrm{W}}[U']$, (with $U' \equiv U'_{\mu}(n) = \Omega(n) U_{\mu}(n) \Omega^{\dagger}(n+\hat{\mu})$), we require the path inetgral measure to be gauge invariant as well.  This implies,
+\begin{equation}\label{eqn:first_haar}
+    dU_{\mu}(n) = dU'_{\mu}(n) = d(\Omega(n) \, dU_{\mu}(n) \, \Omega^{\dagger}(n+\hat{\mu})) \,.
+\end{equation}
+An important aspect about gauge transformations is that one can \textit{independently} choose a gauge trasnformation at each point in spacetime (or on the lattice). This gives a stronger condition on the invariance properties of the measure over the measure $dU$, i.e., the group element must be independently left and right multiplication invariant,
+\begin{equation}\label{eqn:second_haar}
+    dU = d(V U) = d(U V) \,.
+\end{equation}
+One aspect that remains to be understood is: what is the volume associated with this measure? This requires a little discussion because this aspect is fundamentally different in the link formulation from what we encountered in Section~\ref{sec:cont_ym}. Restricting ourselves to formulating lattice gauge theories on links, restricts the integration domain of the vector potentials $a A_{\mu} \in \{-\pi, \pi\}$ (recall that $A_{\mu}(n) has dimension \frac{1}{a}$). This gives us a normalization condition for the measure\sidefact{Apprently, this was first introduced by A. Hurwitz in 1897 under the name "invariant integral" (source: Wikipedia)},
+\begin{equation}\label{eqn:norm_haar}
+    \int dU_{\mu}(n) = \displaystyle\int^{\pi}_{-\pi} \frac{d (a A_{\mu}(n))}{2 \pi} = 1 \,.
+\end{equation} 
+These conditions, with Eqs.~\eqref{eqn:second_haar} and~\eqref{eqn:norm_haar}, taken together, define the so-called \textit{Haar measure}. This is a measure for integration over continuous compact groups. This completes our discussion on putting an abelian gauge theory on a lattice while preserving gauge invariance exactly.
 
-\section{The Haar Measure}
 \section{Gauge Fixing via Maximal Trees}
 \section{Important Observables: Wilson and Polyakov Loops}
 
