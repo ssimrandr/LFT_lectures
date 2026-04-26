@@ -164,11 +164,18 @@ To begin the discussion, we should look at Eq.~\eqref{eqn:gauge_dic} again and r
     \phi'(na) &= e^{-i\lambda(na)}\phi(na) \nonumber \\
     \phi'^{*}(na) &= \phi^*(na) e^{i\lambda(na)} \,.
 \end{align}
+
+For completeness, the dimensionless version of these equations look like,
+\begin{align}
+    \hat{\phi}'_n &= e^{-i\lambda_n}\hat{\phi}_n \nonumber \\
+    \hat{\phi}'^{*}_n &= \hat{\phi}^*_n e^{i\lambda_n} \,.
+\end{align}
+
 Considering the (dimensionless) lattice action from the previous lecture - now with a complex scalar field,
 \begin{equation}\label{eqn:latt_action}
  S_E = - \displaystyle\sum_{n,\hat{\mu}} \left( \hat{\phi}^*_n \hat{\phi}_{n+\hat{\mu}} + \hat{\phi}^*_{n+\hat{\mu}} \hat{\phi}_n \right) + \left(8 + \hat{M}^2\right) \displaystyle\sum_n \hat{\phi}^*_n \hat{\phi}_n \,,
 \end{equation}
-it is easy to see that under a gauge trasnformation, only the \textit{hopping} term of the action transforms non-trivially. We further use the notation of group elements $\Omega(n) = e^{-i \lambda(n)}$ to see,
+it is easy to see that under a gauge trasnformation, only the \textit{hopping} term of the action transforms non-trivially. We further use the notation of group elements $\Omega(n) = e^{-i \lambda_n}$ to see,
 \begin{equation}
     \displaystyle\sum_{n,\hat{\mu}} \hat{\phi}^*_n \hat{\phi}_{n+\hat{\mu}} \to \displaystyle\sum_{n,\hat{\mu}} \hat{\phi}^*_n \Omega^{\dagger}(n) \Omega(n+\hat{\mu}) \hat{\phi}_{n+\hat{\mu}}\,.
 \end{equation}
@@ -188,10 +195,12 @@ This gives us a hint on how to construct the lattice hopping term, such that gau
 
 Hence, the gauge invariant action for the complex scalar field is given by,
 \begin{equation}
-    S_E = - \displaystyle\sum_{n,\hat{\mu}} \hat{\phi}^*_n U(n, n+\hat{\mu})\hat{\phi}_{n+\hat{\mu}} + \hat{\phi}^*_{n+\hat{\mu}} U(n+\hat{\mu},n) \hat{\phi}_n + \left(8 + \hat{M}^2\right) \displaystyle\sum_n \hat{\phi}^*_n \hat{\phi}_n \,.
+    S_E = - \displaystyle\sum_{n,\hat{\mu}} \hat{\phi}^*_n U_{n, n+\hat{\mu}}\hat{\phi}_{n+\hat{\mu}} + \hat{\phi}^*_{n+\hat{\mu}} U_{n+\hat{\mu},n} \hat{\phi}_n + \left(8 + \hat{M}^2\right) \displaystyle\sum_n \hat{\phi}^*_n \hat{\phi}_n \,.
 \end{equation}
 
 In the next section we will consider how these Wilson lines look on the lattice and how to construct the action for the abelian lattice gauge theory.
+
+\textcolor{red}{From now onward we will only insert factors of the lattice spacing $a$ when it is non-trivial, meaning when there is a an expression which is not directly a length - so $x = na$ will almost always appear as $n$.}
 
 
 \section{Gauge Fields on the Lattice: Links, Plaquettes and the Wilson Action}
