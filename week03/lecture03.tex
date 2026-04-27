@@ -1,10 +1,83 @@
 % Lecture 3 — placeholder
 % Location: week03/lecture03.tex
 % Replace with your lecture content. Compile from inside week03/ with latexmk or xelatex.
-
 \documentclass[11pt]{article}
+
+% Encoding and fonts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Math
+\usepackage{amsmath,amssymb,amsthm}
+
+% Graphics and colors
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{placeins}
+
+% TikZ for diagrams
+\usepackage{tikz}
+\usetikzlibrary{calc, decorations.pathreplacing}
+
+% Better typography
+\usepackage{microtype}
+
+% Page layout
+\usepackage[left=1in, right=2in, top=1in, bottom=1in, marginparwidth=1.4in, marginparsep=0.2in]{geometry}
+
+% Margin notes
+\usepackage{marginnote}
+\newcommand{\sidefact}[1]{\marginnote{\footnotesize\textcolor{green!50!black}{#1}}}
+\newcommand{\sideex}[1]{\marginnote{\footnotesize\textcolor{red!50!black}{#1}}}
+
+% Hyperlinks
+\usepackage[hidelinks]{hyperref}
+
+% Lists
+\usepackage{enumitem}
+
+% Header: page style
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % clear header and footer
+\lhead{\textit{LFT: Lecture 3}}
+\rhead{\textit{S. Singh}}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyfoot[C]{\thepage} % Add centered page number in footer
+
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+% Metadata
+\title{Lecture 3 - Fermions on a lattice}
+\author{Simran Singh}
+\date{\today}
+
 \begin{document}
-% TODO: add lecture content
+
+\maketitle
+
+\begin{abstract}
+    In this lecture we will see the challenges one faces when placing fermionic degrees of freedom on the lattice. In order to understand the problem, we will first have a brief look at continuum Minkowski fermions, and see what changes when we go to Euclidean spacetime. With this we will also recap on Grassmann algebra and the Dirac equation. We then begin by naively discretizing the Dirac equation in Euclidean spacetime and see what differs from the scalar theory - as seen from the propagator. This will lead us to the doubling problem and the famous Nielsen-Ninomiya theory - at least a simplified version of it. We will then briefly see how one must go beyond the naive discretization and only introduce the Wilson and Staggered fermions - you will hear more about this in a later lecture.
+\end{abstract}
+
+\section{Overview}
+In order to get a complete description of nature, fermionic fields theories need to be considered. Fermions - unlike gauge or scalar fields - have no classical interpretation. Generally the first time one hears about fermions is in an introductory QFT lecture (or in quantum statistical mechanics when discussing the spin-statistics theorem). Usually, this is introduced as an attempt by Paul Dirac to create a version of the Schrödinger equation that also satisfies Lorentz invariance (as any quantum field theory should)\sidefact{I highly recommend reading Chapters 4 \& 5 in David Tong's lecture notes\cite{tongQFTnotes} on QFT}. This then lead him to discover a linear equation in space and time with some additional \textit{spin} structure that naturally describes spin-1/2 particles. Further, if one tries to quantize the Dirac equation, one finds that the usual commutation relations which were enough to describe scalars and gauge fields - now lead to inconsistencies. The problem being that if one insists on using commutators, we are lead to an unbounded Hamiltonian. In order to re-concile all we know about spin half particles (Pauli exclusion principle) and not have unbounded Hamiltonians, we are forced to use \textit{anti-commutators} to describe fermions.
+
+\textbf{Disclaimer: The purpose of this lecture is \textit{not} to introduce fermions rigorously as this is done over many weeks in a proper QFT course! However since our goal is to \textit{put fermions on the lattice} - we will need to introduce the \textit{bare minimum} continuum knowledge needed for this.}
+
+\section{Continuum Fermions \& Grassmann Algebra: A Recap}
+
+\section{Euclidean Continuum Fermions}
+\section{Naive Lattice Fermions: Doubling Problem}
+\section{A No-Go Theorem: Simplified Nielsen-Ninomiya}
+\section{An invitation to Non-Naive discretizations: Staggered and Wilson Fermions}
 
 \bibliographystyle{unsrt}
 \bibliography{../references}
