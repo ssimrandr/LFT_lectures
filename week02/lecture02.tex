@@ -20,7 +20,9 @@
 
 % TikZ for diagrams
 \usepackage{tikz}
+\usepackage{subcaption}  
 \usetikzlibrary{calc, decorations.pathreplacing}
+\usetikzlibrary{decorations.markings, decorations.pathmorphing}
 
 % Better typography
 \usepackage{microtype}
@@ -75,8 +77,6 @@ As we have seen previously, the discrete spacetime lattice — with properly def
 We can broadly divide these symmetries into two classes: spacetime and internal (field). When considering spacetime symmetries, one should keep in mind that we are working in \textit{Euclidean} space - obtained by Wick rotation from the Minkowski formulation\sidefact{See David Tong's lecture notes\cite{tongGaugeTheoryChapter4} on Lattice Field Theory for a insightful treatment on broken Lorentz invariance on the (Minkowski) lattice.} - so that the relevant continuum symmetry group is $\mathrm{SO}(4)$ rather than the Lorentz group $\mathrm{SO}(3,1)$. This is a crucial simplification: Lorentz invariance, involving non-compact boosts, is \textit{qualitatively} broken on any discrete lattice, a boosted time-slice generically misses all lattice sites, and there is no controlled sense in which the lattice approximates boost symmetry. By contrast, the full rotation group $\mathrm{SO}(4)$ is broken only to the discrete hypercubic group $H(4)$, and the resulting symmetry-violating operators are irrelevant in the renormalization group sense - suppressed by powers of the lattice spacing $a$ - so that $\mathrm{SO}(4)$ invariance is systematically recovered in the continuum limit.\sidefact{This discussion on $H(4)$ symmetry is taken from Guy Moore's lecture\cite{moore2022lattice} on LFT and is explained there in great detail.} 
 
 Internal symmetries, on the other hand, need not be affected by the discretization of spacetime at all. A simple example is the $\phi(x) \to -\phi(x)$ symmetry of the free scalar field, which holds identically on the lattice since it acts pointwise and does not involve derivatives or transport between sites. In this lecture, we will consider much more tricky example: what happens when we demand \textit{local gauge invariance} on the lattice.
-%As we have seen previously, the discrete spacetime lattice, with properly defined lattice fields and observables provides us with a powerful tool to compute finite quanties whose correct continuum extrapolation leads to expected results. However, as one can expect - the discrete lattice explicitly breaks certain continuum symmetries which must be recovered in the continuum. We can broadly divide these symmetries into two parts: spacetime and field. Further, when considering spacetime symmetries one should keep in mind that we are doing \textit{Euclidean}(or Lagrangian) lattice field theory - which means Lorentz transformations are now simple rotations as space and time are on equal footing. This is a positive outcome because unlike Lorentz invariance which is completely broken on the lattice - the rotation symmetry is only broken to its discrete version - recovered when in the continuum. 
-%Some field symmetries on the other hand may not be affected by the discretization of spacetime like the $\phi(x) \to -\phi(x)$ symmetry of the free scalar field. In this lecture we will consider what happens when we demand local gauge invariance on the lattice.
 
 \section{Continuum Abelian Gauge Theory: A Recap}\label{sec:cont_ym}
 Before discussing how to make our theory locally gauge invariant, it is good to remind ourselves what gauge fields are and what action describes them - in the continuum. One should recall that the Standard Model of particle physics is made up of matter fields (like scalar and fermions) and force fields (photons and gluons). Quantum electrodynamics (QED) describes the interaction of fermions (electrons, muons so on) with photons which are described by an \textit{abelian gauge field theory}. While quantum chromodynamics (QCD) describes the dynamics of quarks and gluons, where the gluons are described by \textit{non-abelian gauge fields}. 
@@ -231,7 +231,7 @@ where $a$ is the lattice spacing and $e$ is the gauge coupling (keeping with the
     \caption{Links: fundamental gauge degrees of freedom on the lattice}
     \label{fig:links}
 \end{figure}
-Before we move on to the next section, we will also adopt the following definition to represent a link (this is just following the conventions of the lattice community). In these conventions, $U_{\mu}(n) \equiv U_{n, n+\hat{\mu}}$ and $U^{\dagger}_{\mu}(n) = U^{-1}_{\mu}(n) = U_{-\mu}(n+\hat{\mu}) = \equiv U_{n+\hat{\mu},n}$.
+Before we move on to the next section, we will also adopt the following definition to represent a link (this is just following the conventions of the lattice community). In these conventions, $U_{\mu}(n) \equiv U_{n, n+\hat{\mu}}$ and $U^{\dagger}_{\mu}(n) = U^{-1}_{\mu}(n) = U_{-\mu}(n+\hat{\mu}) \equiv U_{n+\hat{\mu},n}$.
 \subsection*{Plaquette Variables}
 The smallest nontrivial closed loop on the lattice is the plaquette, a square formed by four links in the $\mu$-$\nu$ plane. The plaquette variable at site $n$ is defined as \sidefact{For non-abelian gauge theories like $SU(N)$, it is a product of matrices and one needs to take a trace over the product to recover gauge invariance.}
 \begin{equation}\label{eqn:plaq}
@@ -267,13 +267,102 @@ where the lattice field strength tensor is given in terms of differences of the 
     \label{fig:Plaquette}
 \end{figure}
 
+\subsection*{Boundary conditions \& Degrees of Freedom}
+In lattice field theory simulations one typically has many choices for setting boundary conditions on the lattice. The most commonly used one is called \textit{periodic} boundary conditions (PBC), because it preserves translational invariance and thus has reduced finite size effects. The other common choice is \textit{open} bounary conditions (OBC). In the infinite volume limit these boundary conditions become equivalent. We will see below how the number of links and hence plaquettes are different for the two boundary conditions considered. 
+
+\begin{figure}[h]
+\centering
+
+%% ---- LEFT: Open BC ----
+\begin{subfigure}[b]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[
+  scale=1.6,
+  site/.style={circle, fill=white, draw=black, line width=0.8pt,
+               inner sep=0pt, minimum size=6pt},
+  internal/.style={line width=1.2pt},
+  open/.style={line width=1.0pt, dashed, draw=orange!70!black},
+]
+%% --- Internal horizontal links ---
+\foreach \y in {1,2,3}
+  \foreach \x in {1,2}
+    \draw[internal] (\x,\y) -- (\x+1,\y);
+
+%% --- Internal vertical links ---
+\foreach \x in {1,2,3}
+  \foreach \y in {1,2}
+    \draw[internal] (\x,\y) -- (\x,\y+1);
+
+%% --- Open boundary: right edge ---
+\foreach \y in {1,2,3}
+  \draw[open] (3,\y) -- (3.5,\y);
+
+%% --- Open boundary: top edge ---
+\foreach \x in {1,2,3}
+  \draw[open] (\x,3) -- (\x,3.5);
+
+
+%% --- Site nodes ---
+\foreach \x/\y/\n in {
+  1/3/7, 2/3/8, 3/3/9,
+  1/2/4, 2/2/5, 3/2/6,
+  1/1/1, 2/1/2, 3/1/3}
+{
+  \node[site] at (\x,\y) {};
+  %\node[font=\small] at (\x+0.18,\y+0.18) {\n};
+}
+\end{tikzpicture}
+\caption{Periodic boundary conditions}
+\end{subfigure}
+\hfill
+%% ---- RIGHT: Periodic BC ----
+\begin{subfigure}[b]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[
+  scale=1.6,
+  site/.style={circle, fill=white, draw=black, line width=0.8pt,
+               inner sep=0pt, minimum size=6pt},
+  internal/.style={line width=1.2pt},
+  periodic/.style={line width=1.0pt, draw=blue!70!black,
+                   ->, >=stealth},
+]
+%% --- Internal horizontal links ---
+\foreach \y in {1,2,3}
+  \foreach \x in {1,2}
+    \draw[internal] (\x,\y) -- (\x+1,\y);
+
+%% --- Internal vertical links ---
+\foreach \x in {1,2,3}
+  \foreach \y in {1,2}
+    \draw[internal] (\x,\y) -- (\x,\y+1);
+
+    %% --- Site nodes ---
+\foreach \x/\y/\n in {
+  1/3/7, 2/3/8, 3/3/9,
+  1/2/4, 2/2/5, 3/2/6,
+  1/1/1, 2/1/2, 3/1/3}
+{
+  \node[site] at (\x,\y) {};
+  %\node[font=\small] at (\x+0.18,\y+0.18) {\n};
+}
+\end{tikzpicture}
+\caption{Open boundary conditions}
+\end{subfigure}
+\caption{Two examples of boundary conditions on the lattice}
+\label{fig:boundary_plaq}
+\end{figure}
+
+Looking at Fig.~\ref{fig:boundary_plaq}, on the left figure the dashed lines are supposed to repsent link that join again at the botton and left edges. Whereas on the figure on the right hand side, we have open boundary conditions where we only have one set of links (in two dimensions and $D-1$ in $D$ dimensions) coming out of the ``edges'' (boundaries). This gives us a different degree-of-freedom (dof) counting in both cases. 
+
+For PBC, on an $N^D$ lattice, we have $D \cdot N^D$ links and $D(D-1)/2 \times N^D$ plaquettes.
+In contrast, for a lattice with OBC, we have $D \times N^{D-1}(N-1)$ links and $D(D-1)/2 (N-1)^2 N^{D-2}$ plaquettes\footnote{Thanks to Nico Dichter for the OBC results.}. 
 
 \subsection*{The Wilson Action}
 The Wilson action is the standard gauge-invariant action for pure gauge theory on the lattice. To see how it can be constructed from plaquettes, one should look at Eq.~\eqref{eqn:plaq_fmunu} and recognize that an expansion of the exponential to third order gives us the term appearing in the continuum action in Eq.~\eqref{eqn:cont_act},
 \begin{equation}\label{eqn:latt_cont_SW}
   \frac{1}{e^2}\sum_{n} \sum_{\mu<\nu} \left[1 -  \frac{1}{2} (U_{\mu\nu}(n) + U^{\dagger}_{\mu\nu}(n)) \right] \approx \frac{1}{4}\sum_{n,\mu,\nu} a^4 F_{\mu\nu}(n)F_{\mu\nu}(n)\,,
 \end{equation}
-where the term $1/e^2$, is lattice nomenclature is usually called the \textit{inverse coupling} denoted by $\beta$. Also notice that that on the right-hand-side of Eq.~\eqref{eqn:latt_cont_SW}, an extra factor of $\frac{1}{2}$ appears because the sum over directions now includes both positive and negative directions\sideex{There is an exercise in the second sheet related to the lattice Wilson action and it's naive continuum limit.}. Hence, the Wilson gauge action for abelian gauge theory is,
+where the term $1/e^2$, in lattice nomenclature is usually called the \textit{inverse coupling} denoted by $\beta$. Also notice that that on the right-hand-side of Eq.~\eqref{eqn:latt_cont_SW}, an extra factor of $\frac{1}{2}$ appears because the sum over directions now includes both positive and negative directions\sideex{There is an exercise in the second sheet related to the lattice Wilson action and it's naive continuum limit.}. Hence, the Wilson gauge action for abelian gauge theory is,
 \begin{equation}
    S_{\mathrm{W}}[U] = \beta \sum_{n} \sum_{\mu<\nu} \left[1 -  \frac{1}{2} (U_{\mu\nu}(n) + U^{\dagger}_{\mu\nu}(n)) \right]\,.
 \end{equation}
@@ -296,7 +385,7 @@ An important aspect about gauge transformations is that one can \textit{independ
 \begin{equation}\label{eqn:second_haar}
     dU = d(V U) = d(U V) \,.
 \end{equation}
-One aspect that remains to be understood is: what is the volume associated with this measure? This requires a little discussion because this aspect is fundamentally different in the link formulation from what we encountered in Section~\ref{sec:cont_ym}. Restricting ourselves to formulating lattice gauge theories on links, restricts the integration domain of the vector potentials $a A_{\mu} \in \{-\pi, \pi\}$ (recall that $A_{\mu}(n) has dimension \frac{1}{a}$). This gives us a normalization condition for the measure\sidefact{Apprently, this was first introduced by A. Hurwitz in 1897 under the name "invariant integral" (source: Wikipedia)},
+One aspect that remains to be understood is: what is the volume associated with this measure? This requires a little discussion because this aspect is fundamentally different in the link formulation from what we encountered in Section~\ref{sec:cont_ym}. Restricting ourselves to formulating lattice gauge theories on links, restricts the integration domain of the vector potentials $a A_{\mu} \in \{-\pi, \pi\}$ (recall that $A_{\mu}(n)$ has dimension $\frac{1}{a}$). This gives us a normalization condition for the measure\sidefact{Apprently, this was first introduced by A. Hurwitz in 1897 under the name "invariant integral" (source: Wikipedia)},
 \begin{equation}\label{eqn:norm_haar}
     \int dU_{\mu}(n) = \displaystyle\int^{\pi}_{-\pi} \frac{d (a A_{\mu}(n))}{2 \pi} = 1 \,.
 \end{equation} 
@@ -304,10 +393,131 @@ These conditions, with Eqs.~\eqref{eqn:second_haar} and~\eqref{eqn:norm_haar}, t
 
 \noindent\makebox[\linewidth]{\dotfill}\par
 \vspace{0.5\baselineskip}
-\section{Gauge Fixing via Maximal Trees}
-Will add later.
+\section{Gauge Fixing and Maximal Trees}
+As we have seen, using the link-formulation\sidefact{Also known as the \textit{compact} formulation.}, we end up with a well defined and gauge invariant path integral formulation. One can now compute the vacuum expectation values of observables\sidefact{There is a theorem for gauge theories called \textbf{Elitzur's theorem}~\cite{elitzur1975} which essentially states that the vacuum expectation value for non-gauge-invariant observables vanish.}. That is to say we don't have to fix the gauge to perform any computation on the lattice. However, gauge fixing on the lattice can still have some benefits like reducing the dimensionality of the integrated links in Eq.~\eqref{eqn:lat_PI} or to make the physical interpretation of some observables more explicit. 
+
+In order to see this we need to understand what gauge-fixing on the lattice means. It turns out that this is quite different to the gauge fixing one is used to in the continuum. To understand this, let us look at the gauge transformation property of the links again,
+\begin{equation*}
+    U_{\mu}(n) \to \Omega(n) U_{\mu}(n) \Omega^{\dagger}(n+\mu)\,.
+\end{equation*}
+This means that the gauge fixing matrices $\Omega(n)$ live at the sites of the lattice. The default values of these matrices is identity. This means we can set these transformations to make some of the links identity - and those links do not participate in the computation of the path integral or any expectation values. For example, consider the Fig.~\ref{fig:maximal_tree}, the zigzag lines here represent those links that have been set to identity by using all of the available gauge freedom. This means that no more of the links can be set to identity by any other transformation without making a link that was already identity - not identity anymore.
+
+As an example on how this procedure is performed with respect to Fig.~\ref{fig:maximal_tree}, we will write down the transformations that set some of the links to identity\sidefact{Pay attention to new (temporary) notation here !!}. For this we temporarily use the notation $U_n(x)\,, U_n(y)$ to represent the $x$ and $y$ links emanating from site $n$ labelling the lattice sites in the figure. To set $U_1(x) \to \mathbb{I}$, we set $\Omega_1 = U^{-1}_1(x)$ and keep $\Omega_2 = \mathbb{I}$.
+\begin{eqnarray*}
+U_1(x) &\to& \Omega_1 U_1(x) \Omega_2^\dagger \\
+&=& U^{-1}_1(x) U_1(x) \mathbb{I} \\
+&=& \mathbb{I}
+\end{eqnarray*}
+
+Now if we try to use $\Omega_2$ to set the next links, either $U_2(x)$ or $U_2(y)$ to identity, we will run into a problem because $U_1(x)$ will transform away from identity! Hence in order to set the links $U_2(x)$ and $U_2(y)$ to identity we have to use the gauge freedom at sites $n = 3$ and $n = 5$ respectively. The tranformations that set $U_2(x)$ and $U_2(y)$ to identity are $\Omega_3 = U_2(x)$ and $\Omega_5 = U_2(y)$. As an example of a non-trivial tranformation in Fig.~\ref{fig:maximal_tree}, consider the link $U_6(x)$. Since $\Omega_5 = U_2(y)$ has already been used, we need to use $\Omega_6$ to set it to identity. The transformations are as follows,
+\begin{eqnarray*}
+U_6(x) &\to& \Omega_6 \, U_6(x) \, \Omega_5^{\dagger} \\
+&=& \Omega_6 \, U_6(x) \, U^{-1}_2(y) \\
+&=& \left(U_2(y) U^{-1}_6(x)\right) \, U_6(x) \, U^{-1}_2(y) \\
+&=& \mathbb{I}\,,
+\end{eqnarray*}
+
+which shows that $\Omega_6 = U_2(y) U^{-1}_6(x)$ was needed to transform $U_6(x) \to \mathbb{I}$. One can similarly set the remaining gauge transformation matrices at other sites to set the zigzag links shown in the figure to identity. An important point to note is that the maximal tree structure is \textit{not unique}! 
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[
+  scale=1.6,
+  % Tree links: plain solid
+  tree/.style={line width=1.2pt},
+  % Non-tree links: zigzag decoration
+  nontree/.style={
+    line width=1.0pt,
+    decorate,
+    decoration={zigzag, segment length=4pt, amplitude=2pt}
+  },
+  % Site nodes
+  site/.style={circle, fill=white, draw=black, line width=0.8pt,
+               inner sep=0pt, minimum size=6pt},
+]
+
+% -----------------------------------------------------------------
+% Coordinates: site (col, row), col=1..3, row=1..3
+% Numbering from sketch:
+%   row 1 (bottom): 1, 2, 3
+%   row 2 (middle): 6, 5, 4   <- note order matches sketch
+%   row 3 (top)  : 7, 8, 9
+% -----------------------------------------------------------------
+
+% Horizontal links
+%   row 1: 1-2, 2-3  -> TREE (bottom spine)
+%   row 2: 6-5, 5-4  -> NON-TREE
+%   row 3: 7-8, 8-9  -> NON-TREE
+
+% Vertical links
+%   col 1: 1-6, 6-7  -> TREE
+%   col 2: 2-5, 5-8  -> TREE
+%   col 3: 3-4, 4-9  -> TREE
+
+% --- TREE links (solid) ---
+
+% Bottom horizontal spine
+\draw[nontree] (1,1) -- (2,1);
+\draw[nontree] (2,1) -- (3,1);
+
+% Vertical links col 1
+\draw[tree] (1,1) -- (1,2);
+\draw[nontree] (1,2) -- (1,3);
+
+% Vertical links col 2
+\draw[nontree] (2,1) -- (2,2);
+\draw[nontree] (2,2) -- (2,3);
+
+% Vertical links col 3
+\draw[nontree] (3,1) -- (3,2);
+\draw[nontree] (3,2) -- (3,3);
+
+% --- NON-TREE links (zigzag) ---
+
+% Middle horizontal
+\draw[nontree] (1,2) -- (2,2);
+\draw[tree] (2,2) -- (3,2);
+
+% Top horizontal
+\draw[tree] (1,3) -- (2,3);
+\draw[tree] (2,3) -- (3,3);
+
+% --- Site nodes ---
+\foreach \x/\y/\n in {
+  1/1/1,  2/1/2,  3/1/3,
+  1/2/6,  2/2/5,  3/2/4,
+  1/3/7,  2/3/8,  3/3/9}
+{
+  \node[site] (\n) at (\x,\y) {};
+  \node[font=\small] at (\x+0.18, \y+0.18) {\n};
+}
+
+% --- Open boundary links: right edge horizontal ---
+% row 1: tree (continuation of bottom spine)
+\draw[tree]    (3,1) -- (3.5,1);
+% row 2,3: non-tree (continuation of middle/top horizontals)
+\draw[tree] (3,2) -- (3.5,2);
+\draw[tree] (3,3) -- (3.5,3);
+
+% --- Open boundary links: top edge vertical ---
+% all columns: tree (continuation of vertical tree links)
+\foreach \x in {1,2,3}
+  \draw[tree] (\x,3) -- (\x,3.5);
+
+\end{tikzpicture}
+\caption{An example of a maximal tree on a $3 \times 3$ lattice with periodic boundary conditions.}
+\label{fig:maximal_tree}
+\end{figure}
+\FloatBarrier
+
 \section{Important Observables: Wilson and Polyakov Loops}
 Will add later.
+\section{Extra: Non-abelian gauge theories}
+Here we briefly want to highlight the differences when considering non-abelian gauge theories. The first aspect is that the field strength tensor carries an extra label for the generators of the group and contains an extra factor in it's expression coming from the non-commutation of the algebra. Mention  color indices?
+write fmunu
+write SYM
+write the lattice version of plaq and action.
+degrees of freedom and mention haar measure.
 \bibliographystyle{unsrt}
 \bibliography{../references}
 
