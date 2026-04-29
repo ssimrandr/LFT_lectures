@@ -78,6 +78,18 @@ We can broadly divide these symmetries into two classes: spacetime and internal 
 
 Internal symmetries, on the other hand, need not be affected by the discretization of spacetime at all. A simple example is the $\phi(x) \to -\phi(x)$ symmetry of the free scalar field, which holds identically on the lattice since it acts pointwise and does not involve derivatives or transport between sites. In this lecture, we will consider much more tricky example: what happens when we demand \textit{local gauge invariance} on the lattice.
 
+\textbf{Note:} In this lecture we will restrict ourselves to the 
+(mathematically simpler) case of abelian gauge theories, which physically 
+describes only electromagnetic interactions. To study QCD one must go to 
+non-abelian gauge theories, which lead to very distinct phenomenology best 
+covered in a proper QFT course. As an invitation: non-abelian theories 
+describe colored gluons, and this ``color'' charge leads to self-interactions 
+between gluons - something that is absent for photons. This self-interaction 
+gives rise to phenomena such as asymptotic freedom, meaning the coupling 
+becomes weak at short distances, which turns out to be essential for taking 
+the continuum limit of QCD on the lattice. More on the continuum limit in a 
+later lecture.
+
 \section{Continuum Abelian Gauge Theory: A Recap}\label{sec:cont_ym}
 Before discussing how to make our theory locally gauge invariant, it is good to remind ourselves what gauge fields are and what action describes them - in the continuum. One should recall that the Standard Model of particle physics is made up of matter fields (like scalar and fermions) and force fields (photons and gluons). Quantum electrodynamics (QED) describes the interaction of fermions (electrons, muons so on) with photons which are described by an \textit{abelian gauge field theory}. While quantum chromodynamics (QCD) describes the dynamics of quarks and gluons, where the gluons are described by \textit{non-abelian gauge fields}. 
 
@@ -268,7 +280,7 @@ where the lattice field strength tensor is given in terms of differences of the 
 \end{figure}
 
 \subsection*{Boundary conditions \& Degrees of Freedom}
-In lattice field theory simulations one typically has many choices for setting boundary conditions on the lattice. The most commonly used one is called \textit{periodic} boundary conditions (PBC), because it preserves translational invariance and thus has reduced finite size effects. The other common choice is \textit{open} bounary conditions (OBC). In the infinite volume limit these boundary conditions become equivalent. We will see below how the number of links and hence plaquettes are different for the two boundary conditions considered. 
+In lattice field theory simulations one typically has many choices for setting boundary conditions on the lattice. The most commonly used one is \textit{periodic} boundary conditions (PBC), which identify opposite edges of the lattice and preserve translational invariance. The other common choice is \textit{open} boundary conditions (OBC), where the fields at the boundary are left free with no identification imposed. In the infinite volume limit both boundary conditions become equivalent, though the choice of boundary conditions can become important when studying topological properties of the theory. We will see below how the number of links and hence plaquettes differs between the two.
 
 \begin{figure}[h]
 \centering
@@ -352,10 +364,20 @@ In lattice field theory simulations one typically has many choices for setting b
 \label{fig:boundary_plaq}
 \end{figure}
 
-Looking at Fig.~\ref{fig:boundary_plaq}, on the left figure the dashed lines are supposed to repsent link that join again at the botton and left edges. Whereas on the figure on the right hand side, we have open boundary conditions where we only have one set of links (in two dimensions and $D-1$ in $D$ dimensions) coming out of the ``edges'' (boundaries). This gives us a different degree-of-freedom (dof) counting in both cases. 
+Looking at Fig.~\ref{fig:boundary_plaq}, in the left panel the dashed arrows 
+indicate links that wrap around and re-enter the lattice from the opposite edge, 
+realising the periodic identification. In the right panel, under OBC, the links terminate at the boundary with no periodic partner - 
+in two dimensions there is only one link per boundary site (and $D-1$ links in 
+$D$ dimensions). Note that one corner site has no outgoing open links at all, 
+as it sits at the intersection of two boundaries. This difference in boundary structure leads to a different counting of degrees of freedom in the two cases.
 
-For PBC, on an $N^D$ lattice, we have $D \cdot N^D$ links and $D(D-1)/2 \times N^D$ plaquettes.
-In contrast, for a lattice with OBC, we have $D \times N^{D-1}(N-1)$ links and $D(D-1)/2 (N-1)^2 N^{D-2}$ plaquettes\footnote{Thanks to Nico Dichter for the OBC results.}. 
+On a lattice with $D$-dimensions and $N$-sites per dimension, we have the following counting of links and plaquettes for the two boundary conditions described,\footnote{Thanks to Nico Dichter for the OBC results.}
+\begin{align}
+\text{PBC:} \quad & D \cdot N^D \text{ links}, \qquad 
+    \frac{D(D-1)}{2} N^D \text{ plaquettes} \\
+\text{OBC:} \quad & D \cdot N^{D-1}(N-1) \text{ links}, \qquad 
+    \frac{D(D-1)}{2}(N-1)^2 N^{D-2} \text{ plaquettes}
+\end{align}
 
 \subsection*{The Wilson Action}
 The Wilson action is the standard gauge-invariant action for pure gauge theory on the lattice. To see how it can be constructed from plaquettes, one should look at Eq.~\eqref{eqn:plaq_fmunu} and recognize that an expansion of the exponential to third order gives us the term appearing in the continuum action in Eq.~\eqref{eqn:cont_act},
@@ -418,6 +440,7 @@ U_6(x) &\to& \Omega_6 \, U_6(x) \, \Omega_5^{\dagger} \\
 \end{eqnarray*}
 
 which shows that $\Omega_6 = U_2(y) U^{-1}_6(x)$ was needed to transform $U_6(x) \to \mathbb{I}$. One can similarly set the remaining gauge transformation matrices at other sites to set the zigzag links shown in the figure to identity. An important point to note is that the maximal tree structure is \textit{not unique}! 
+
 
 \begin{figure}
 \centering
@@ -511,13 +534,51 @@ which shows that $\Omega_6 = U_2(y) U^{-1}_6(x)$ was needed to transform $U_6(x)
 \FloatBarrier
 
 \section{Important Observables: Wilson and Polyakov Loops}
-Will add later.
-\section{Extra: Non-abelian gauge theories}
-Here we briefly want to highlight the differences when considering non-abelian gauge theories. The first aspect is that the field strength tensor carries an extra label for the generators of the group and contains an extra factor in it's expression coming from the non-commutation of the algebra. Mention  color indices?
-write fmunu
-write SYM
-write the lattice version of plaq and action.
-degrees of freedom and mention haar measure.
+When considering gauge theories, there are two observables of high importance: the Wilson loop and the Polyakov loop. These are only briefly discussed below with a focus on what physical interpretation they have - which becomes transparent when we fix the gauge by using the maximal tree construction above. For a detailed discussion you are referred to the book by Gattringer \& Lang~\cite{gattringer2010qcd}.
+
+\subsection*{Wilson Loop}
+Following the notation of ref.~\cite{gattringer2010qcd}, we can define the 
+Wilson loop as a product over four link segments\sidefact{A trace over the 
+product is required for non-abelian gauge fields.}: two Wilson lines 
+$S(m,n,0)$, $S(m,n,n_t)$ and two temporal transporters $T(n,n_t)$ and 
+$T(m,n_t)$,
+\begin{equation}\label{eqn:wilson_loop}
+    W_L = S(m,n,0) T(n,n_t) S^{\dagger}(m,n,n_t) T^{\dagger}(m,n_t)\,.
+\end{equation}
+Here the Wilson lines are formed by a product over spatial links at a fixed 
+time slice, while the temporal transporters are formed by a product over 
+time-like links at a fixed spatial position. In order to see the physical 
+significance of the Wilson loop one usually considers the \textit{temporal} 
+gauge, in which time-like links are set to the identity, making $T(n,n_t)$ 
+and $T(m,n_t)$ trivial. This leaves the Wilson loop as a product of two 
+Wilson lines, and its expectation value,
+\begin{equation}
+\langle W_L \rangle = \langle  S(m,n,0) S^{\dagger}(m,n,n_t) \rangle \,,
+\end{equation}
+can be interpreted as a correlator of two Wilson lines. The large-time 
+behaviour of such correlators encodes the low-lying spectrum of the theory - 
+in the case of non-abelian gauge theory, this gives us access to the static 
+quark-antiquark potential.
+
+\subsection*{Polyakov Loop}
+Once again, following the notation of ref.~\cite{gattringer2010qcd}, the Polyakov loop is 
+defined as a product of temporal links at a fixed spatial position $n$, 
+wrapping around the entire temporal extent of the lattice,
+\begin{equation}
+    P(n) = \prod_{n_t=0}^{N_t-1} U_4(n, n_t)\,.
+\end{equation}
+Unlike the Wilson loop, the Polyakov loop is a non-contractible\sidefact{Here non-contractible means that the loop cannot be continuously shrunk to a point.} loop that 
+closes only due to the periodic temporal boundary conditions. Its expectation 
+value is related to the free energy $F_q$ of a single static quark, and serves as 
+an order parameter for the deconfinement phase transition. The correlator of 
+two Polyakov loops at spatial separation $r$,
+\begin{equation}
+\langle P(0) P^{\dagger}(r) \rangle \sim e^{-N_t a \, F(r)}\,,
+\end{equation}
+encodes the free energy of a static quark-antiquark pair at finite temperature, 
+and can be seen as the finite-temperature analogue of the static potential 
+extracted from the Wilson loop.
+
 \bibliographystyle{unsrt}
 \bibliography{../references}
 
