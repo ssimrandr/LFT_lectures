@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.21)  29 APR 2026 09:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.21)  2 MAY 2026 14:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -808,9 +808,9 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 395.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 395.
-Package marginnote Info: Margin note 8.2 is on absolute page 8 on input line 410.
+Package marginnote Info: Margin note 8.2 is on absolute page 9 on input line 410.
 Package marginnote Info: right page because not two side mode on input line 410.
-Package marginnote Info: xpos seems to be 338.96353pt on input line 410.
+Package marginnote Info: xpos seems to be 264.35031pt on input line 410.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -879,15 +879,15 @@ Package rerunfilecheck Info: File `lecture02.out' has not changed.
 (rerunfilecheck)             Checksum: 437211C1A690C7FCBD8671F5429B8098;2084.
  ) 
 Here is how much of TeX's memory you used:
- 26516 strings out of 467525
- 495715 string characters out of 5418982
- 911746 words of memory out of 5000000
+ 26514 strings out of 467525
+ 495693 string characters out of 5418982
+ 910746 words of memory out of 5000000
  54662 multiletter control sequences out of 15000+600000
- 723811 words of font info for 225 fonts, out of 8000000 for 9000
+ 723728 words of font info for 224 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,94p,1436b,994s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmri9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on lecture02.pdf (11 pages, 407522 bytes).
+Output written on lecture02.pdf (11 pages, 408210 bytes).
 PDF statistics:
  325 PDF objects out of 1000 (max. 8388607)
  262 compressed objects within 3 object streams

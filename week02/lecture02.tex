@@ -99,7 +99,7 @@ Due to the mathematical simplicity of abelian gauge fields, we will restrict our
 \end{equation}
 where $F_{\mu \nu}(x) = \partial_{\mu} A_{\nu}(x) - \partial_{\nu} A_{\mu}(x)$ is the anti-symmetric field strength tensor and $A_{\mu}(x)$ is the vector potential. The field strength tensor $F_{\mu \nu}(x)$ has the property that it is invariant under the follwing \textit{gauge} transformation,
 \begin{equation}\label{eqn:full_GT}
-    A_{\mu}'(x) = \Omega(x)\,A_{\mu}(x)\,\Omega^{\dagger}(x) - i \Omega(x)\,\partial_{\mu}\Omega^{\dagger}(x) \,,
+    A_{\mu}'(x) = \Omega(x)\,A_{\mu}(x)\,\Omega^{\dagger}(x) + i \Omega(x)\,\partial_{\mu}\Omega^{\dagger}(x) \,,
 \end{equation}
 when $\Omega(x)$ are elements in the abelian group $\mathcal{G} = U(1)$. These are then just phase factors and commute with each other, $\Omega(x) \Lambda(x) = \Lambda(x) \Omega(x)$ and have the property that $\Omega^{\dagger}(x) = \Omega^{-1}(x)$. Choosing such a phase factor to be $\Omega(x) = e^{i \alpha(x)}$, and using the abelian property (which allows us to move these phase factors past each other), Eq.~\eqref{eqn:full_GT} becomes,
 \begin{equation}\label{eqn:usual_GT}
@@ -144,7 +144,7 @@ Looking at the action, it is easy to see that, a rotation by a global phase $\ph
 
 However, if one wants to couple the free scalar field with with gauge fields, then to have a consistent theory, the entire action must respect local gauge invariance as discussed in the previous section \sidefact{You can learn more about continuum scalar quantum electrodynamics in Chapter 9 of the book by M. Schwartz\cite{schwartz2014qft}.}. The way gauge invariance acts on matter fields is by applying local, space dependent phases to the fields: $\phi(x) \to e^{i \alpha(x)}\phi(x)$. One immediately sees that under this transformation, the kinetic term of the free scalar field is not invariant and transforms as,
 \begin{equation}
-    \partial_{\mu} \phi'(x) = e^{i \alpha(x)} \left( \partial_\mu\phi(x) + \partial_\mu\alpha(x) \right) \,.
+    \partial_{\mu} \phi'(x) = e^{i \alpha(x)} \left( \partial_\mu + i \partial_\mu\alpha(x) \right)\phi(x) \,.
 \end{equation}
 The mass term on the other hand is unchanged under the transformation. The procedure to make the full action gauge invariant is by modifying the derivative term from $\partial_{\mu} \to D_{\mu}$, where $D_{\mu} = \partial_{\mu} + i A_{\mu}$. Assume that the gauge transformation is given by $A_{\mu}(x) \to A_{\mu}(x) + \partial_{\mu} \lambda(x)$, then $D_{\mu}$ transforms as,
 \begin{align}
@@ -251,7 +251,7 @@ The smallest nontrivial closed loop on the lattice is the plaquette, a square fo
 \end{equation}
 For $U(1)$, this is just the product of four phases around the plaquette, shown in Fig.~\ref{fig:Plaquette}. The plaquette is a gauge invariant observable and can be shown to be related to the continuum field strength tensor as follows, \sideex{This is part of an exercise in the next sheet.}
 \begin{equation}\label{eqn:plaq_fmunu}
-    U_{\mu\nu}(n) \approx e^{i a^2 F_{\mu \nu} (n)}\,,
+    U_{\mu\nu}(n) \approx e^{i e a^2 F_{\mu \nu} (n)}\,,
 \end{equation}
 where the lattice field strength tensor is given in terms of differences of the vector potential,
 \begin{equation}\label{eqn:disc_fmunu}
@@ -407,9 +407,9 @@ An important aspect about gauge transformations is that one can \textit{independ
 \begin{equation}\label{eqn:second_haar}
     dU = d(V U) = d(U V) \,.
 \end{equation}
-One aspect that remains to be understood is: what is the volume associated with this measure? This requires a little discussion because this aspect is fundamentally different in the link formulation from what we encountered in Section~\ref{sec:cont_ym}. Restricting ourselves to formulating lattice gauge theories on links, restricts the integration domain of the vector potentials $a A_{\mu} \in \{-\pi, \pi\}$ (recall that $A_{\mu}(n)$ has dimension $\frac{1}{a}$). This gives us a normalization condition for the measure\sidefact{Apprently, this was first introduced by A. Hurwitz in 1897 under the name "invariant integral" (source: Wikipedia)},
+One aspect that remains to be understood is: what is the volume associated with this measure? This requires a little discussion because this aspect is fundamentally different in the link formulation from what we encountered in Section~\ref{sec:cont_ym}. Restricting ourselves to formulating lattice gauge theories on links, restricts the integration domain of the vector potentials $e a A_{\mu} \in \{-\pi, \pi\}$. Recall that $A_{\mu}(n)$ has dimension $\frac{1}{a}$ and the link is $U_{\mu}(n)= e^{i a e A_\mu(n)}$, which means the periodicity of the link is in the dimensionless quantity $\theta_{\mu}(n) \equiv e a A_{\mu}(n)$ with  $U_{\mu}(n) = e^{i\theta_{\mu}(n)}$. This gives us a normalization condition for the measure\sidefact{Apprently, this was first introduced by A. Hurwitz in 1897 under the name "invariant integral" (source: Wikipedia)},
 \begin{equation}\label{eqn:norm_haar}
-    \int dU_{\mu}(n) = \displaystyle\int^{\pi}_{-\pi} \frac{d (a A_{\mu}(n))}{2 \pi} = 1 \,.
+    \int dU_{\mu}(n) = \displaystyle\int^{\pi}_{-\pi} \frac{d \theta_{\mu}(n)}{2 \pi}= \displaystyle\int^{\pi}_{-\pi} \frac{d (e a A_{\mu}(n))}{2 \pi} = 1 \,.
 \end{equation} 
 These conditions, with Eqs.~\eqref{eqn:second_haar} and~\eqref{eqn:norm_haar}, taken together, define the so-called \textit{Haar measure}. This is a measure for integration over continuous compact groups. This completes our discussion on putting an abelian gauge theory on a lattice while preserving gauge invariance exactly.
 

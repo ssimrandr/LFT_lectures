@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex lecture02"] 1777447790.37252 "lecture02.aux" "lecture02.bbl" "lecture02" 1777447826.77614 0
+["bibtex lecture02"] 1777724374.5167 "lecture02.aux" "lecture02.bbl" "lecture02" 1777724461.42408 0
   "../references.bib" 1777390162.90585 3797 9359fbee860edc9831d16777289721b7 ""
   "/usr/local/texlive/2026/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "lecture02.aux" 1777447826.43589 5553 ac6f6b1d75b7b475835efe320eb1ed5d "pdflatex"
+  "lecture02.aux" 1777724461.06594 5553 cf19e2236455d350ace9021d09924f3b "pdflatex"
   (generated)
   "lecture02.bbl"
   "lecture02.blg"
   (rewritten before read)
-["pdflatex"] 1777447825.4505 "/Users/simransingh/LFT_lectures/week02/lecture02.tex" "lecture02.pdf" "lecture02" 1777447826.77627 0
-  "/Users/simransingh/LFT_lectures/week02/lecture02.tex" 1777447825.24543 38928 423f35ecdf81759784ae02c1bec7576f ""
+["pdflatex"] 1777724460.08148 "/Users/simransingh/LFT_lectures/week02/lecture02.tex" "lecture02.pdf" "lecture02" 1777724461.42421 0
+  "/Users/simransingh/LFT_lectures/week02/lecture02.tex" 1777724459.86579 39204 516e193e4cb518fcc222b23c0782af2e ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1202520719 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
@@ -225,10 +225,10 @@
   "/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1774126987 5541377 04880c840ca220163a28f1a3af0ee662 ""
   "/usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1774126886 3636762 0764df7047e326428f439081d68f646e ""
   "/usr/local/texlive/2026/texmf.cnf" 1772409725 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
-  "lecture02.aux" 1777447826.43589 5553 ac6f6b1d75b7b475835efe320eb1ed5d "pdflatex"
-  "lecture02.bbl" 1777447790.483 1400 a062f477cd0a045a2b8556ccf3d55838 "bibtex lecture02"
-  "lecture02.out" 1777447826.43705 2084 437211c1a690c7fcbd8671f5429b8098 "pdflatex"
-  "lecture02.tex" 1777447825.24543 38928 423f35ecdf81759784ae02c1bec7576f ""
+  "lecture02.aux" 1777724461.06594 5553 cf19e2236455d350ace9021d09924f3b "pdflatex"
+  "lecture02.bbl" 1777724374.62669 1400 a062f477cd0a045a2b8556ccf3d55838 "bibtex lecture02"
+  "lecture02.out" 1777724461.06685 2084 437211c1a690c7fcbd8671f5429b8098 "pdflatex"
+  "lecture02.tex" 1777724459.86579 39204 516e193e4cb518fcc222b23c0782af2e ""
   (generated)
   "lecture02.aux"
   "lecture02.log"
