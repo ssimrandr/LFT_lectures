@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex lecture03"] 1777320958.13767 "lecture03.aux" "lecture03.bbl" "lecture03" 1777320959.24507 0
-  "../references.bib" 1777319960.39673 3529 33046bc40402b78d56c06574d416a606 ""
+["bibtex lecture03"] 1777797803.10858 "lecture03.aux" "lecture03.bbl" "lecture03" 1777797804.17215 0
+  "../references.bib" 1777390162.90585 3797 9359fbee860edc9831d16777289721b7 ""
   "/usr/local/texlive/2026/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "lecture03.aux" 1777320958.92038 1117 cae36d1683dc620f134d270a0e5d4b8c "pdflatex"
+  "lecture03.aux" 1777797803.8857 1118 a2de53e8748cc4111b84422cb0647827 "pdflatex"
   (generated)
   "lecture03.bbl"
   "lecture03.blg"
   (rewritten before read)
-["pdflatex"] 1777320958.24732 "/Users/simransingh/LFT_lectures/week03/lecture03.tex" "lecture03.pdf" "lecture03" 1777320959.24518 0
-  "/Users/simransingh/LFT_lectures/week03/lecture03.tex" 1777320954.81152 4309 cbc61576d0b47e21e6af92aa02a0737b ""
+["pdflatex"] 1777797803.2154 "/Users/simransingh/LFT_lectures/week03/lecture03.tex" "lecture03.pdf" "lecture03" 1777797804.17228 0
+  "/Users/simransingh/LFT_lectures/week03/lecture03.tex" 1777797801.73833 4311 42df971ae22b44974735a86d99a887db ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/jknappen/ec/ecrm1095.tfm" 1136768653 3584 929cdff2b7a8c11bd4d49fd68cb0ae70 ""
@@ -190,10 +190,10 @@
   "/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1774126987 5541377 04880c840ca220163a28f1a3af0ee662 ""
   "/usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1774126886 3636762 0764df7047e326428f439081d68f646e ""
   "/usr/local/texlive/2026/texmf.cnf" 1772409725 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
-  "lecture03.aux" 1777320958.92038 1117 cae36d1683dc620f134d270a0e5d4b8c "pdflatex"
-  "lecture03.bbl" 1777320958.24469 238 c8fa2b0a9d5b70250dc78ab6982af521 "bibtex lecture03"
-  "lecture03.out" 1777320958.92112 1533 0d96b686c71ff25ed96eb4b39f60d30c "pdflatex"
-  "lecture03.tex" 1777320954.81152 4309 cbc61576d0b47e21e6af92aa02a0737b ""
+  "lecture03.aux" 1777797803.8857 1118 a2de53e8748cc4111b84422cb0647827 "pdflatex"
+  "lecture03.bbl" 1777797803.21253 238 c8fa2b0a9d5b70250dc78ab6982af521 "bibtex lecture03"
+  "lecture03.out" 1777797803.88643 1533 0d96b686c71ff25ed96eb4b39f60d30c "pdflatex"
+  "lecture03.tex" 1777797801.73833 4311 42df971ae22b44974735a86d99a887db ""
   (generated)
   "lecture03.aux"
   "lecture03.log"

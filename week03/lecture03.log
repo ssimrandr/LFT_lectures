@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.21)  27 APR 2026 22:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.21)  3 MAY 2026 10:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -706,7 +706,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 Package marginnote Info: Margin note 1.1 is on absolute page 1 on input line 71.
 Package marginnote Info: right page because not two side mode on input line 71.
-Package marginnote Info: xpos seems to be 139.522pt on input line 71.
+Package marginnote Info: xpos seems to be 169.70494pt on input line 71.
  (./lecture03.bbl
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 6.
  (/usr/local/texlive/2026/texmf-dist/tex/latex/lm/t1lmtt.fd
@@ -737,15 +737,15 @@ Package rerunfilecheck Info: File `lecture03.out' has not changed.
 (rerunfilecheck)             Checksum: 0D96B686C71FF25ED96EB4B39F60D30C;1533.
  ) 
 Here is how much of TeX's memory you used:
- 25668 strings out of 467525
- 478534 string characters out of 5418982
- 894013 words of memory out of 5000000
+ 25664 strings out of 467525
+ 478492 string characters out of 5418982
+ 894014 words of memory out of 5000000
  54064 multiletter control sequences out of 15000+600000
- 685018 words of font info for 118 fonts, out of 8000000 for 9000
+ 684805 words of font info for 116 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,11n,94p,1374b,583s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,11n,94p,1376b,583s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on lecture03.pdf (2 pages, 226882 bytes).
+Output written on lecture03.pdf (2 pages, 226956 bytes).
 PDF statistics:
  98 PDF objects out of 1000 (max. 8388607)
  75 compressed objects within 1 object stream
