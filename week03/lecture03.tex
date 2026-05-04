@@ -10,6 +10,7 @@
 
 % Math
 \usepackage{amsmath,amssymb,amsthm}
+\usepackage{slashed}
 
 % Graphics and colors
 \usepackage{graphicx}
@@ -26,6 +27,8 @@
 
 % Page layout
 \usepackage[left=1in, right=2in, top=1in, bottom=1in, marginparwidth=1.4in, marginparsep=0.2in]{geometry}
+\setlength{\headheight}{14pt}
+\addtolength{\topmargin}{-2pt}
 
 % Margin notes
 \usepackage{marginnote}
@@ -68,14 +71,189 @@
 \end{abstract}
 
 \section{Overview}
-In order to get a complete description of nature, fermionic fields theories need to be considered. Fermions - unlike gauge or scalar fields - have no classical interpretation. Generally the first time one hears about fermions is in an introductory QFT lecture (or in quantum statistical mechanics when discussing the spin-statistics theorem). Usually, this is introduced as an attempt (by Paul Dirac) to create a version of the Schrödinger equation that also satisfies Lorentz invariance (as any quantum field theory should)\sidefact{I highly recommend reading Chapters 4 \& 5 in David Tong's lecture notes\cite{tongQFTnotes} on QFT}. This then lead him to discover a linear equation in space and time with some additional \textit{spin} structure that naturally describes spin-1/2 particles. Further, if one tries to quantize the Dirac equation, one finds that the usual commutation relations which were enough to describe scalars and gauge fields - now lead to inconsistencies. The problem being that if one insists on using commutators, we are lead to an unbounded Hamiltonian. In order to re-concile all we know about spin half particles (Pauli exclusion principle) and not have unbounded Hamiltonians, we are forced to use \textit{anti-commutators} to describe fermions.
+In order to get a complete description of nature, fermionic fields theories need to be considered. Fermions - unlike gauge or scalar fields - have no classical interpretation. Generally the first time one hears about fermions is in an introductory QFT lecture (or in quantum statistical mechanics when discussing the spin-statistics theorem). Usually, this is introduced as an attempt (by Paul Dirac) to create a version of the Schrödinger equation that also satisfies Lorentz invariance (as any quantum field theory should)\sidefact{I highly recommend reading Chapters 4 \& 5 in David Tong's lecture notes\cite{tongQFTnotes} on QFT}. This then leads to the discovery of a linear equation in space and time with some additional \textit{spin} structure that naturally describes spin-1/2 particles. Further, if one tries to quantize the Dirac equation, one finds that the usual commutation relations which were enough to describe scalars and gauge fields - now lead to inconsistencies. One problem being that if one insists on using commutators, one is lead to an unbounded Hamiltonian. In order to re-concile all we know about spin half particles (Pauli exclusion principle) and not have unbounded Hamiltonians, we are forced to use \textit{anti-commutators} to describe fermions.
+
+As we will discuss in today's lecture, it is quite hard to place fermions on a discrete spacetime lattice unless we are willing to break a few symmetries (Chiral) or meaningful physical requirements like locality. If we naively try to discretize free fermions like we did for the free scalar fields (comparing matter fields to matter fields), we run into an infamous problem called the "doubling problem". Essentially this means that if we try to discretize a theory of a single free fermion, and then try to remove this discretization by taking the continuum limit - we end up with a \textit{different} theory - one with twice the number of fermions per dimension than the original theory. For these reasons lattice fermions are still an active area of research. In this lecture we will briefly motivate two fermion discretizations beyond the naive version: Staggered and Wilson fermions. Since this is a very delicate topic - you will hear it once again in the 9th lecture from the Hamiltonian perspective.
 
 \textbf{Disclaimer: The purpose of this lecture is \textit{not} to introduce fermions rigorously as this is done over many weeks in a proper QFT course! However since our goal is to \textit{put fermions on the lattice} - we will need to introduce the \textit{bare minimum} continuum knowledge needed for this.}
 
 \section{Continuum Fermions \& Grassmann Algebra: A Recap}
+In this section we briefly remind ourselves about some properties of fermions in the continuum and in Minkowski spacetime. 
+
+\subsection*{The Electron Field and Its Indices}
+To begin, let us consider the simplest fermionic field theory - \textit{Quantum Electrodynamics} (QED), which describes electrons interacting with photons. The key difference from the scalar field we studied previously is that the fermionic field $\psi(x)$ is \textit{not} a single number at each spacetime point - it is a multi-component object called the \textit{Dirac spinor field}. For an electron, the field carries a single type of index\sidefact{For QCD (quarks) one adds a colour index $a \in \{r,g,b\}$ and a flavour index $f \in \{u,d,s,c,b,t\}$, giving the full field $\psi^{a}_{\alpha,f}(x)$.},
+\begin{equation}\label{eqn:fermion_field}
+  \psi_{\alpha}(x)\,, \qquad \alpha \in \{1,2,3,4\}\,,
+\end{equation}
+where the indices have the following meaning,
+\begin{equation}
+  \begin{array}{rcl}
+    x & : & \text{spacetime point, as usual}\,, \\[4pt]
+    \alpha \in \{1,2\} & : & \text{electron components (spin-up and spin-down)}\,, \\[4pt]
+    \alpha \in \{3,4\} & : & \text{positron components (spin-up and spin-down)}\,.
+  \end{array}
+\end{equation}
+Note that for the electron there is no colour index - electrons do not carry colour charge and so are blind to the strong force. There is also no flavour index since there is only one type of electron. The field $\psi_\alpha(x)$ takes values in $\mathbb{C}^4$ - it is a 4-component complex-valued spinor at each spacetime point.
+
+One also needs the Dirac conjugate field, defined as\sidefact{The conjugate field is defined in order to get a Lorentz scalar - without the $\gamma_0$, we would not get a scalar (see Chapter 4 in David Tong's lecture notes\cite{tongQFTnotes} on QFT )},
+\begin{equation}\label{eqn:dirac_conjugate}
+  \bar{\psi}_{\alpha}(x) \equiv \sum_{\beta=1}^{4} \psi^{\dagger}_{\beta}(x)\,(\gamma^0)_{\beta\alpha}\,,
+\end{equation}
+where $\psi^{\dagger}_{\beta}$ is the complex conjugate transpose of $\psi_\beta$ - it is a row vector with index $\beta$ - and $(\gamma^0)_{\beta\alpha}$ is the $(\beta,\alpha)$ matrix element of $\gamma^0$. The sum over $\beta$ is just the usual matrix-vector multiplication $\psi^\dagger \gamma^0$, and in the standard Einstein summation convention the $\sum_\beta$ is left implicit.
+where $\gamma^0$ is the time-like Dirac matrix. It is important to note that $\psi$ and $\bar{\psi}$ are treated as \textit{independent} Grassmann-valued fields in the path integral. 
+
+The spinor index $\alpha$ is contracted with the Dirac matrices $(\gamma^\mu)_{\alpha\beta}$, which are $4\times4$ matrices satisfying the \textit{Clifford algebra},
+\begin{equation}\label{eqn:clifford}
+  \{\gamma^\mu, \gamma^\nu\} \equiv \gamma^\mu \gamma^\nu + \gamma^\nu \gamma^\mu = 2\, \eta^{\mu\nu}\,,
+\end{equation}
+where $\eta^{\mu\nu} = \text{diag}(+1,-1,-1,-1)$ is the metric of Minkowski spacetime. One last ingredient that we need is the $\gamma^5$ matrix and its properties:
+\begin{eqnarray*}
+    \gamma^5 = i \gamma^0 \gamma^1 \gamma^2 \gamma^3 \\
+    \{ \gamma^5,\gamma^{\mu} \} = 0 \,.
+\end{eqnarray*}
+%and $g^{\mu\nu} = \delta^{\mu\nu}$ in Euclidean spacetime. %The electron couples to the photon field $A_\mu(x)$ via the covariant derivative $D_\mu = \partial_\mu + ie A_\mu$, where $e$ is the electric charge - in exactly the same spirit as we discussed for the scalar field in the previous lecture.
+
+\subsection*{Dirac Equation}
+The Dirac equation for a free massive fermion is given by,
+\begin{equation}
+    \left(i\gamma^{\mu}\partial_{\mu} - M \right)\psi(x)=0 \,,
+\end{equation}
+while the Dirac action is given by,
+\begin{equation}
+   S[\psi,\bar{\psi}] = \int d^4x \, \bar{\psi}(x) \left(i\gamma^{\mu}\partial_{\mu} - M \right)\psi(x) \,.
+\end{equation}
+
+\subsection*{Grassmann Algebra}
+The most important aspect of fermion fields is that they satisfy the Grassmann algebra - necessary to ensure the Fermi statistics \sidefact{Hermann Günther Grassmann (1809--1877) was a German mathematician and linguist who introduced what we now call exterior algebra in his 1844 work \textit{Die lineale Ausdehnungslehre}. His work was largely ignored during his lifetime and only recognised after his death. His work was later found to be exactly the right mathematical structure to describe fermions in quantum field theory.}. This means that if we consider a product of two fermion fields, they satisfy,
+\begin{equation}
+    \psi(x)_{\alpha} \psi(x')_{\beta} = - \psi(x')_{\beta} \psi(x)_{\alpha} \,.
+\end{equation}
+This is called the \textit{anti-commutativity} property of Grassmann numbers. In general, a set of Grassmann numbers $\{\theta_i\}$ with $i \in \{1, 2, \ldots, N\}$ are defined by the anticommutation relations,
+\begin{equation}
+    \{\theta_i, \theta_j\} = \theta_i \theta_j + \theta_j \theta_i = 0 \quad \text{for all } i,j\,.
+\end{equation}
+An element of the Grassmann algebra is a polynomial in the generators,
+\begin{equation}
+    f(\theta) = f + \sum_i f_i \theta_i + \sum_{ij} f_{ij} \theta_i \theta_j + \sum_{ijk} f_{ijk} \theta_i \theta_j \theta_k + \cdots\,,
+\end{equation}
+where the coefficients $f_{ij\ldots l}$ are ordinary complex (or sometimes real) numbers, which are antisymmetric in $i, j, \ldots, l$. Setting $i = j$ in the anticommutation relation immediately gives us a very important consequence - the square of any Grassmann number is zero,
+\begin{equation}
+    \theta_i^2 = 0\,.
+\end{equation}
+This means the polynomial above terminates at finite order and, in particular, the Taylor expansion of any function $f(\theta)$ of a single Grassmann variable truncates after the first order,
+\begin{equation}
+    f(\theta) = f_0 + f_1 \theta \,,
+\end{equation}
+where $f_0$ and $f_1$ are ordinary (commuting) numbers. One also defines formal differentiation and integration procedures. The differentiation rules are,
+\begin{equation}
+    \frac{\partial}{\partial \theta_i} \theta_i = 1\,, \qquad \frac{\partial}{\partial \theta_i} \theta_i \theta_j = \theta_j\,, \qquad \frac{\partial}{\partial \theta_i} \theta_j \theta_i = -\theta_j\,,
+\end{equation}
+and integration is defined by the \textit{Berezin integral}\sideex{This will be relevant in the exercises when you compute the fermion path integral!},
+\begin{equation}
+    \int d\theta \; 1 = 0\,, \qquad \int d\theta \; \theta = 1\,.
+\end{equation}
+Note that Grassmann numbers are not real or complex numbers in the usual sense - they are purely formal algebraic objects. In practice, one never needs to assign a numerical value to $\theta$ - what matters is the algebra they satisfy. Finally, a Grassmann number anti-commutes with all other Grassmann numbers but commutes with ordinary numbers,
+\begin{equation}
+    \theta_i \, c = c \, \theta_i \,, \qquad \theta_i \, \theta_j = - \theta_j \, \theta_i \,,
+\end{equation}
+where $c \in \mathbb{C}$ is an ordinary number. These rules are everything one needs to define the fermion path integral, which we will come to shortly.
 
 \section{Euclidean Continuum Fermions}
+In this section we will motivate the conventions for the Euclidean Dirac matrices. 
+In order to do this recall that we want to go from the oscillatory path integral in 
+$S[\psi,\bar{\psi}]$ to a well defined Euclidean version which has a probabilistic 
+interpretation (i.e. a positive-definite Boltzmann weight\footnote{For fermions, $\psi$ and $\bar{\psi}$ are Grassmann variables, so $e^{-S_E[\psi,\bar{\psi}]}$ is not a real number configuration-by-configuration 
+and positivity must be argued differently, as we discuss below.}),
+
+\begin{equation}
+    \int \mathcal{D} \bar{\psi} \mathcal{D}\psi \, e^{i S[\psi,\bar{\psi}]} 
+    \xrightarrow{\;t\to -i\tau\;} 
+    \int \mathcal{D} \bar{\psi} \mathcal{D}\psi \, e^{- S_E[\psi,\bar{\psi}]} \,.
+\end{equation}
+
+So we need two things: (i) a real action, (ii) and overall negative sign in front of 
+a positive action. In order to do this we follow the prescription,
+
+\begin{eqnarray}
+    \gamma^E_4 &\to& \gamma^0 \\
+    \gamma^E_i &\to& -i\gamma^i \,.
+\end{eqnarray}
+
+This gives us the Euclidean version of the Clifford algebra in Eq.~\eqref{eqn:clifford},
+
+\begin{equation}\label{eqn:Eclifford}
+    \{\gamma^E_\mu, \gamma^E_\nu\}  = 2\, \delta_{\mu\nu}\,.
+\end{equation}
+
+\noindent A key consequence of this prescription is that all Euclidean gamma matrices 
+are Hermitian, $(\gamma^E_\mu)^\dagger = \gamma^E_\mu$, in contrast to the Minkowski 
+case where $(\gamma^i)^\dagger = -\gamma^i$. With this prescription, the Euclidean 
+Dirac action becomes,
+
+\begin{equation}
+    S^E[\psi,\bar{\psi}] = \bar{\psi}(x)\left(\gamma^E_{\mu}\partial_{\mu} + M \right)\psi(x).
+\end{equation}
+
+\noindent Note that although $(\gamma^E_\mu)^\dagger = \gamma^E_\mu$, the Dirac 
+operator $\slashed{\partial}_E = \gamma^E_\mu\partial_\mu$ is anti-Hermitian\sidefact{Contrast this with the case of the free scalar field, for which we had a well-defined configuration $\phi(x)$ with the probability weight $e^{-S^E[\phi(x)]}$!}, 
+$(\slashed{\partial}_E)^\dagger = -\slashed{\partial}_E$, since 
+$\partial_\mu^\dagger = -\partial_\mu$. Its eigenvalues are therefore purely 
+imaginary, $\pm i\lambda_n$ with $\lambda_n \in \mathbb{R}$. The eigenvalues of the operator including the mass terms are then of the form $i\lambda + M$ (and the complex conjuagtes as we argue below). 
+
+As one can guess, the positive-definiteness of the Boltzmann weight cannot be argued pointwise for 
+fermions, since $\psi$ and $\bar{\psi}$ are Grassmann variables and $e^{-S_E}$ 
+is not a positve number for each field configuration. Instead, one integrates out 
+the fermions exactly to obtain a functional determinant,
+
+\begin{equation}
+    \int \mathcal{D}\bar{\psi}\mathcal{D}\psi\; 
+    e^{-\bar{\psi}(\slashed{\partial}_E + M)\psi} = \det(\slashed{\partial}_E + M).
+\end{equation}
+In order to understand the reality and positivity of this determinant, we need to look at the spectrum of the matrix $D\equiv \slashed{\partial}_E + M$. As we have seen the Euclidean Dirac operator does not seem to have any hermitian properties on its own - but it has something called the \textit{$\gamma^5$-hermiticity}. This is the property,
+\begin{equation}
+    \gamma^5 D = D^{\dagger}\gamma^5 \,.
+\end{equation}
+\noindent This property ensures that if the Dirac operator has an eigenvector with a complex eigenvalue with $D |u\rangle = \kappa |u\rangle$, then it also has another eigenvector $\gamma^5 |u\rangle$ with the eignevalue $\kappa^*$ - so the eigenvalues of $(\slashed{\partial}_E + M)$ pair up as $(M+i\lambda_n)(M-i\lambda_n)$, giving
+
+\begin{equation}
+    \det(\slashed{\partial}_E + M) = \prod_n \left(M^2 + \lambda_n^2\right) > 0 \,!
+\end{equation}
+
+\noindent Thus the Boltzmann weight is positive-definite and the path integral is 
+well-defined. The $\gamma^5$-hermiticity was essential to counter the anti-Hermiticity of $\slashed{\partial}_E$: it forces the eigenvalue spectrum to consist of complex conjugate pairs, guaranteeing positivity.
+
 \section{Naive Lattice Fermions: Doubling Problem}
+After having discussed the Euclidean version of the Dirac equation, we are now ready to introduce a spacetime lattice and formulate the lattice free fermion theory. We will see that the treatment follows very similarly to the case of the scalar field (both being a matter fields) - and the unusual problems only occuring when we think about the continuum limit.
+We begin by discussing the dimensionless fields we will put on the lattice:
+\begin{eqnarray}
+    \hat{M} &=& a M \\
+    \hat{\psi}_{\alpha}(n) &=& a^{3/2} \psi(x) \\
+    \bar{\hat{\psi}}_{\alpha}(n) &=& a^{3/2} \bar{\psi}(x) \\
+    \hat{\partial}_{\mu}\hat{\psi}_{\alpha}(n) &=& a^{5/2} \partial_{\mu} \psi_{\alpha}(x) \,.
+\end{eqnarray} 
+As we have seen in the lecture on lattice scalar fields, there are many ways to discretise the derivative on the lattice using the forward, backward and symmetric definitions,
+\begin{equation}
+    \hat{\partial}_{\mu}\hat{\psi}_{\alpha}(n) =
+    \begin{cases}
+        \Delta^f_{\mu}\hat{\psi}_{\alpha}(n) \equiv \hat{\psi}(n+\hat{\mu}) - \hat{\psi}(n) \,, \\[10pt]
+        \Delta^b_{\mu}\hat{\psi}_{\alpha}(n) \equiv \hat{\psi}(n) - \hat{\psi}(n-\hat{\mu}) \,, \\[10pt]
+        \Delta^s_{\mu}\hat{\psi}_{\alpha}(n) \equiv \dfrac{\hat{\psi}(n+\hat{\mu}) - \hat{\psi}(n-\hat{\mu})}{2} \,.
+    \end{cases}
+\end{equation}
+Notice that among the different definitions, only the symmetric definition has the anti-Hermitian properties that we need for our Euclidean Dirac operator $\partial^E_{\mu}$. 
+
+Once we have identified the lattice derivative that we have to work with, we can write down the dimensionless (naive) free lattice fermion action as\sidefact{The following treatment leading upto the doubling problem follows the discussion in Chapter 4 of ref.\cite{rothe2012lattice} very closely.},
+\begin{equation}
+    S[\psi,\bar{\psi}] = \displaystyle\sum_{n,\alpha,\mu>0} \bar{\hat{\psi}}_{\alpha}(n)  \left( \displaystyle\sum_{\beta}(\gamma^E_{\mu})_{\alpha \beta} \left[ \dfrac{\hat{\psi}_{\beta}(n+\hat{\mu}) - \hat{\psi}_{\beta}(n-\hat{\mu})}{2}\right] + \hat{M}\hat{\psi}_{\alpha}(n)   \right)\,,
+\end{equation}
+where the spinor indices $\alpha \,, \beta$ have been made explicit. Following the same logic as the scalar field, we can write this action in another form more amenable to computing the partition function,
+\begin{equation}
+    S[\psi,\bar{\psi}] = \displaystyle\sum_{\substack{n,\,m\\\alpha,\,\beta}} \bar{\hat{\psi}}_{\alpha}(n) K_{\alpha \beta}(n,m) \hat{\psi}_{\beta}(m) \,,
+\end{equation}
+where the matrix elements of $K_{\alpha \beta}(n,m)$ are given by,
+\begin{equation}
+    K_{\alpha \beta}(n,m) = \displaystyle\sum_{\mu} \frac{1}{2}(\gamma^E_{\mu})_{\alpha \beta} \left[\delta_{m,n+\hat{\mu}} - \delta_{m,n-\hat{\mu}} \right] + \hat{M}\delta_{m,n} \,.
+\end{equation}
 \section{A No-Go Theorem: Simplified Nielsen-Ninomiya}
 \section{An invitation to Non-Naive discretizations: Staggered and Wilson Fermions}
 
