@@ -8,7 +8,23 @@ David Tong.
 
 \bibitem{rothe2012lattice}
 Heinz~J. Rothe.
-\newblock {\em Lattice Gauge Theories: An Introduction}, volume~82 of {\em World Scientific Lecture Notes in Physics}.
+\newblock {\em Lattice Gauge Theories: An Introduction}, volume~82 of {\em
+  World Scientific Lecture Notes in Physics}.
 \newblock World Scientific, 4th edition, 2012.
+
+\bibitem{Nielsen1981a}
+H.~B. Nielsen and M.~Ninomiya.
+\newblock Absence of neutrinos on a lattice: {I}. proof by homotopy theory.
+\newblock {\em Nuclear Physics B}, 185:20--40, 1981.
+
+\bibitem{Nielsen1981b}
+H.~B. Nielsen and M.~Ninomiya.
+\newblock Absence of neutrinos on a lattice: {II}. intuitive topological proof.
+\newblock {\em Nuclear Physics B}, 193:173--194, 1981.
+
+\bibitem{smit2002lattice}
+Jan Smit.
+\newblock {\em Introduction to Quantum Fields on a Lattice}.
+\newblock Cambridge University Press, Cambridge, UK, 2002.
 
 \end{thebibliography}

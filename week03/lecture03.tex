@@ -20,7 +20,7 @@
 
 % TikZ for diagrams
 \usepackage{tikz}
-\usetikzlibrary{calc, decorations.pathreplacing}
+\usetikzlibrary{calc, decorations.pathreplacing, shapes.geometric}
 
 % Better typography
 \usepackage{microtype}
@@ -156,7 +156,10 @@ Note that Grassmann numbers are not real or complex numbers in the usual sense -
 \begin{equation}
     \theta_i \, c = c \, \theta_i \,, \qquad \theta_i \, \theta_j = - \theta_j \, \theta_i \,,
 \end{equation}
-where $c \in \mathbb{C}$ is an ordinary number. These rules are everything one needs to define the fermion path integral, which we will come to shortly.
+where $c \in \mathbb{C}$ is an ordinary number. These rules are everything one needs to define the fermion path integral, which we will come to shortly. Note that this anti-commutativity also applies to the measure,
+\begin{equation}
+    d\theta_1 d\theta_2 = - d\theta_2 d\theta_1 \,, \qquad d\bar{\theta}_1 d\theta_2 = - d\theta_2 d\bar{\theta}_1 \,.
+\end{equation}
 
 \section{Euclidean Continuum Fermions}
 In this section we will motivate the conventions for the Euclidean Dirac matrices. 
@@ -280,7 +283,7 @@ In the above, the momentum $\tilde{\hat{p}}$ -- inserting back the factors of la
 \end{equation}
 Finally by re-inserting the appropriate factors of the lattice spacing spacing one gets\sideex{You are encouraged to check the factors!},
 \begin{equation}\label{eqn:corr_fer_units}
-    G_{\alpha \beta}(\frac{x}{a},\frac{y}{a},aM) = a^3 \displaystyle\int^{\pi/a}_{-\pi/a} \; \frac{d^4p}{(2 \pi)^4} \; \frac{[-i\slashed{\tilde{p}} + M]_{\alpha \beta}}{\displaystyle\sum_{\mu} \tilde{p}_{\mu} \tilde{p}_{\mu}} \, e^{i p (x-y)} \,
+    G_{\alpha \beta}(\frac{x}{a},\frac{y}{a},aM) = a^3 \displaystyle\int^{\pi/a}_{-\pi/a} \; \frac{d^4p}{(2 \pi)^4} \; \frac{[-i\slashed{\tilde{p}} + M]_{\alpha \beta}}{\displaystyle\sum_{\mu} \tilde{p}_{\mu} \tilde{p}_{\mu} + M^2} \, e^{i p (x-y)} \,
 \end{equation}
 using which one can recover the continuum the two-point function as we did in the scalar field theory,
 \begin{equation}\label{eqn:twoP_G}
@@ -294,9 +297,124 @@ using which one can recover the continuum the two-point function as we did in th
     \caption{This is an illustration to show the effect of the missing factor of one-half from the fermion lattice momenta in Eq.~\eqref{eqn:fer_lat_mom} as opposed to case of the scalar field in Eq.~(44) from lecture 1. The The fermionic lattice momentum has zeros at the edges of the Brillouin zone!}
     \label{fig:doubling}
 \end{figure}
-Recalling our arguments for why the continuum limit of the two-point function in case of the scalar field matched the analytical results, that we could replace the lattice momentum $\tilde{p}$ with the continuum version $p$ because only the modes that are small with respect to the inverse lattice spacing contribute to the integral -- this doesn't hold true anymore for the fermions due to the missing one-half factor! The modes at the corners of the Brillouin zones contribute equally to the integral in the continuum limit! On a $d$-dimensional lattice, there are as many continuum-like contributions to the integral 
-\section{An invitation to Non-Naive discretizations: Staggered and Wilson Fermions}
+Recalling our arguments for why the continuum limit of the two-point function in case of the scalar field matched the analytical results, that we could replace the lattice momentum $\tilde{p}$ with the continuum version $p$ because only the modes that are small with respect to the inverse lattice spacing contribute to the integral -- this doesn't hold true anymore for the fermions due to the missing one-half factor! The modes at the corners of the Brillouin zones contribute equally to the integral in the continuum limit! On a $d$-dimensional lattice, there are as many continuum-like contributions to the integral as there are corners of the Brillouin zone. Hence the naive discretisation of of the lattice fermions gives $2^d$ "doublers".
+\section{An invitation to Non-Naive discretizations: Wilson and Staggered Fermions}
+As mentioned in the introduction, putting fermions on the lattice is quite hard and is an active area of research. There are currently many discretizations on the market and two of the easiest-to-understand and most commonly used are the Wilson and Staggered discretizations -- you will hear about these from a Hamiltonian perspective again in this course. We will briefly motivate them here as well.
+\subsection*{Wilson Fermions}
+This is a formulation which completely removes doublers from the continuum theory at the cost of completely losing Chiral symmetry even in the massless limit. The idea is to add a term to the naive action which vanishes in the continuum limit -- but does so in a way that it adds momentum to the corners of the Brillouin zone such that only the near-zero momentum contributes to the integral in Eq. \eqref{eqn:corr_fer_units}. This prescription is given by,
+\begin{equation}
+    S^{(W)}[\hat{\psi},\bar{\hat{\psi}}] = S[\hat{\psi},\bar{\hat{\psi}}] - \frac{r}{2}\displaystyle\sum_n \bar{\hat{\psi}} \hat{\Box} \hat{\psi}\,,
+\end{equation}
+where the last term is called the Wilson term and it's role is to make the mass \textit{momentum dependent}. Writing the action in momentum space will tell you,
+\begin{equation}
+    M(p) \equiv M + \frac{2r}{a} \displaystyle\sum_{\mu} \sin^2{(p_{\mu} a/2)}\,.
+\end{equation}
+This momentum dependent mass has the correct limit at $p_{\mu}=0$, with $M(p) \to M$. Interestingly at the Brillouin zone corners, the Wilson term gives a contribution of $\frac{2r}{a}$ -- which in the continuum limit becomes infinite and hence the contribution of the term $\displaystyle\sum_{\mu} \tilde{p}_{\mu} \tilde{p}_{\mu} + M(p)^2$ to the integral given in Eq.\eqref{eqn:corr_fer_units} vanishes and we remain with a single continuum fermion coming from $p_{\mu} \to 0$ ! This can be visually illustrated by the following figure (Fig. \ref{fig:wilson_sol}),
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{sine_functions_Wilson.pdf}
+    \caption{Illustration of the solution to the doubling problem with the Wilson term. It lifts the zeros of $\tilde{p}_{\mu}$ at the corners of the Brillouin zone.}
+    \label{fig:wilson_sol}
+\end{figure}
+
+
+\subsection*{Staggered Fermions}
+In this discretization, a transformation is introduced which mixes the spinor degrees of freedom with the spacetime lattice. In other words, we spread the spinor degrees of freedom among the lattice sites such that effectievly the lattice spacing doubles and the Brillouin zone halves. This can be seen in the following figure,
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{sine_functions_stag.pdf}
+    \caption{The effect of staggering the spinor degrees of freedom across the lattice to get an effect lattice spacing of $2a$, thus halving the Brillouin zone -- shown by the dashed grey line.}
+    \label{fig:stagg}
+\end{figure}
+
+%The key idea of staggered fermions is made concrete in Fig.~\ref{fig:stag_lattice}: one assigns a different spinor component to each lattice site depending on whether the site is \textit{even} ($n_1+n_2 = $ even, shown as $\blacksquare$) or \textit{odd} ($n_1+n_2 = $ odd, shown as $\bigstar$). In 2D this reduces four doublers to two; in 4D it reduces $2^4=16$ doublers down to $2^{4/2}=4$, which can be interpreted as four degenerate fermion flavours (called \textit{tastes}).
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=1.1]
+
+        % ---- LEFT LATTICE: unstaggered (every site has both symbols) ----
+        \foreach \x in {0,1,2,3} {
+            \draw[gray!40] (\x,0) -- (\x,3);
+        }
+        \foreach \y in {0,1,2,3} {
+            \draw[gray!40] (0,\y) -- (3,\y);
+        }
+        \foreach \x in {0,1,2,3} {
+            \foreach \y in {0,1,2,3} {
+                % square behind
+                \node[draw=blue!70!black, fill=blue!25, minimum size=8pt, inner sep=0pt]
+                    at (\x,\y) {};
+                % star on top
+                \node[star, star points=6, star point ratio=2.2,
+                      draw=red!70!black, fill=red!25, minimum size=9pt, inner sep=0pt]
+                    at (\x,\y) {};
+            }
+        }
+        % axis labels left lattice
+        \foreach \x in {0,1,2,3} { \node[below=4pt, font=\small] at (\x,0) {$\x$}; }
+        \foreach \y in {0,1,2,3} { \node[left=4pt,  font=\small] at (0,\y) {$\y$}; }
+        \node[below=16pt] at (1.5,0) {$n_1$};
+        \node[left=18pt]  at (0,1.5) {$n_2$};
+        \node[above=6pt, font=\small\itshape] at (1.5,3) {unstaggered};
+
+        % ---- ARROW ----
+        \draw[->, very thick, gray!70] (3.6,1.5) -- (4.4,1.5);
+
+        % ---- RIGHT LATTICE: staggered (offset by 5 units) ----
+        \foreach \x in {0,1,2,3} {
+            \draw[gray!40] (\x+5,0) -- (\x+5,3);
+        }
+        \foreach \y in {0,1,2,3} {
+            \draw[gray!40] (5,\y) -- (8,\y);
+        }
+        \foreach \x in {0,1,2,3} {
+            \foreach \y in {0,1,2,3} {
+                \pgfmathparse{int(mod(\x+\y,2))}
+                \ifnum\pgfmathresult=0
+                    \node[draw=blue!70!black, fill=blue!25, minimum size=8pt, inner sep=0pt]
+                        at (\x+5,\y) {};
+                \else
+                    \node[star, star points=6, star point ratio=2.2,
+                          draw=red!70!black, fill=red!25, minimum size=9pt, inner sep=0pt]
+                        at (\x+5,\y) {};
+                \fi
+            }
+        }
+        % axis labels right lattice
+        \foreach \x in {0,1,2,3} { \node[below=4pt, font=\small] at (\x+5,0) {$\x$}; }
+        \foreach \y in {0,1,2,3} { \node[left=4pt,  font=\small] at (5,\y)   {$\y$}; }
+        \node[below=16pt] at (6.5,0) {$n_1$};
+        \node[left=18pt]  at (5,1.5) {$n_2$};
+        \node[above=6pt, font=\small\itshape] at (6.5,3) {staggered};
+
+        % ---- LEGEND (below right lattice) ----
+        \node[draw=blue!70!black, fill=blue!25, minimum size=8pt, inner sep=0pt]
+            at (5.0,-0.9) {};
+        \node[right=2pt, font=\small] at (5.0,-0.9) {$\blacksquare$};
+        \node[star, star points=6, star point ratio=2.2,
+              draw=red!70!black, fill=red!25, minimum size=9pt, inner sep=0pt]
+            at (6.5,-0.9) {};
+        \node[right=2pt, font=\small] at (6.5,-0.9) {$\bigstar$};
+
+    \end{tikzpicture}
+    \caption{Left: unstaggered lattice — every site carries all spinor components (both $\blacksquare$ and $\bigstar$ overlap). Right: staggered lattice — spinor components are distributed across sites according to the parity of $n_1+n_2$, effectively doubling the lattice spacing.}
+    \label{fig:stag_lattice}
+\end{figure}
 \section{A No-Go Theorem: Simplified Nielsen-Ninomiya}
+The doubling problem we encountered is not an accident - it is a consequence of a deep mathematical theorem. The \textit{Nielsen-Ninomiya theorem}\sidefact{Original proofs in refs.\cite{Nielsen1981a,Nielsen1981b}. For a textbook treatment see Chapter 4 of ref.\cite{rothe2012lattice} or Chapter 5 of ref.\cite{smit2002lattice}.} (1981) states that it is \textit{impossible} to write down a free lattice fermion action that simultaneously satisfies all four of the following properties:
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{Locality} - the action couples only to a finite number of neighbouring sites.
+    \item \textbf{Translational invariance} - the action is invariant under lattice translations.
+    \item \textbf{Chiral symmetry} - the action anticommutes with $\gamma^5$, i.e.\ $\{D,\gamma^5\}=0$, where $D$ is the Dirac operator.
+    \item \textbf{Correct continuum limit} - in the limit $a\to 0$ the action reduces to the single-flavour continuum Dirac action.
+\end{enumerate}
+In other words, any doubling-free lattice Dirac operator must break at least one of these four properties. This is the essence of the no-go theorem - one has to make a choice about which property to sacrifice. In practice, the two most common choices are,
+\begin{itemize}
+    \item \textbf{Wilson fermions} - break chiral symmetry (iii) by adding a dimension-5 irrelevant operator (the Wilson term) that gives the doublers a mass of order $1/a$ and decouples them in the continuum limit.
+    \item \textbf{Staggered fermions} - break translational invariance (ii) by distributing the spinor components across different lattice sites, reducing the number of doublers from $2^d$ to $2^{d/2}$.
+\end{itemize}
+We will briefly see each of these in the next section.
 
 \bibliographystyle{unsrt}
 \bibliography{../references}
