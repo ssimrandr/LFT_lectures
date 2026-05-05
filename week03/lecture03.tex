@@ -81,7 +81,7 @@ As we will discuss in today's lecture, it is quite hard to place fermions on a d
 In this section we briefly remind ourselves about some properties of fermions in the continuum and in Minkowski spacetime. 
 
 \subsection*{The Electron Field and Its Indices}
-To begin, let us consider the simplest fermionic field theory - \textit{Quantum Electrodynamics} (QED), which describes electrons interacting with photons. The key difference from the scalar field we studied previously is that the fermionic field $\psi(x)$ is \textit{not} a single number at each spacetime point - it is a multi-component object called the \textit{Dirac spinor field}. For an electron, the field carries a single type of index\sidefact{For QCD (quarks) one adds a colour index $a \in \{r,g,b\}$ and a flavour index $f \in \{u,d,s,c,b,t\}$, giving the full field $\psi^{a}_{\alpha,f}(x)$.},
+To begin, let us consider the simplest fermionic field theory -- \textit{Quantum Electrodynamics} (QED), which describes electrons interacting with photons -- but without the gauge fields. The key difference from the scalar field we studied previously is that the fermionic field $\psi(x)$ is \textit{not} a single number at each spacetime point - it is a multi-component object called the \textit{Dirac spinor field}. For an electron, the field carries a single type of index\sidefact{For QCD (quarks) one adds a colour index $a \in \{r,g,b\}$ and a flavour index $f \in \{u,d,s,c,b,t\}$, giving the full field $\psi^{a}_{\alpha,f}(x)$.},
 \begin{equation}\label{eqn:fermion_field}
   \psi_{\alpha}(x)\,, \qquad \alpha \in \{1,2,3,4\}\,,
 \end{equation}
@@ -263,7 +263,38 @@ Carrying out the Grassmann integral\sideex{This is an exercise!}, this reduces t
     Z[\eta,\bar{\eta}] = \det K \exp{\left(\displaystyle\sum_{\substack{k,\,l\\\lambda,\,\gamma}} \bar{\eta}_{\lambda}(k) K^{-1}_{\lambda \gamma}(k,l) \eta_{\gamma}(l)\right)} \,.
 \end{equation}
 Finally one can take the derivatives of Eq.\eqref{eqn:gen_fun_eta} with respect to $\eta_{\beta}(m)$ and $\bar{\eta}_{\alpha}(n)$, \textit{while carefully following the rules of Grassmann numbers} defined in Eq.\eqref{eqn:grass_diff} to get the two-point function,
+\begin{equation}\label{eqn:K_invab}
+    \langle \hat{\psi}_{\alpha}(n) \bar{\hat{\psi}}_{\beta}(m) \rangle = K^{-1}_{\alpha \beta}(n,m)\,.
+\end{equation}
+In order to compute the inverse matrix elements in Eq.~\eqref{eqn:K_invab}, we will use (i) the fact,
+\begin{equation}
+    \displaystyle\sum_{\lambda\,,l} K_{\alpha \lambda}(n,l) K^{-1}_{\lambda,\beta}(l,m) = \delta_{m,n}\delta_{\alpha \beta} \,,
+\end{equation}
+and using the momentum representation \sideex{There is an exercise to show the form of the lattice momentum!},
+\begin{equation}\label{eqn:2ptfunc}
+    \langle \hat{\psi}_{\alpha}(n) \bar{\hat{\psi}}_{\beta}(m) \rangle = \displaystyle\int^{\pi}_{-\pi} \; \frac{d^4\hat{p}}{(2 \pi)^4} \frac{[-i \gamma_{\mu} \tilde{\hat{p}} + M]_{\alpha \beta}}{\tilde{\hat{p}}_{\mu}\tilde{\hat{p}}_{\mu} + \hat{M}^2} \, e^{i \hat{p}(n-m)} \,.
+\end{equation}
+In the above, the momentum $\tilde{\hat{p}}$ -- inserting back the factors of lattice spacing -- is defined as,
+\begin{equation}\label{eqn:fer_lat_mom}
+    \tilde{p}_{\mu} \equiv \frac{1}{a} \sin(p_{\mu}a) \,.
+\end{equation}
+Finally by re-inserting the appropriate factors of the lattice spacing spacing one gets\sideex{You are encouraged to check the factors!},
+\begin{equation}\label{eqn:corr_fer_units}
+    G_{\alpha \beta}(\frac{x}{a},\frac{y}{a},aM) = a^3 \displaystyle\int^{\pi/a}_{-\pi/a} \; \frac{d^4p}{(2 \pi)^4} \; \frac{[-i\slashed{\tilde{p}} + M]_{\alpha \beta}}{\displaystyle\sum_{\mu} \tilde{p}_{\mu} \tilde{p}_{\mu}} \, e^{i p (x-y)} \,
+\end{equation}
+using which one can recover the continuum the two-point function as we did in the scalar field theory,
+\begin{equation}\label{eqn:twoP_G}
+    \langle \psi_{\alpha}(x) \bar{\psi}_{\beta}(m) \rangle = \lim_{a \to 0} \frac{1}{a^3} G_{\alpha \beta}\left(\frac{x}{a},\frac{y}{a},aM\right) \,.
+\end{equation}
 
+\textbf{But is this the correct continuum limit?} The answer unfortunately is \textbf{no} -- as opposed to the scalar theory. To see this, begin by comparing Eq.~\eqref{eqn:fer_lat_mom} against Eq.~(44) from lecture 1, you should notice a big difference -- the factor of $\frac{1}{2}$! The problem can be seen in following illustration (Fig.~\ref{fig:doubling}),
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{sine_functions.pdf}
+    \caption{This is an illustration to show the effect of the missing factor of one-half from the fermion lattice momenta in Eq.~\eqref{eqn:fer_lat_mom} as opposed to case of the scalar field in Eq.~(44) from lecture 1. The The fermionic lattice momentum has zeros at the edges of the Brillouin zone!}
+    \label{fig:doubling}
+\end{figure}
+Recalling our arguments for why the continuum limit of the two-point function in case of the scalar field matched the analytical results, that we could replace the lattice momentum $\tilde{p}$ with the continuum version $p$ because only the modes that are small with respect to the inverse lattice spacing contribute to the integral -- this doesn't hold true anymore for the fermions due to the missing one-half factor! The modes at the corners of the Brillouin zones contribute equally to the integral in the continuum limit! On a $d$-dimensional lattice, there are as many continuum-like contributions to the integral 
 \section{An invitation to Non-Naive discretizations: Staggered and Wilson Fermions}
 \section{A No-Go Theorem: Simplified Nielsen-Ninomiya}
 
