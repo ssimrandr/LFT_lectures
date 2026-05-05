@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.11)  4 MAY 2026 18:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.11)  5 MAY 2026 09:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -725,7 +725,11 @@ Package marginnote Info: xpos seems to be 468.17458pt on input line 198.
 Package marginnote Info: Margin note 5.1 is on absolute page 6 on input line 245.
 Package marginnote Info: right page because not two side mode on input line 245.
 Package marginnote Info: xpos seems to be 390.06395pt on input line 245.
- [5] (/Users/simransingh/LFT_lectures/week03/lecture03.bbl
+ [5]
+Package marginnote Info: Margin note 6.1 is on absolute page 6 on input line 261.
+Package marginnote Info: right page because not two side mode on input line 261.
+Package marginnote Info: xpos seems to be 250.22192pt on input line 261.
+ (/Users/simransingh/LFT_lectures/week03/lecture03.bbl
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 6.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -736,21 +740,21 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 ) [6] (/Users/simransingh/LFT_lectures/week03/lecture03.aux)
 Package rerunfilecheck Info: File `lecture03.out' has not changed.
-(rerunfilecheck)             Checksum: 0D96B686C71FF25ED96EB4B39F60D30C;1533.
+(rerunfilecheck)             Checksum: F648CF4423FF1D294B9731CEE75882CF;1533.
  ) 
 Here is how much of TeX's memory you used:
- 24189 strings out of 478994
- 444469 string characters out of 5858184
- 749180 words of memory out of 5000000
- 40993 multiletter control sequences out of 15000+600000
- 486343 words of font info for 168 fonts, out of 8000000 for 9000
+ 24200 strings out of 478994
+ 444601 string characters out of 5858184
+ 749310 words of memory out of 5000000
+ 40996 multiletter control sequences out of 15000+600000
+ 486639 words of font info for 171 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  87i,12n,88p,1377b,363s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /Users/simransingh/LFT_lectures/week03/lecture03.pdf (6 pages, 365231 bytes).
+Output written on /Users/simransingh/LFT_lectures/week03/lecture03.pdf (6 pages, 368793 bytes).
 PDF statistics:
- 217 PDF objects out of 1000 (max. 8388607)
- 184 compressed objects within 2 object streams
- 46 named destinations out of 1000 (max. 500000)
+ 221 PDF objects out of 1000 (max. 8388607)
+ 188 compressed objects within 2 object streams
+ 48 named destinations out of 1000 (max. 500000)
  43581 words of extra memory for PDF output out of 51595 (max. 10000000)
 

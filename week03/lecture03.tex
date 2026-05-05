@@ -145,7 +145,7 @@ This means the polynomial above terminates at finite order and, in particular, t
     f(\theta) = f_0 + f_1 \theta \,,
 \end{equation}
 where $f_0$ and $f_1$ are ordinary (commuting) numbers. One also defines formal differentiation and integration procedures. The differentiation rules are,
-\begin{equation}
+\begin{equation}\label{eqn:grass_diff}
     \frac{\partial}{\partial \theta_i} \theta_i = 1\,, \qquad \frac{\partial}{\partial \theta_i} \theta_i \theta_j = \theta_j\,, \qquad \frac{\partial}{\partial \theta_i} \theta_j \theta_i = -\theta_j\,,
 \end{equation}
 and integration is defined by the \textit{Berezin integral}\sideex{This will be relevant in the exercises when you compute the fermion path integral!},
@@ -244,18 +244,28 @@ Notice that among the different definitions, only the symmetric definition has t
 
 Once we have identified the lattice derivative that we have to work with, we can write down the dimensionless (naive) free lattice fermion action as\sidefact{The following treatment leading upto the doubling problem follows the discussion in Chapter 4 of ref.\cite{rothe2012lattice} very closely.},
 \begin{equation}
-    S[\psi,\bar{\psi}] = \displaystyle\sum_{n,\alpha,\mu>0} \bar{\hat{\psi}}_{\alpha}(n)  \left( \displaystyle\sum_{\beta}(\gamma^E_{\mu})_{\alpha \beta} \left[ \dfrac{\hat{\psi}_{\beta}(n+\hat{\mu}) - \hat{\psi}_{\beta}(n-\hat{\mu})}{2}\right] + \hat{M}\hat{\psi}_{\alpha}(n)   \right)\,,
+     S^E[\hat{\psi},\bar{\hat{\psi}}] = \displaystyle\sum_{n,\alpha,\mu>0} \bar{\hat{\psi}}_{\alpha}(n)  \left( \displaystyle\sum_{\beta}(\gamma^E_{\mu})_{\alpha \beta} \left[ \dfrac{\hat{\psi}_{\beta}(n+\hat{\mu}) - \hat{\psi}_{\beta}(n-\hat{\mu})}{2}\right] + \hat{M}\hat{\psi}_{\alpha}(n)   \right)\,,
 \end{equation}
 where the spinor indices $\alpha \,, \beta$ have been made explicit. Following the same logic as the scalar field, we can write this action in another form more amenable to computing the partition function,
 \begin{equation}
-    S[\psi,\bar{\psi}] = \displaystyle\sum_{\substack{n,\,m\\\alpha,\,\beta}} \bar{\hat{\psi}}_{\alpha}(n) K_{\alpha \beta}(n,m) \hat{\psi}_{\beta}(m) \,,
+    S^E[\hat{\psi},\bar{\hat{\psi}}] = \displaystyle\sum_{\substack{n,\,m\\\alpha,\,\beta}} \bar{\hat{\psi}}_{\alpha}(n) K_{\alpha \beta}(n,m) \hat{\psi}_{\beta}(m) \,,
 \end{equation}
 where the matrix elements of $K_{\alpha \beta}(n,m)$ are given by,
 \begin{equation}
     K_{\alpha \beta}(n,m) = \displaystyle\sum_{\mu} \frac{1}{2}(\gamma^E_{\mu})_{\alpha \beta} \left[\delta_{m,n+\hat{\mu}} - \delta_{m,n-\hat{\mu}} \right] + \hat{M}\delta_{m,n} \,.
 \end{equation}
-\section{A No-Go Theorem: Simplified Nielsen-Ninomiya}
+Using this, the quantity that we want to compute is the two-point Euclidean Green's function $\langle \hat{\psi}_{\alpha}(n) \bar{\hat{\psi}}_{\beta}(m) \rangle$ -- which gives us information on the particle spectrum of our theory. As seen from the case of the scalar field theory, this two-point function can be obtained from a generating functional. The difference now will be (i) spinor indices, and (ii) Grassmann valued sources terms for the fields,
+\begin{equation}
+    Z[\eta,\bar{\eta}] = \int \mathcal{D}\bar{\hat{\psi}} \mathcal{D}\hat{\psi} \; e^{- S^E[\hat{\psi},\bar{\hat{\psi}}] + \displaystyle\sum_{n,\alpha} \left[ \bar{\eta}_{\alpha}(n) \hat{\psi}_{\alpha}(n) + \bar{\hat{\psi}}_{\alpha}(n)\eta_{\alpha}(n)\right]}\,.
+\end{equation}
+Carrying out the Grassmann integral\sideex{This is an exercise!}, this reduces to,
+\begin{equation}\label{eqn:gen_fun_eta}
+    Z[\eta,\bar{\eta}] = \det K \exp{\left(\displaystyle\sum_{\substack{k,\,l\\\lambda,\,\gamma}} \bar{\eta}_{\lambda}(k) K^{-1}_{\lambda \gamma}(k,l) \eta_{\gamma}(l)\right)} \,.
+\end{equation}
+Finally one can take the derivatives of Eq.\eqref{eqn:gen_fun_eta} with respect to $\eta_{\beta}(m)$ and $\bar{\eta}_{\alpha}(n)$, \textit{while carefully following the rules of Grassmann numbers} defined in Eq.\eqref{eqn:grass_diff} to get the two-point function,
+
 \section{An invitation to Non-Naive discretizations: Staggered and Wilson Fermions}
+\section{A No-Go Theorem: Simplified Nielsen-Ninomiya}
 
 \bibliographystyle{unsrt}
 \bibliography{../references}
