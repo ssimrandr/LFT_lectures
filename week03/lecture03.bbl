@@ -27,4 +27,19 @@ Jan Smit.
 \newblock {\em Introduction to Quantum Fields on a Lattice}.
 \newblock Cambridge University Press, Cambridge, UK, 2002.
 
+\bibitem{GinspargWilson1982}
+Paul~H. Ginsparg and Kenneth~G. Wilson.
+\newblock A remnant of chiral symmetry on the lattice.
+\newblock {\em Physical Review D}, 25(10):2649--2657, 1982.
+
+\bibitem{Kaplan1992}
+David~B. Kaplan.
+\newblock A method for simulating chiral fermions on the lattice.
+\newblock {\em Physics Letters B}, 288(3--4):342--347, 1992.
+
+\bibitem{Neuberger1998}
+Herbert Neuberger.
+\newblock Exactly massless quarks on the lattice.
+\newblock {\em Physics Letters B}, 417(1--2):141--144, 1998.
+
 \end{thebibliography}

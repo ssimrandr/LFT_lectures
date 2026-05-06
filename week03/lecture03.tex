@@ -81,7 +81,7 @@ As we will discuss in today's lecture, it is quite hard to place fermions on a d
 In this section we briefly remind ourselves about some properties of fermions in the continuum and in Minkowski spacetime. 
 
 \subsection*{The Electron Field and Its Indices}
-To begin, let us consider the simplest fermionic field theory -- \textit{Quantum Electrodynamics} (QED), which describes electrons interacting with photons -- but without the gauge fields. The key difference from the scalar field we studied previously is that the fermionic field $\psi(x)$ is \textit{not} a single number at each spacetime point - it is a multi-component object called the \textit{Dirac spinor field}. For an electron, the field carries a single type of index\sidefact{For QCD (quarks) one adds a colour index $a \in \{r,g,b\}$ and a flavour index $f \in \{u,d,s,c,b,t\}$, giving the full field $\psi^{a}_{\alpha,f}(x)$.},
+The simplest fermionic field theory is \textit{Quantum Electrodynamics} (QED), which essentially describes electrons interacting with photons. In this lecture we will study only free fermions, because of the subtleties involved in putting them on the lattice. Further, combining fermions and the abelian gauge fields is much the same as we did for the scalar field theory. The key difference from the scalar field we studied previously is that the fermionic field $\psi(x)$ is \textit{not} a single number at each spacetime point - it is a multi-component object called the \textit{Dirac spinor field}. For an electron (as opposed to quarks), the field carries a single type of index\sidefact{For QCD (quarks) one adds a colour index $a \in \{r,g,b\}$ and a flavour index $f \in \{u,d,s,c,b,t\}$, giving the full field $\psi^{a}_{\alpha,f}(x)$.},
 \begin{equation}\label{eqn:fermion_field}
   \psi_{\alpha}(x)\,, \qquad \alpha \in \{1,2,3,4\}\,,
 \end{equation}
@@ -99,14 +99,13 @@ One also needs the Dirac conjugate field, defined as\sidefact{The conjugate fiel
 \begin{equation}\label{eqn:dirac_conjugate}
   \bar{\psi}_{\alpha}(x) \equiv \sum_{\beta=1}^{4} \psi^{\dagger}_{\beta}(x)\,(\gamma^0)_{\beta\alpha}\,,
 \end{equation}
-where $\psi^{\dagger}_{\beta}$ is the complex conjugate transpose of $\psi_\beta$ - it is a row vector with index $\beta$ - and $(\gamma^0)_{\beta\alpha}$ is the $(\beta,\alpha)$ matrix element of $\gamma^0$. The sum over $\beta$ is just the usual matrix-vector multiplication $\psi^\dagger \gamma^0$, and in the standard Einstein summation convention the $\sum_\beta$ is left implicit.
-where $\gamma^0$ is the time-like Dirac matrix. It is important to note that $\psi$ and $\bar{\psi}$ are treated as \textit{independent} Grassmann-valued fields in the path integral. 
+where $\psi^{\dagger}_{\beta}$ is the complex conjugate transpose of $\psi_\beta$ - it is a row vector with index $\beta$ - and $(\gamma^0)_{\beta\alpha}$ is the $(\beta,\alpha)$ matrix element of $\gamma^0$. The sum over $\beta$ is just the usual matrix-vector multiplication $\psi^\dagger \gamma^0$, where $\gamma^0$ is the time-like Dirac matrix. It is important to note that $\psi$ and $\bar{\psi}$ are treated as \textit{independent} Grassmann-valued fields in the path integral. 
 
 The spinor index $\alpha$ is contracted with the Dirac matrices $(\gamma^\mu)_{\alpha\beta}$, which are $4\times4$ matrices satisfying the \textit{Clifford algebra},
 \begin{equation}\label{eqn:clifford}
   \{\gamma^\mu, \gamma^\nu\} \equiv \gamma^\mu \gamma^\nu + \gamma^\nu \gamma^\mu = 2\, \eta^{\mu\nu}\,,
 \end{equation}
-where $\eta^{\mu\nu} = \text{diag}(+1,-1,-1,-1)$ is the metric of Minkowski spacetime. One last ingredient that we need is the $\gamma^5$ matrix and its properties:
+where use the convention $\eta^{\mu\nu} = \text{diag}(+1,-1,-1,-1)$ for the metric of Minkowski spacetime. One last ingredient that we need is the $\gamma^5$ matrix and its properties:
 \begin{eqnarray*}
     \gamma^5 = i \gamma^0 \gamma^1 \gamma^2 \gamma^3 \\
     \{ \gamma^5,\gamma^{\mu} \} = 0 \,.
@@ -124,7 +123,7 @@ while the Dirac action is given by,
 \end{equation}
 
 \subsection*{Grassmann Algebra}
-The most important aspect of fermion fields is that they satisfy the Grassmann algebra - necessary to ensure the Fermi statistics \sidefact{Hermann Günther Grassmann (1809--1877) was a German mathematician and linguist who introduced what we now call exterior algebra in his 1844 work \textit{Die lineale Ausdehnungslehre}. His work was largely ignored during his lifetime and only recognised after his death. His work was later found to be exactly the right mathematical structure to describe fermions in quantum field theory.}. This means that if we consider a product of two fermion fields, they satisfy,
+The most important aspect of fermion fields is that they satisfy the Grassmann algebra - necessary to ensure the Fermi statistics\sidefact{Hermann Günther Grassmann (1809--1877) was a German mathematician and linguist who introduced what we now call exterior algebra in his 1844 work \textit{Die lineale Ausdehnungslehre}. His work was largely ignored during his lifetime and only recognised after his death. His work was later found to be exactly the right mathematical structure to describe fermions in quantum field theory.}. This means that if we consider a product of two fermion fields, they satisfy,
 \begin{equation}
     \psi(x)_{\alpha} \psi(x')_{\beta} = - \psi(x')_{\beta} \psi(x)_{\alpha} \,.
 \end{equation}
@@ -197,11 +196,11 @@ Dirac action becomes,
     S^E[\psi,\bar{\psi}] = \bar{\psi}(x)\left(\gamma^E_{\mu}\partial_{\mu} + M \right)\psi(x).
 \end{equation}
 
-\noindent Note that although $(\gamma^E_\mu)^\dagger = \gamma^E_\mu$, the Dirac 
+\noindent Note that although $(\gamma^E_\mu)^\dagger = \gamma^E_\mu$, the (massless) Dirac 
 operator $\slashed{\partial}_E = \gamma^E_\mu\partial_\mu$ is anti-Hermitian\sidefact{Contrast this with the case of the free scalar field, for which we had a well-defined configuration $\phi(x)$ with the probability weight $e^{-S^E[\phi(x)]}$!}, 
 $(\slashed{\partial}_E)^\dagger = -\slashed{\partial}_E$, since 
 $\partial_\mu^\dagger = -\partial_\mu$. Its eigenvalues are therefore purely 
-imaginary, $\pm i\lambda_n$ with $\lambda_n \in \mathbb{R}$. The eigenvalues of the operator including the mass terms are then of the form $i\lambda + M$ (and the complex conjuagtes as we argue below). 
+imaginary, $\pm i\lambda_n$ with $\lambda_n \in \mathbb{R}$. The eigenvalues of the operator including the mass terms are then of the form $i\lambda + M$ (and their complex conjugates as we argue below). 
 
 As one can guess, the positive-definiteness of the Boltzmann weight cannot be argued pointwise for 
 fermions, since $\psi$ and $\bar{\psi}$ are Grassmann variables and $e^{-S_E}$ 
@@ -212,7 +211,7 @@ the fermions exactly to obtain a functional determinant,
     \int \mathcal{D}\bar{\psi}\mathcal{D}\psi\; 
     e^{-\bar{\psi}(\slashed{\partial}_E + M)\psi} = \det(\slashed{\partial}_E + M).
 \end{equation}
-In order to understand the reality and positivity of this determinant, we need to look at the spectrum of the matrix $D\equiv \slashed{\partial}_E + M$. As we have seen the Euclidean Dirac operator does not seem to have any hermitian properties on its own - but it has something called the \textit{$\gamma^5$-hermiticity}. This is the property,
+In order to understand the reality and positivity of this determinant, we need to look at the spectrum of the matrix $D\equiv \slashed{\partial}_E + M$. As we have seen the Euclidean (massive) Dirac operator does not seem to have any hermitian properties on its own - but it has something called the \textit{$\gamma^5$-hermiticity}. This is the property,
 \begin{equation}
     \gamma^5 D = D^{\dagger}\gamma^5 \,.
 \end{equation}
@@ -294,18 +293,18 @@ using which one can recover the continuum the two-point function as we did in th
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{sine_functions.pdf}
-    \caption{This is an illustration to show the effect of the missing factor of one-half from the fermion lattice momenta in Eq.~\eqref{eqn:fer_lat_mom} as opposed to case of the scalar field in Eq.~(44) from lecture 1. The The fermionic lattice momentum has zeros at the edges of the Brillouin zone!}
+    \caption{This is an illustration to show the effect of the missing factor of one-half from the fermion lattice momenta in Eq.~\eqref{eqn:fer_lat_mom} as opposed to case of the scalar field in Eq.~(44) from lecture 1. The fermionic lattice momentum has zeros at the edges of the Brillouin zone!}
     \label{fig:doubling}
 \end{figure}
-Recalling our arguments for why the continuum limit of the two-point function in case of the scalar field matched the analytical results, that we could replace the lattice momentum $\tilde{p}$ with the continuum version $p$ because only the modes that are small with respect to the inverse lattice spacing contribute to the integral -- this doesn't hold true anymore for the fermions due to the missing one-half factor! The modes at the corners of the Brillouin zones contribute equally to the integral in the continuum limit! On a $d$-dimensional lattice, there are as many continuum-like contributions to the integral as there are corners of the Brillouin zone. Hence the naive discretisation of of the lattice fermions gives $2^d$ "doublers".
+Recall the arguments for why the continuum limit of the two-point function in case of the scalar field matched the analytical results. We could replace the lattice operator $\tilde{p}$ with the continuum version $p$ only because the modes that were small with respect to the inverse lattice spacing contributed to the integral. This doesn't hold true anymore for the fermions due to the missing one-half factor! The modes at the corners of the Brillouin zones contribute equally to the integral in the continuum limit! On a $d$-dimensional lattice, there are as many continuum-like contributions to the integral as there are corners of the Brillouin zone. Hence the naive discretisation of of the lattice fermions gives $2^d$ "doublers"\footnote{\textcolor{red}{I plan to extend this section in the coming weeks.}}.
 \section{An invitation to Non-Naive discretizations: Wilson and Staggered Fermions}
 As mentioned in the introduction, putting fermions on the lattice is quite hard and is an active area of research. There are currently many discretizations on the market and two of the easiest-to-understand and most commonly used are the Wilson and Staggered discretizations -- you will hear about these from a Hamiltonian perspective again in this course. We will briefly motivate them here as well.
 \subsection*{Wilson Fermions}
-This is a formulation which completely removes doublers from the continuum theory at the cost of completely losing Chiral symmetry even in the massless limit. The idea is to add a term to the naive action which vanishes in the continuum limit -- but does so in a way that it adds momentum to the corners of the Brillouin zone such that only the near-zero momentum contributes to the integral in Eq. \eqref{eqn:corr_fer_units}. This prescription is given by,
+This is a formulation which completely removes doublers from the continuum theory at the cost of losing the Chiral symmetry completely -- even in the massless limit. The idea is to add a term to the naive action which vanishes in the continuum limit -- but does so in a way that it adds momentum to the corners of the Brillouin zone such that only the near-zero momentum contributes to the integral in Eq. \eqref{eqn:corr_fer_units}. This prescription is given by,
 \begin{equation}
     S^{(W)}[\hat{\psi},\bar{\hat{\psi}}] = S[\hat{\psi},\bar{\hat{\psi}}] - \frac{r}{2}\displaystyle\sum_n \bar{\hat{\psi}} \hat{\Box} \hat{\psi}\,,
 \end{equation}
-where the last term is called the Wilson term and it's role is to make the mass \textit{momentum dependent}. Writing the action in momentum space will tell you,
+where the last term is called the Wilson term and it's role is to make the mass \textit{momentum dependent}. Writing the action in momentum space gives,
 \begin{equation}
     M(p) \equiv M + \frac{2r}{a} \displaystyle\sum_{\mu} \sin^2{(p_{\mu} a/2)}\,.
 \end{equation}
@@ -319,15 +318,15 @@ This momentum dependent mass has the correct limit at $p_{\mu}=0$, with $M(p) \t
 
 
 \subsection*{Staggered Fermions}
-In this discretization, a transformation is introduced which mixes the spinor degrees of freedom with the spacetime lattice. In other words, we spread the spinor degrees of freedom among the lattice sites such that effectievly the lattice spacing doubles and the Brillouin zone halves. This can be seen in the following figure,
+In this discretization, a transformation is introduced which mixes the spinor degrees of freedom with the spacetime lattice. In other words, we spread the spinor degrees of freedom among the lattice sites such that effectively the lattice spacing doubles and the Brillouin zone halves. This can be seen in the following figure (Fig. \ref{fig:stagg}),
 \begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]{sine_functions_stag.pdf}
-    \caption{The effect of staggering the spinor degrees of freedom across the lattice to get an effect lattice spacing of $2a$, thus halving the Brillouin zone -- shown by the dashed grey line.}
+    \caption{The effect of staggering the spinor degrees of freedom across the lattice to get an effective lattice spacing of $2a$, thus halving the Brillouin zone -- shown by the dashed grey line.}
     \label{fig:stagg}
 \end{figure}
 
-%The key idea of staggered fermions is made concrete in Fig.~\ref{fig:stag_lattice}: one assigns a different spinor component to each lattice site depending on whether the site is \textit{even} ($n_1+n_2 = $ even, shown as $\blacksquare$) or \textit{odd} ($n_1+n_2 = $ odd, shown as $\bigstar$). In 2D this reduces four doublers to two; in 4D it reduces $2^4=16$ doublers down to $2^{4/2}=4$, which can be interpreted as four degenerate fermion flavours (called \textit{tastes}).
+The key idea of staggered fermions is made concrete in Fig.~\ref{fig:stag_lattice}: one assigns a different spinor component to each lattice site -- this is done by a transformation which we will not discuss in this lecture, but can be found in \cite{rothe2012lattice}. As an example in how we remove doublers with the staggered formulation, we take a 2D lattice with a two-component spinor as shown in the figure. In the naive discretisation we would find $2^2$ fermions, but now we find only $2$. In the literature, these are called tastes. Further, if we use the four-component spinor -- we can remove this doubling entirely. An interesting aspect of this formulation is that it doesn't completely destroy Chiral symmetry with -- so we have a middle ground with respect to the naive and Wilson forms -- we have \textit{some} doubling and \textit{some} Chiral symmetry.
 
 \begin{figure}[ht]
     \centering
@@ -356,7 +355,7 @@ In this discretization, a transformation is introduced which mixes the spinor de
         \foreach \y in {0,1,2,3} { \node[left=4pt,  font=\small] at (0,\y) {$\y$}; }
         \node[below=16pt] at (1.5,0) {$n_1$};
         \node[left=18pt]  at (0,1.5) {$n_2$};
-        \node[above=6pt, font=\small\itshape] at (1.5,3) {unstaggered};
+        \node[above=6pt, font=\small\itshape] at (1.5,3) {naive};
 
         % ---- ARROW ----
         \draw[->, very thick, gray!70] (3.6,1.5) -- (4.4,1.5);
@@ -384,23 +383,25 @@ In this discretization, a transformation is introduced which mixes the spinor de
         % axis labels right lattice
         \foreach \x in {0,1,2,3} { \node[below=4pt, font=\small] at (\x+5,0) {$\x$}; }
         \foreach \y in {0,1,2,3} { \node[left=4pt,  font=\small] at (5,\y)   {$\y$}; }
-        \node[below=16pt] at (6.5,0) {$n_1$};
-        \node[left=18pt]  at (5,1.5) {$n_2$};
+        %\node[below=16pt] at (6.5,0) {$n_1$};
+        %\node[left=18pt]  at (5,1.5) {$n_2$};
         \node[above=6pt, font=\small\itshape] at (6.5,3) {staggered};
 
         % ---- LEGEND (below right lattice) ----
-        \node[draw=blue!70!black, fill=blue!25, minimum size=8pt, inner sep=0pt]
+       % \node[draw=blue!70!black, fill=blue!25, minimum size=8pt, inner sep=0pt]
             at (5.0,-0.9) {};
-        \node[right=2pt, font=\small] at (5.0,-0.9) {$\blacksquare$};
-        \node[star, star points=6, star point ratio=2.2,
+        %\node[right=2pt, font=\small] at (5.0,-0.9) {$\blacksquare$};
+        %\node[star, star points=6, star point ratio=2.2,
               draw=red!70!black, fill=red!25, minimum size=9pt, inner sep=0pt]
             at (6.5,-0.9) {};
-        \node[right=2pt, font=\small] at (6.5,-0.9) {$\bigstar$};
+        %\node[right=2pt, font=\small] at (6.5,-0.9) {$\bigstar$};
 
     \end{tikzpicture}
-    \caption{Left: unstaggered lattice — every site carries all spinor components (both $\blacksquare$ and $\bigstar$ overlap). Right: staggered lattice — spinor components are distributed across sites according to the parity of $n_1+n_2$, effectively doubling the lattice spacing.}
+    \caption{Assuming that we have a two-component spinor at each lattice site, given by a square and a star. On the left: naive lattice with lattice spacing $a$, and every site carries all spinor components. On the right: staggered lattice -- spinor components are distributed across sites, effectively doubling the lattice spacing.}
     \label{fig:stag_lattice}
 \end{figure}
+
+
 \section{A No-Go Theorem: Simplified Nielsen-Ninomiya}
 The doubling problem we encountered is not an accident - it is a consequence of a deep mathematical theorem. The \textit{Nielsen-Ninomiya theorem}\sidefact{Original proofs in refs.\cite{Nielsen1981a,Nielsen1981b}. For a textbook treatment see Chapter 4 of ref.\cite{rothe2012lattice} or Chapter 5 of ref.\cite{smit2002lattice}.} (1981) states that it is \textit{impossible} to write down a free lattice fermion action that simultaneously satisfies all four of the following properties:
 \begin{enumerate}[label=(\roman*)]
@@ -414,8 +415,7 @@ In other words, any doubling-free lattice Dirac operator must break at least one
     \item \textbf{Wilson fermions} - break chiral symmetry (iii) by adding a dimension-5 irrelevant operator (the Wilson term) that gives the doublers a mass of order $1/a$ and decouples them in the continuum limit.
     \item \textbf{Staggered fermions} - break translational invariance (ii) by distributing the spinor components across different lattice sites, reducing the number of doublers from $2^d$ to $2^{d/2}$.
 \end{itemize}
-We will briefly see each of these in the next section.
-
+Note that this is not the end of the story - it is barely the beginning! The lattice community has come up with very elegant ways to go around the Nielsen-Ninomiya theorem. In these formulations, one has ways of defining lattice versions of the Chiral symmetry (Ginspag and Wilson \cite{GinspargWilson1982}). The other sophisticated formulations include Domain Wall fermions by D. Kaplan \cite{Kaplan1992} and Overlap fermions by H. Neuberger \cite{Neuberger1998}.
 \bibliographystyle{unsrt}
 \bibliography{../references}
 

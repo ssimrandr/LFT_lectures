@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.11)  5 MAY 2026 23:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.11)  6 MAY 2026 09:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -706,7 +706,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 84.
 Package marginnote Info: Margin note 2.1 is on absolute page 2 on input line 84.
 Package marginnote Info: right page because not two side mode on input line 84.
-Package marginnote Info: xpos seems to be 209.63206pt on input line 84.
+Package marginnote Info: xpos seems to be 367.03525pt on input line 84.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <9> on input line 84.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -715,56 +715,141 @@ Package marginnote Info: Margin note 2.2 is on absolute page 2 on input line 98.
 Package marginnote Info: right page because not two side mode on input line 98.
 Package marginnote Info: xpos seems to be 336.61841pt on input line 98.
  [2]
-Package marginnote Info: Margin note 3.1 is on absolute page 3 on input line 127.
-Package marginnote Info: right page because not two side mode on input line 127.
-Package marginnote Info: xpos seems to be 307.10802pt on input line 127.
-Package marginnote Info: Margin note 3.2 is on absolute page 4 on input line 151.
-Package marginnote Info: right page because not two side mode on input line 151.
-Package marginnote Info: xpos seems to be 307.78009pt on input line 151.
+Package marginnote Info: Margin note 3.1 is on absolute page 3 on input line 126.
+Package marginnote Info: right page because not two side mode on input line 126.
+Package marginnote Info: xpos seems to be 305.63423pt on input line 126.
+Package marginnote Info: Margin note 3.2 is on absolute page 4 on input line 150.
+Package marginnote Info: right page because not two side mode on input line 150.
+Package marginnote Info: xpos seems to be 307.78009pt on input line 150.
  [3]
-Package marginnote Info: Margin note 4.1 is on absolute page 4 on input line 201.
-Package marginnote Info: right page because not two side mode on input line 201.
-Package marginnote Info: xpos seems to be 468.17458pt on input line 201.
+Package marginnote Info: Margin note 4.1 is on absolute page 4 on input line 200.
+Package marginnote Info: right page because not two side mode on input line 200.
+Package marginnote Info: xpos seems to be 121.6304pt on input line 200.
  [4]
-Package marginnote Info: Margin note 5.1 is on absolute page 6 on input line 248.
-Package marginnote Info: right page because not two side mode on input line 248.
-Package marginnote Info: xpos seems to be 390.06395pt on input line 248.
+Package marginnote Info: Margin note 5.1 is on absolute page 6 on input line 247.
+Package marginnote Info: right page because not two side mode on input line 247.
+Package marginnote Info: xpos seems to be 390.06395pt on input line 247.
  [5]
-Package marginnote Info: Margin note 6.1 is on absolute page 6 on input line 264.
-Package marginnote Info: right page because not two side mode on input line 264.
-Package marginnote Info: xpos seems to be 250.22192pt on input line 264.
-Package marginnote Info: Margin note 6.2 is on absolute page 6 on input line 276.
-Package marginnote Info: right page because not two side mode on input line 276.
-Package marginnote Info: xpos seems to be 270.15958pt on input line 276.
-Package marginnote Info: Margin note 6.3 is on absolute page 7 on input line 284.
-Package marginnote Info: right page because not two side mode on input line 284.
-Package marginnote Info: xpos seems to be 468.29625pt on input line 284.
+Package marginnote Info: Margin note 6.1 is on absolute page 6 on input line 263.
+Package marginnote Info: right page because not two side mode on input line 263.
+Package marginnote Info: xpos seems to be 250.22192pt on input line 263.
+Package marginnote Info: Margin note 6.2 is on absolute page 6 on input line 275.
+Package marginnote Info: right page because not two side mode on input line 275.
+Package marginnote Info: xpos seems to be 270.15958pt on input line 275.
+Package marginnote Info: Margin note 6.3 is on absolute page 7 on input line 283.
+Package marginnote Info: right page because not two side mode on input line 283.
+Package marginnote Info: xpos seems to be 468.29625pt on input line 283.
  [6]
 <sine_functions.pdf, id=130, 469.755pt x 289.08pt>
 File: sine_functions.pdf Graphic file (type pdf)
 <use sine_functions.pdf>
-Package pdftex.def Info: sine_functions.pdf  used on input line 296.
+Package pdftex.def Info: sine_functions.pdf  used on input line 295.
 (pdftex.def)             Requested size: 317.98921pt x 195.68518pt.
  [7 </Users/simransingh/LFT_lectures/week03/sine_functions.pdf>]
-<sine_functions_Wilson.pdf, id=169, 505.89pt x 361.35pt>
+<sine_functions_Wilson.pdf, id=172, 505.89pt x 361.35pt>
 File: sine_functions_Wilson.pdf Graphic file (type pdf)
 <use sine_functions_Wilson.pdf>
-Package pdftex.def Info: sine_functions_Wilson.pdf  used on input line 315.
+Package pdftex.def Info: sine_functions_Wilson.pdf  used on input line 314.
 (pdftex.def)             Requested size: 238.49342pt x 170.35281pt.
-<sine_functions_stag.pdf, id=170, 469.755pt x 289.08pt>
+<sine_functions_stag.pdf, id=174, 469.755pt x 289.08pt>
 File: sine_functions_stag.pdf Graphic file (type pdf)
 <use sine_functions_stag.pdf>
-Package pdftex.def Info: sine_functions_stag.pdf  used on input line 325.
+Package pdftex.def Info: sine_functions_stag.pdf  used on input line 324.
 (pdftex.def)             Requested size: 238.49342pt x 146.76277pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 355.
+(Font)              <10> on input line 354.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 355.
-Package marginnote Info: Margin note 8.1 is on absolute page 8 on input line 405.
-Package marginnote Info: right page because not two side mode on input line 405.
-Package marginnote Info: xpos seems to be 363.60135pt on input line 405.
+(Font)              <7> on input line 354.
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ( in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 9 in font nullfont!
+Missing character: There is no ) in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no ! in font nullfont!
+Missing character: There is no 7 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no ! in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no ! in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 9 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ( in font nullfont!
+Missing character: There is no 6 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 9 in font nullfont!
+Missing character: There is no ) in font nullfont!
+Missing character: There is no ; in font nullfont!
+Package marginnote Info: Margin note 8.1 is on absolute page 10 on input line 406.
+Package marginnote Info: right page because not two side mode on input line 406.
+Package marginnote Info: xpos seems to be 363.60135pt on input line 406.
  [8] [9 </Users/simransingh/LFT_lectures/week03/sine_functions_Wilson.pdf> </Users/simransingh/LFT_lectures/week03/sine_functions_stag.pdf>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 414.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 415.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (/Users/simransingh/LFT_lectures/week03/lecture03.bbl
@@ -781,18 +866,18 @@ Package rerunfilecheck Info: File `lecture03.out' has not changed.
 (rerunfilecheck)             Checksum: ED5E4BB15DCC0166D18C6E59E364473E;1533.
  ) 
 Here is how much of TeX's memory you used:
- 25041 strings out of 478994
- 463884 string characters out of 5858184
- 804390 words of memory out of 5000000
- 41759 multiletter control sequences out of 15000+600000
- 500919 words of font info for 200 fonts, out of 8000000 for 9000
+ 25053 strings out of 478994
+ 464045 string characters out of 5858184
+ 803728 words of memory out of 5000000
+ 41761 multiletter control sequences out of 15000+600000
+ 501226 words of font info for 203 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,12n,88p,1377b,872s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 87i,12n,88p,1377b,870s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /Users/simransingh/LFT_lectures/week03/lecture03.pdf (11 pages, 426623 bytes).
+Output written on /Users/simransingh/LFT_lectures/week03/lecture03.pdf (11 pages, 427765 bytes).
 PDF statistics:
- 370 PDF objects out of 1000 (max. 8388607)
- 277 compressed objects within 3 object streams
- 75 named destinations out of 1000 (max. 500000)
+ 382 PDF objects out of 1000 (max. 8388607)
+ 289 compressed objects within 3 object streams
+ 79 named destinations out of 1000 (max. 500000)
  51788 words of extra memory for PDF output out of 61914 (max. 10000000)
 
