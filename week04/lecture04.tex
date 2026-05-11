@@ -1,12 +1,239 @@
 % Lecture 4 — placeholder
 % Location: week04/lecture04.tex
 % Replace with your lecture content. Compile from inside week04/ with latexmk or xelatex.
-
 \documentclass[11pt]{article}
-\begin{document}
-% TODO: add lecture content
 
-\bibliographystyle{unsrt}
-\bibliography{../references}
+% Encoding and fonts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Math
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{slashed}
+
+% Graphics and colors
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{placeins}
+
+% TikZ for diagrams
+\usepackage{tikz}
+\usetikzlibrary{calc, decorations.pathreplacing, shapes.geometric}
+
+% Better typography
+\usepackage{microtype}
+
+% Page layout
+\usepackage[left=1in, right=2in, top=1in, bottom=1in, marginparwidth=1.4in, marginparsep=0.2in]{geometry}
+\setlength{\headheight}{14pt}
+\addtolength{\topmargin}{-2pt}
+
+% Margin notes
+\usepackage{marginnote}
+\newcommand{\sidefact}[1]{\marginnote{\footnotesize\textcolor{green!50!black}{#1}}}
+\newcommand{\sideex}[1]{\marginnote{\footnotesize\textcolor{red!50!black}{#1}}}
+
+% Hyperlinks
+\usepackage[hidelinks]{hyperref}
+
+% Lists
+\usepackage{enumitem}
+
+% Header: page style
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % clear header and footer
+\lhead{\textit{LFT: Lecture 4}}
+\rhead{\textit{S. Singh}}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyfoot[C]{\thepage} % Add centered page number in footer
+
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+% Metadata
+\title{Lecture 4 - Continuum Limit}
+\author{Simran Singh}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+    In this lecture we will understand how to make sense of making measurements on a discrete spacetime lattice, and the (renormalisation group) procedure to remove the lattice regularization to make a connection to continuum physics. We will also see why the continuum limit corresponds to a second-order phase transition.
+\end{abstract}
+
+% ============================================================
+\section{Overview}
+% ============================================================
+
+Brief motivation: why do we regularise QFT on a lattice, and what price do we pay?
+
+\begin{itemize}
+    \item The lattice spacing $a$ acts as a UV regulator: momenta are cut off at $\pi/a$.
+    \item Physical observables must be independent of $a$ --- this is the content of the continuum limit.
+    \item The lattice breaks Lorentz/Poincaré symmetry; we must verify its restoration as $a\to 0$.
+\end{itemize}
+
+\subsection{The lattice action}
+
+Define the $d$-dimensional hypercubic lattice $\Lambda = (a\mathbb{Z})^d$ with sites $x = a\,\hat{n}$,
+$\hat{n}\in\mathbb{Z}^d$.  For a scalar field $\phi_x \equiv \phi(x)$:
+%
+\begin{equation}
+    S_{\text{lat}}[\phi] = a^d \sum_{x\in\Lambda} \left[
+        \frac{1}{2}\sum_{\mu=1}^{d}\left(\frac{\phi_{x+\hat\mu}-\phi_x}{a}\right)^2
+        + \frac{m_0^2}{2}\phi_x^2 + \frac{\lambda_0}{4!}\phi_x^4
+    \right].
+\end{equation}
+%
+Recover the continuum action formally as $a\to 0$.
+
+\subsection{Observables and correlation functions}
+
+The partition function and $n$-point functions:
+%
+\begin{equation}
+    Z = \int \mathcal{D}\phi\; e^{-S_{\text{lat}}[\phi]}, \qquad
+    G^{(n)}(x_1,\ldots,x_n) = \frac{1}{Z}\int\mathcal{D}\phi\;\phi_{x_1}\cdots\phi_{x_n}\,e^{-S_{\text{lat}}[\phi]}.
+\end{equation}
+%
+\begin{itemize}
+    \item Masses extracted from exponential decay of two-point function:
+          $G^{(2)}(x) \xrightarrow{|x|\to\infty} A\,e^{-m_{\text{phys}}|x|}$.
+    \item The correlation length $\xi = 1/(m_{\text{phys}} a)$ (in lattice units).
+\end{itemize}
+
+% ============================================================
+\section{Renormalisation Group and the Phase Transition}
+% ============================================================
+
+\subsection{Block-spin / Kadanoff blocking}
+
+Introduce the RG transformation $\mathcal{R}$: coarse-grain by a factor $b>1$,
+integrating out short-distance degrees of freedom.
+
+\begin{equation}
+    e^{-S'[\phi']} = \int \mathcal{D}\phi\; T[\phi',\phi]\,e^{-S[\phi]},
+\end{equation}
+%
+where $T[\phi',\phi]$ is the blocking kernel.  The new lattice spacing is $a' = b\,a$.
+
+\subsection{RG flow and fixed points}
+
+Write the action in terms of a (possibly infinite) set of couplings
+$\{g_i\} = (m^2, \lambda, c_1, c_2, \ldots)$.  Under one RG step:
+%
+\begin{equation}
+    g_i \;\longrightarrow\; g_i' = \mathcal{R}_i(\{g_j\}).
+\end{equation}
+
+\begin{itemize}
+    \item \textbf{Fixed point} $\{g_i^*\}$: $g_i^* = \mathcal{R}_i(\{g_j^*\})$.  At a fixed point the theory is scale-invariant.
+    \item \textbf{Relevant directions}: couplings that grow under RG (IR-relevant in the Wilson sense).
+    \item \textbf{Irrelevant directions}: couplings that flow to zero --- these are the ``cutoff artifacts''.
+    \item \textbf{Marginal directions}: require more careful (perturbative) analysis.
+\end{itemize}
+
+\subsection{Why the continuum limit is a second-order phase transition}
+
+Key connection: $\xi \to \infty$ is required for $a \to 0$ at fixed physical mass.
+
+\begin{itemize}
+    \item In statistical mechanics, $\xi \to \infty$ signals a \emph{second-order} (continuous) phase transition.
+    \item First-order transitions: $\xi$ remains finite --- no continuum limit exists there.
+    \item At the critical point the bare couplings $\{g_i^0\}$ must lie on the \emph{critical surface}
+          (the basin of attraction of the UV fixed point).
+\end{itemize}
+
+\begin{equation}
+    \xi(g_i) \sim |g_i - g_i^*|^{-\nu} \xrightarrow{g_i \to g_i^*} \infty.
+\end{equation}
+
+\subsection{Asymptotic freedom and the Gaussian fixed point (QCD context)}
+
+For non-Abelian gauge theories:
+\begin{itemize}
+    \item The Gaussian (free-field) fixed point at $g=0$ is UV-attractive: asymptotic freedom.
+    \item The continuum limit is taken by tuning $g_0(a) \to 0$ as $a\to 0$, governed by the
+          perturbative $\beta$-function:
+          \begin{equation}
+              a\frac{\partial g_0}{\partial a} = \beta(g_0) = -b_0 g_0^3 - b_1 g_0^5 - \cdots
+          \end{equation}
+    \item Two-loop result gives the \emph{Symanzik improvement} programme.
+\end{itemize}
+
+% ============================================================
+\section{Scale Setting on the Lattice}
+% ============================================================
+
+\subsection{The problem: lattice results are dimensionless}
+
+Monte Carlo generates numbers in units of $a$.  To compare to experiment we must fix $a$ in physical units.
+
+\begin{itemize}
+    \item All dimensionful outputs come out as $O \cdot a^{d_O}$ for some dimension $d_O$.
+    \item Need one experimental (or theoretical) input to fix $a$; all other predictions are then genuine.
+\end{itemize}
+
+\subsection{Common scale-setting schemes}
+
+\subsubsection{Hadron spectrum}
+
+Use a well-known hadron mass (e.g.\ $m_\pi$, $m_K$, $m_\Omega$, $f_\pi$) as input:
+\begin{equation}
+    a = \frac{(m_\Omega)_{\text{lat}}}{m_\Omega^{\text{phys}}}.
+\end{equation}
+
+\subsubsection{The Sommer parameter $r_0$ / $r_1$}
+
+Defined from the static quark potential $V(r)$:
+\begin{equation}
+    \left. r^2 \frac{dV}{dr}\right|_{r=r_0} = 1.65, \qquad r_0 \approx 0.5\;\text{fm}.
+\end{equation}
+Advantages: purely gluonic, computable at any $\beta$; disadvantage: $r_0$ must itself be matched to experiment.
+
+\subsubsection{The gradient-flow scale $t_0$ / $w_0$}
+
+Modern approach using the Yang--Mills gradient flow:
+\begin{equation}
+    \frac{\partial B_\mu}{\partial t} = D_\nu G_{\nu\mu},\qquad B_\mu\big|_{t=0} = A_\mu,
+\end{equation}
+with scales defined by:
+\begin{equation}
+    t^2 \langle E(t)\rangle \big|_{t=t_0} = 0.3, \qquad
+    \left. t\frac{d}{dt}\left[t^2\langle E\rangle\right]\right|_{t=w_0^2} = 0.3.
+\end{equation}
+\begin{itemize}
+    \item UV-finite at positive flow time; no renormalisation needed.
+    \item Numerically precise and widely used in modern QCD simulations.
+\end{itemize}
+
+\subsection{Discretisation errors and the continuum extrapolation}
+
+Results at finite $a$ differ from the continuum by powers of $a$:
+\begin{equation}
+    O(a) = O_{\text{cont}} + c_1\,a^2 + c_2\,a^4 + \cdots \quad (\text{$\mathcal{O}(a)$ errors removed by Symanzik improvement}).
+\end{equation}
+
+\begin{itemize}
+    \item Simulate at several values of $a$ (several $\beta$), extrapolate to $a\to 0$.
+    \item Improved actions (clover, staggered, twisted-mass, \ldots) remove leading $a$ or $a^2$ terms.
+\end{itemize}
+
+\subsection{Summary and outlook}
+
+\begin{itemize}
+    \item The lattice spacing $a$ is removed by tuning bare couplings to a critical (UV fixed) point.
+    \item This is precisely a second-order phase transition with diverging correlation length.
+    \item Physical units enter through a single scale-setting observable; all further results are predictions.
+    \item Next lecture: \emph{[e.g.\ fermions on the lattice / Monte Carlo algorithms / hadron spectroscopy]}.
+\end{itemize}
 
 \end{document}
