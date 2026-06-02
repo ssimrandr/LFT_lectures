@@ -42,7 +42,7 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{} % clear header and footer
-\lhead{\textit{LFT: Lecture 4}}
+\lhead{\textit{LFT: Lecture 5}}
 \rhead{\textit{S. Singh}}
 \renewcommand{\headrulewidth}{0.4pt}
 \fancyfoot[C]{\thepage} % Add centered page number in footer
@@ -63,12 +63,223 @@
 \maketitle
 
 \begin{abstract}
-In this lecture we will see the importance of studying QCD at finite baryon density. For this we will see how to add a chemical potential on the lattice and how this breaks the gamma 5 hermiticity of the fermion determinant. This will lead to a major open problem for lattice QCD at finite density - numerical sign problem. We will then discuss the implications of this problem.
+In this lecture we look at what happens when we try to study QCD at finite baryon density on the lattice. We start by seeing how a chemical potential $\mu$ is introduced into the lattice theory. We then show why working at finite density causes the fermion determinant to become complex --- breaking a property called $\gamma^5$-hermiticity --- and why this leads to the \textit{numerical sign problem}, one of the biggest unsolved challenges in lattice QCD. We finish by discussing what this means for our ability to study the QCD phase diagram computationally.
 \end{abstract}
 
-% TODO: add lecture content
+\section{Overview}
+The QCD phase diagram is a map of how strongly interacting matter -- made up of quarks and gluons -- behaves with varying temperatures $T$ and baryon densities, parametrised by the chemical potential $\mu$. Getting a good understanding of this phase structure matters because: it tells us about the interior of neutron stars, and helps us understand what happens to matter in heavy-ion collision experiments, where extreme temperatures and densities are reached for a very brief moment. 
 
-\nocite{*}
+The problem is that QCD is a strongly coupled theory across much of this phase diagram, so perturbation theory -- which works so well in particle physics at high energies -- is not very useful here. This is exactly the kind of situation where lattice QCD would in principle shine: it is a non-perturbative, first-principles numerical approach that does not rely on the coupling being small. It is therefore natural to ask: \textit{can lattice QCD give us the full QCD phase diagram?}
+
+As we will see in this lecture, the answer is unfortunately \textit{no}. The standard way to perform lattice QCD calculations -- Monte Carlo importance sampling -- relies on the path integral weight $e^{-S}$ being a real, positive number so that it can be interpreted as a probability. At finite baryon density, this breaks down: the fermion determinant becomes complex, and the weight is no longer positive. This is the origin of the \textit{numerical sign problem}, and it makes Monte Carlo sampling exponentially hard. 
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.15]{GA_phasediagram.png}
+    \caption{Conjectured QCD phase diagram. [Image from:~\cite{Aarts:2014fsa}]}
+    \label{fig:QCD_PD}
+\end{figure}
+
+The conjectured QCD phase diagram is shown in Fig.~\ref{fig:QCD_PD}. Because of the sign problem, conventional lattice calculations are only reliable near zero chemical potential, $\mu \approx 0$. In this region, lattice studies have shown that as you cool the quark-gluon plasma down, it transitions smoothly into ordinary hadronic matter -- this is called a \textit{crossover}~\cite{Aoki:2006we}. At the other extreme, at very high baryon densities, model-based and perturbative calculations suggest that the transition becomes \textit{first order}~\cite{Pisarski:1983ms}. If both of these results are correct, then somewhere in the middle there must be a point where the crossover ends and the first-order line begins -- this is called the \textit{second-order critical endpoint}. Finding this endpoint is one of the key goals of current heavy-ion experiments, but since direct lattice calculations at finite $\mu$ are not yet possible, all existing predictions for its location rely on indirect methods and cannot be fully trusted.
+\section{Introduction to the Chemical Potential}
+The chemical potential becomes important the moment we ask questions about the \textit{density} of a system rather than just its temperature: what is the average particle number, how does it respond to changes in temperature and external conditions, and how large is the excess of matter over antimatter?
+
+Formally the chemical potential is the thermodynamic variable conjugate to the conserved charge -- in QCD this is the baryon number -- and it enters the \textbf{grand-canonical} partition function as,
+\begin{equation}\label{eqn:partn_gc}
+    Z_{\mathrm{GC}}(T,\mu) = \mathrm{Tr} \left[e^{-\left(\hat{H} - \mu_B \hat{N_B} \right)/T} \right] \,.
+\end{equation}
+The baryon number operator is related to the quark number operator $\hat{N}_B = \frac{\hat{N}_q}{3}$ and the baryon chemical potential is related to the quark chemical potential as $\mu_B = 3 \mu_q$. The average particle number can be obtained from Eq.~\ref{eqn:partn_gc} as,
+\begin{equation}\label{eqn:numden_mu}
+    n_q \equiv \frac{1}{V} \langle \hat{N}_q \rangle = \frac{T}{V} \frac{\partial \ln Z(T,\mu)}{\partial \mu_q}\,,
+\end{equation}
+where $n_q$ is referred to as the \textit{number density}. From now on we will drop the subscript $q$ on the chemical potential and number operator to mean the quark quantities implicitly.
+\subsection{Treatment in the continuum}
+Since we are interested in QCD, we will use the language developed in Lecture 3 (Lecture 2 in the notes) for the fermions. The conserved current associated to the Dirac lagrangian is, \sidefact{Recall that we are in Euclidean space, so the zeroth component of Minkowski spacetime corresponds to the 4th component in Euclidean.}
+\begin{equation}\label{eqn:cons_curr}
+    j_{\mu}(x) = \bar{\psi}(x) \gamma_{\mu} \psi(x) \,,
+\end{equation}
+where the conserved charge -- here the quark number -- is given by the space integration of the 4th component of the conserved current in Eq.~\ref{eqn:cons_curr} as,
+\begin{equation}\label{eqn:cons_curr}
+    N = \int d^3x \; \bar{\psi}(x) \gamma_4 \psi(x) \,.
+\end{equation}
+Hence, one is tempted to incorporate into the Dirac lagrangian, a term of the form $\mu \bar{\psi}(x) \gamma_4 \psi(x)$. \sideex{A guided derivation of this will be an exercise.}  It was shown in~\cite{Hasenfratz:1983ba}, that adding the chemical potential term in this way \textit{on the lattice} leads to divergent quantities in the continuum. In order to see this, consider the free energy density given by (looking at Eq.~\ref{eqn:partn_gc}),
+\begin{equation}
+    \epsilon(\mu) = \frac{1}{V^3} \langle \hat{H} \rangle = -\frac{1}{V^3} \frac{\partial}{\partial \beta} \ln Z \,.
+\end{equation} 
+In the exercise you will show that this quantity -- if you add the chemical potential term the naive way -- leads to divergence of the form,\sidefact{It is important to note at this stage that in the next part of the lecture when you study the Hamiltonian lattice formulation -- this problem does not arise -- you can simply add the term $\mu \hat{N}$ to your Hamiltonian. The reason is that time is \textit{not} discretized in the Hamiltonian formulation. }
+\begin{equation}
+    \lim_{a \to 0} \left(\epsilon(\mu) - \epsilon(0) \right) \propto \frac{\mu^2}{a^2} \,,
+\end{equation}
+a quadratically divergent quantity in the continuum limit. 
+
+\subsection{Treatment on the lattice}
+Recall the naive fermion action -- now with an external gauge field,
+\begin{equation}
+    S_F[\psi,\bar{\psi}, U] = a^4 \displaystyle\sum_{n}\bar{\psi}(n) \left(\displaystyle\sum^4_{\mu=1} \gamma_{\mu} \frac{U_{\mu}(n) \psi(n+\hat{\mu}) - U_{-\mu}(n) \psi(n-\hat{\mu})}{2 a}  + m\psi(n)\right) \,.
+\end{equation}
+As shown in Section 2.1, naively adding a $\mu \bar{\psi} \gamma_4 \psi$ term to this action leads to quadratic divergences in the continuum limit. The correct approach, due to
+Hasenfratz and Karsch~\cite{Hasenfratz:1983ba}, is to introduce the
+chemical potential by modifying the \textit{temporal hopping terms}.
+The motivation is that, in the Euclidean grand-canonical formalism
+\begin{equation}
+  Z = \mathrm{Tr}\,e^{-(\hat{H}-\mu\hat{N})/T},
+\end{equation}
+the chemical potential enters as the fourth (temporal) component of an
+imaginary, constant abelian gauge potential, $A_4 = i\mu$. Since gauge
+fields couple to lattice fermions through the link variables --- as
+phases $e^{\,i a_T A_4}$ on the hopping terms --- it is natural to
+introduce $\mu$ in the same way, by multiplying the forward and backward
+temporal hopping terms by $e^{+\mu a_T}$ and $e^{-\mu a_T}$,
+respectively. This minimal-coupling structure is precisely what removes
+the quadratic divergence of the naive prescription.
+
+Concretely, the temporal part of the fermion action is modified
+according to
+\begin{equation}
+  \bar{\psi}(n)\,\gamma_4\,
+  \frac{\mathbf{f(\mu a)}\,U_4(n)\,\psi(n+\hat{4})
+        -\mathbf{f(\mu a)^{-1}}\,U_4(n-\hat{4})^{\dagger}\,\psi(n-\hat{4})}
+       {2a}\,,
+\end{equation}
+where we have used $U_{-\mu}(n) = U_{\mu}(n-\hat{\mu})^{\dagger}$.
+Notice that the forward temporal link picks up a factor $f(\mu a)$ while
+the backward link picks up its inverse $f(\mu a)^{-1}$; this asymmetry is
+essential for recovering the correct continuum limit. The function
+$f(\mu a)$ is fixed by demanding the following properties:
+\begin{itemize}
+  \item \textbf{Correct $\mu=0$ limit.} At vanishing chemical potential
+  the original action must be recovered:
+  \begin{equation}
+    f(0) = 1\,.
+  \end{equation}
+
+  \item \textbf{Correct continuum density term.} Expanding to first order
+  in $a$ must reproduce the continuum coupling $\mu\,\bar{\psi}\gamma_4\psi$,
+  which fixes the slope at the origin:
+  \begin{equation}
+    f(\mu a) = 1 + \mu a + \mathcal{O}\!\big((\mu a)^2\big)
+    \quad\Longleftrightarrow\quad
+    f'(0) = 1\,.
+  \end{equation}
+
+  \item \textbf{Antisymmetry under $\mu \to -\mu$.} Reversing the sign of
+  the chemical potential exchanges particles and antiparticles, and hence
+  the roles of the forward and backward temporal links. This requires
+  \begin{equation}
+    f(\mu a) = \frac{1}{f(-\mu a)}\,.
+  \end{equation}
+
+  \item \textbf{Composition over time steps.} Propagating $k$ steps in the
+  temporal direction must accumulate $k$ factors, i.e. $f$ should turn a
+  sum of steps into a product,
+  \begin{equation}
+    f(x)\,f(y) = f(x+y)\,.
+  \end{equation}
+\end{itemize}
+The last condition, together with $f'(0)=1$, has the unique solution
+\begin{equation}
+  f(\mu a) = e^{\mu a}\,,
+\end{equation}
+which automatically satisfies the first three. This is a very natural
+result: it is simply the discrete Boltzmann factor $e^{\mu/T}$ for a
+single lattice step along the temporal direction, since $a = 1/(N_\tau T)$
+per time slice. Substituting back, the modified temporal hopping term
+reads
+\begin{equation}
+  \bar{\psi}(n)\,\gamma_4\,
+  \frac{e^{\mu a}\,U_4(n)\,\psi(n+\hat{4})
+        -e^{-\mu a}\,U_4(n-\hat{4})^{\dagger}\,\psi(n-\hat{4})}{2a}\,,
+\end{equation}
+while the spatial hopping terms remain unchanged. The full fermion action
+$S_F[\bar{\psi},\psi,U,\mu]$ is obtained by replacing only the $\mu=4$
+terms in the original action with the expression above.
+
+\section{Computing observables via Monte Carlo}
+The full QCD partition function including both gauge fields and fermion fields can be written as,
+\begin{equation}\label{eqn:Z_full}
+    Z = \int \mathcal{D}U \, \mathcal{D}\bar{\psi} \, \mathcal{D}\psi \; e^{-S_G[U] - S_F[\bar{\psi}, \psi, U]} \,,
+\end{equation}
+where $S_G[U]$ is the pure gauge (Wilson) action and $S_F[\bar{\psi}, \psi, U, \mu]$ is the fermion action with chemical potential as derived in the previous section. We saw in the previous lecture that the fermion action is not a "number" point wise and we must integrate out the Grassmann fields in order to be able to compute numerical quantities. The Grassmann integration over the fermion fields can then be performed exactly using the standard result for Gaussian Grassmann integrals -- as you already showed in the exercise sheets,
+\begin{equation}
+    \int \mathcal{D}\bar{\psi} \, \mathcal{D}\psi \; e^{-\bar{\psi} M \psi} = \det M(U) \,,
+\end{equation}
+leaving us with an effective partition function in terms of the gauge links only,
+\begin{equation}\label{eqn:Z_latt}
+    Z = \int \mathcal{D}U \, \det M(U) \, e^{-S_G[U]} \,.
+\end{equation}
+In order to evaluate $\langle \mathcal{O} \rangle$ numerically, we interpret the combination $\det M(U) \, e^{-S_G[U]}$ as a probability weight and draw a representative set of gauge configurations $\{U^{(1)}, U^{(2)}, \ldots, U^{(N)}\}$ distributed according to this weight. The expectation value is then estimated as a simple average over the ensemble,
+\begin{equation}\label{eqn:MC_avg}
+    \langle \mathcal{O} \rangle \approx \frac{1}{N} \sum_{i=1}^{N} \mathcal{O}[U^{(i)}] \,.
+\end{equation}
+This procedure is called \textit{importance sampling}: instead of sampling configurations uniformly (which would be hopelessly inefficient given the enormous configuration space), we concentrate sampling in the regions of configuration space that contribute most to the path integral. This is the standard Monte Carlo approach used in virtually all lattice QCD simulations.
+
+The crucial requirement for this to work is that the weight,
+\begin{equation}
+    W[U] = \det M(U) \, e^{-S_G[U]} \,,
+\end{equation}
+must be \textit{real and positive} so that it can genuinely be interpreted as a probability distribution. The factor $e^{-S_G[U]}$ is always real and positive by construction. As we have also seen in the previous lectures, due to the $\gamma^5$-hermiticity of the Dirac operator,
+\begin{equation}
+    \gamma^5 M(U) = M(U)^{\dagger} \gamma^5 \,,
+\end{equation}
+we obtained $\det M(U) = [\det M(U)]^*$ -- ensuring positivity via complex conjugate eigenpairs.
+Whether the modification of the fermion matrix in the presence of chemical potential $\det M(U, \mu)$ is real and positive is a separate question -- and as we will see in the next section, this is precisely where things go wrong at finite $\mu$.
+
+\section{Loss of $\gamma^5$ hermiticity of the fermion matrix}
+Recall from Lecture 3 that the $\gamma^5$-hermiticity of the Euclidean Dirac operator $D \equiv \gamma^E_\mu \partial_\mu + m$ was the key property that guaranteed $\det M(U)$ is real and positive. Let us briefly recall why it holds, and then show explicitly that introducing a chemical potential $\mu$ breaks it.
+
+\subsection*{Review: $\gamma^5$-hermiticity at $\mu = 0$}
+The Euclidean $\gamma$-matrices satisfy $(\gamma^E_\mu)^\dagger = \gamma^E_\mu$ (they are Hermitian), and anti-commute with $\gamma^5$: $\{\gamma^5, \gamma^E_\mu\} = 0$. Starting from the fermion matrix $M = \gamma^E_\mu \partial_\mu + m$, we act with $\gamma^5$ from the left,
+\begin{align}
+    \gamma^5 M &= \gamma^5 \left(\gamma^E_\mu \partial_\mu + m\right) \nonumber \\
+               &= \left(-\gamma^E_\mu \partial_\mu + m\right)\gamma^5 \,,
+\end{align}
+where we used $\gamma^5 \gamma^E_\mu = -\gamma^E_\mu \gamma^5$. On the other hand, taking the Hermitian conjugate of $M$ and recalling that $\partial_\mu^\dagger = -\partial_\mu$ (anti-Hermitian) and $(\gamma^E_\mu)^\dagger = \gamma^E_\mu$,
+\begin{equation}
+    M^\dagger = (\gamma^E_\mu)^\dagger \partial_\mu^\dagger + m = -\gamma^E_\mu \partial_\mu + m \,.
+\end{equation}
+Comparing, we see that $\gamma^5 M = M^\dagger \gamma^5$, i.e.\ the fermion matrix is $\gamma^5$-Hermitian. This is what ensures that eigenvalues of $M$ come in complex conjugate pairs and $\det M$ is real and positive.
+
+\subsection*{Breaking of $\gamma^5$-hermiticity at $\mu \neq 0$}
+Now consider the fermion matrix with a chemical potential, $M[U, \mu]$. As we discussed in Section 2, the chemical potential enters by modifying the temporal hopping terms, which at the level of the continuum-like operator amounts to the replacement,
+\begin{equation}
+    M[U,\mu] = \gamma^E_\mu \partial_\mu + m + \mu \gamma^E_4 \,.
+\end{equation}
+We now repeat the same exercise. Acting with $\gamma^5$ from the left and using $\{\gamma^5, \gamma^E_\mu\} = 0$,
+\begin{align}
+    \gamma^5 \, M[U, \mu] &= \gamma^5 \left(\gamma^E_\mu \partial_\mu + m + \mu\gamma^E_4\right) \nonumber \\
+    &= \left(-\gamma^E_\mu \partial_\mu + m - \mu\gamma^E_4\right)\gamma^5 \,.
+\end{align}
+Taking the Hermitian conjugate of $M[U,\mu]$, and using $(\gamma^E_4)^\dagger = \gamma^E_4$,
+\begin{equation}
+    M^\dagger[U, \mu] = -\gamma^E_\mu \partial_\mu + m + \mu\gamma^E_4 \,.
+\end{equation}
+Comparing the two expressions, we see that $\gamma^5 M[U, \mu] \neq M^\dagger[U,\mu]\,\gamma^5$ -- the $\mu\gamma^E_4$ term has opposite sign. Instead, we find,
+\begin{equation}\label{eqn:g5herm_mu}
+    \gamma^5 \, M[U, \mu] = M^\dagger[U, -\mu] \, \gamma^5 \,.
+\end{equation}
+$\gamma^5$-hermiticity is \textit{broken} at finite $\mu$: the fermion matrix at chemical potential $\mu$ is related by $\gamma^5$ conjugation not to its own Hermitian conjugate, but to the Hermitian conjugate of the matrix at \textit{opposite} chemical potential $-\mu$. Taking the determinant of Eq.~\eqref{eqn:g5herm_mu},
+\begin{equation}\label{eqn:det_relation}
+    \det M[U, \mu] = \det M^\dagger[U, -\mu] = \left(\det M[U, -\mu]\right)^* \,.
+\end{equation}
+This tells us that $\det M[U,\mu]$ is in general \textit{complex} -- its complex conjugate is the determinant at $-\mu$, not at $\mu$ itself. The weight $W[U] = \det M[U,\mu]\,e^{-S_G[U]}$ therefore has a complex phase that varies from configuration to configuration, and can no longer be interpreted as a probability. This is the root cause of the sign problem.
+
+\noindent\textbf{Special cases.} Two important limits are worth noting:
+\begin{itemize}
+    \item At $\mu = 0$: Eq.~\eqref{eqn:det_relation} gives $\det M[U,0] = (\det M[U,0])^*$, so the determinant is real, consistently recovering the result from Lecture 3.
+    \item At purely imaginary chemical potential $\mu = i\mu_I$ (with $\mu_I \in \mathbb{R}$): $-\mu^* = +i\mu_I = \mu$, so Eq.~\eqref{eqn:det_relation} again gives $\det M[U,\mu] = (\det M[U,\mu])^*$ -- real and positive. This is the basis of lattice simulations at \textit{imaginary} chemical potential, which are free of the sign problem and can be analytically continued back to real $\mu$.
+\end{itemize}
+
+\section{Complex action problem}
+In order to understand the damage caused by the non-reality of $\det M[U,\mu]$, consider again the partition function (now dependent on the chemical potential $\mu$),
+\begin{equation}\label{eqn:Z_latt_mu}
+    Z(\mu) = \int \mathcal{D}U \, \det M(U,\mu) \, e^{-S_G[U]} \,.
+\end{equation}
+\subsection{Reduction to numerical Sign problem}
+\subsection{Re-weighting from $\mu=0$ and the Overlap problem}
+\subsection{Practical difficulties: exponential volume worsening}
+
+
+%\nocite{*}
 \bibliographystyle{unsrt}
 \bibliography{../references}
 

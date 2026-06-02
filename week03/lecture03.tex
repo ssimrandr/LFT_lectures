@@ -189,8 +189,15 @@ This gives us the Euclidean version of the Clifford algebra in Eq.~\eqref{eqn:cl
 
 \noindent A key consequence of this prescription is that all Euclidean gamma matrices 
 are Hermitian, $(\gamma^E_\mu)^\dagger = \gamma^E_\mu$, in contrast to the Minkowski 
-case where $(\gamma^i)^\dagger = -\gamma^i$. With this prescription, the Euclidean 
-Dirac action becomes,
+case where $(\gamma^i)^\dagger = -\gamma^i$. We can also define the Euclidean $\gamma^5$ matrix using the same prescription. In Minkowski space we had $\gamma^5 = i\gamma^0\gamma^1\gamma^2\gamma^3$, and substituting $\gamma^0 = \gamma^E_4$ and $\gamma^i = i\gamma^E_i$ gives,
+\begin{equation}\label{eqn:gamma5E}
+    \gamma^5 = i \gamma^0 \gamma^1 \gamma^2 \gamma^3 = i \,\gamma^E_4 (i\gamma^E_1)(i\gamma^E_2)(i\gamma^E_3) = i \cdot i^3 \, \gamma^E_1\gamma^E_2\gamma^E_3\gamma^E_4 = \gamma^E_1\gamma^E_2\gamma^E_3\gamma^E_4 \,.
+\end{equation}
+Importantly, $\gamma^5$ is \textit{the same} in both Minkowski and Euclidean space -- no extra factors appear. It satisfies the same key properties,
+\begin{equation}
+    (\gamma^5)^2 = \mathbb{I}\,, \qquad (\gamma^5)^\dagger = \gamma^5\,, \qquad \{\gamma^5, \gamma^E_\mu\} = 0\,.
+\end{equation}
+With this prescription, the Euclidean Dirac action becomes,
 
 \begin{equation}
     S^E[\psi,\bar{\psi}] = \bar{\psi}(x)\left(\gamma^E_{\mu}\partial_{\mu} + M \right)\psi(x).
