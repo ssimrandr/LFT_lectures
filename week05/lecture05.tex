@@ -257,16 +257,20 @@ Comparing the two expressions, we see that $\gamma^5 M[U, \mu] \neq M^\dagger[U,
 \begin{equation}\label{eqn:g5herm_mu}
     \gamma^5 \, M[U, \mu] = M^\dagger[U, -\mu] \, \gamma^5 \,.
 \end{equation}
-$\gamma^5$-hermiticity is \textit{broken} at finite $\mu$: the fermion matrix at chemical potential $\mu$ is related by $\gamma^5$ conjugation not to its own Hermitian conjugate, but to the Hermitian conjugate of the matrix at \textit{opposite} chemical potential $-\mu$. Taking the determinant of Eq.~\eqref{eqn:g5herm_mu},
+$\gamma^5$-hermiticity is \textit{broken} at finite $\mu$: the fermion matrix at chemical potential $\mu$ is related by $\gamma^5$ conjugation not to its own Hermitian conjugate, but to the Hermitian conjugate of the matrix at \textit{opposite} chemical potential $-\mu$. Taking the determinant of Eq.~\eqref{eqn:g5herm_mu} and using $\det M^\dagger = (\det M)^*$,
 \begin{equation}\label{eqn:det_relation}
     \det M[U, \mu] = \det M^\dagger[U, -\mu] = \left(\det M[U, -\mu]\right)^* \,.
 \end{equation}
-This tells us that $\det M[U,\mu]$ is in general \textit{complex} -- its complex conjugate is the determinant at $-\mu$, not at $\mu$ itself. The weight $W[U] = \det M[U,\mu]\,e^{-S_G[U]}$ therefore has a complex phase that varies from configuration to configuration, and can no longer be interpreted as a probability. This is the root cause of the sign problem.
+This leads to the relation,
+\begin{equation}
+    \left(\det M[U,\mu]\right)^* = \det M[U, -\mu^*] \,,
+\end{equation}
+which tells us that $\det M[U,\mu]$ is in general \textit{complex} at finite real $\mu$. As we will see this is the root cause of the sign problem.
 
 \noindent\textbf{Special cases.} Two important limits are worth noting:
 \begin{itemize}
-    \item At $\mu = 0$: Eq.~\eqref{eqn:det_relation} gives $\det M[U,0] = (\det M[U,0])^*$, so the determinant is real, consistently recovering the result from Lecture 3.
-    \item At purely imaginary chemical potential $\mu = i\mu_I$ (with $\mu_I \in \mathbb{R}$): $-\mu^* = +i\mu_I = \mu$, so Eq.~\eqref{eqn:det_relation} again gives $\det M[U,\mu] = (\det M[U,\mu])^*$ -- real and positive. This is the basis of lattice simulations at \textit{imaginary} chemical potential, which are free of the sign problem and can be analytically continued back to real $\mu$.
+    \item At $\mu = 0$: the relation gives $(\det M[U,0])^* = \det M[U,0]$, so the determinant is real, consistently recovering the result from Lecture 3. \sidefact{This is the basis of lattice simulations at \textit{imaginary} chemical potential, which are free of the sign problem and can be analytically continued back to real $\mu$.}
+    \item At purely imaginary chemical potential $\mu = i\mu_I$ (with $\mu_I \in \mathbb{R}$): $-\mu^* = \mu$, so the relation gives $(\det M[U,\mu])^* = \det M[U,\mu]$ -- real and positive. 
 \end{itemize}
 
 \section{Complex action problem}
@@ -274,9 +278,64 @@ In order to understand the damage caused by the non-reality of $\det M[U,\mu]$, 
 \begin{equation}\label{eqn:Z_latt_mu}
     Z(\mu) = \int \mathcal{D}U \, \det M(U,\mu) \, e^{-S_G[U]} \,.
 \end{equation}
-\subsection{Reduction to numerical Sign problem}
-\subsection{Re-weighting from $\mu=0$ and the Overlap problem}
-\subsection{Practical difficulties: exponential volume worsening}
+Recall that Monte Carlo simulations are performed under the assumption that the integrand of the path integral is a well defined probability measure,
+\begin{equation}
+    p(U,\mu) = \det M(U,\mu) \, e^{-S_G[U]} \,,
+\end{equation}
+according to which one generates configurations $U$, on which one computes observables $O(U)$ and computes averages according to Eq.~\ref{eqn:MC_avg}. Hence, if $p(U)$ is not a probability but a complex number -- what are we supposed to do? There are a few obvious choices -- each with it's own limitation. We will consider two of the most common choices below: Phase quenching and sign quenching. \\
+
+\noindent\textbf{Reduction to numerical Sign problem:} \\
+The first natural argument to make is that the grand canonical partition function is is a physical quantity which has a perfectly valid interpretation as a normalisation constant for a system at finite chemical potential. Looking at the integrand of Eq.~\ref{eqn:Z_latt_mu}, the implication for $Z(\mu)$ to be real is that we only need to consider the real part of the probability weight: $\mathrm{Re} \left( \det M(U,\mu) \right)$,
+\begin{equation}\label{eqn:Re_Z_latt_mu}
+    Z(\mu) = \int \mathcal{D}U \, \mathrm{Re} \left( \det M(U,\mu) \right) \, e^{-S_G[U]} \,.
+\end{equation}
+An immediate concern should be that this does not guarantee \textit{positivity} of the probability weight. We must further take the absolute value of this quantity to actually be able to compute physical observables,
+\begin{equation}\label{eqn:absRe_Z_latt_mu}
+    Z(\mu)_{\mathrm{pos}} = \int \mathcal{D}U \, |\mathrm{Re} \left( \det M(U,\mu) \right)| \, e^{-S_G[U]} \,.
+\end{equation}
+At the end we must correct for the signs when going from $Z(\mu)_{\mathrm{pos}} \to Z(\mu)$ and with the help of a toy example we will see how this leads to a signal-to-noise problem. \\
+
+
+\noindent\textbf{Re-weighting from $\mu=0$ and the Overlap problem}\\
+Another quantity to consider as a valid weight factor is the absolute value of the probability weight,
+\begin{equation}\label{eqn:Ph_Z_latt_mu}
+    Z(\mu)_{\mathrm{phase \, quenched}} = \int \mathcal{D}U \, | \det M(U,\mu) | \, e^{-S_G[U]} \,.
+\end{equation}
+This should be contrasted with the full theory as given in Eq.~\ref{eqn:Z_latt_mu}, and observables in both theories are related by,
+\begin{equation}\label{eqn:Ph_O_latt_mu}
+    O(\mu)_{\mathrm{full}} = \frac{\int \mathcal{D}U \, O(U) |\det M(U,\mu)| e^{i \varphi} \, e^{-S_G[U]}}{\int \mathcal{D}U \, |\det M(U,\mu)| e^{i \varphi} \, e^{-S_G[U]}} \, = \frac{\langle O_{\mathrm{phase \, quenched}} e^{i \varphi} \rangle}{\langle e^{i \varphi} \rangle} \,.
+\end{equation}
+The quantity in the denominator $\langle e^{i \varphi} \rangle$ is called the \textit{average phase} and quantifies how bad the sign problem in your theory is. It scales exponentially with volume,
+\begin{equation}\label{eqn:exp_vol_sign}
+    \langle e^{i \varphi} \rangle = \frac{Z(\mu)_{\mathrm{full}}}{Z(\mu)_{\mathrm{phase \, quenched}}} = e^{-V \Delta f} \,,
+\end{equation}
+where $\Delta f > 0$ is the difference in the intrinsic free energies of the two theories $Z_{\mathrm{full}}$ and $Z_{\mathrm{phase \, quenched}}$. Hence if the two theories don't have sufficient overlap, this average phase approaches zero and we are unable to use Eq.~\ref{eqn:Ph_O_latt_mu} to compute anything as it becomes undefined. \\
+\subsection{Practical example: Toy example}
+To make the problem explicit, we will consider a toy example of a $0$D (spacetime) field theory: $Z_{\mathrm{toy}} = \int d\phi \, e^{-\phi^2 + i \mu \phi}$. In this theory, we don't have a spacetime volume, but we can still study the exponential worsening of the sign problem in the parameter $\mu$. 
+
+This integral is easy to compute via completion of squares and one obtains,
+\begin{equation}\label{eqn:overlap_toy}
+    \frac{Z(\mu)}{Z(0)} = e^{-\mu^2/4} \,,
+\end{equation}
+showing clearly how the ratio (or the overlap) approaches zero as $\mu \to \infty$. In order to see the signal-to-noise problem, we will consider the real part of the integrand given by,
+\begin{equation}
+    \mathrm{Re}[e^{-\phi^2 + i \mu \phi}] = e^{-\phi^2} * \cos{\mu \phi}\,.
+\end{equation}
+The two problems are then exemplified via Fig.~\ref{fig:ToySign} and Fig.~\ref{fig:ToySign_Quench}.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth]{ExpCosMu.pdf}
+    \caption{Sign problem via a toy example: $Z_{\mathrm{toy}} = \int d\phi \, e^{-\phi^2 + i \mu \phi}$}
+    \label{fig:ToySign}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{QuenchExpCosMu.pdf}
+    \caption{Quenching via a toy example: $Z_{\mathrm{toy}} = \int d\phi \, e^{-\phi^2 + i \mu \phi}$}
+\label{fig:ToySign_Quench}
+\end{figure}
 
 
 %\nocite{*}
