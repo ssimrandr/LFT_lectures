@@ -1,0 +1,148 @@
+% Exam questions — Lattice Field Theory
+% Location: exam_questions.tex
+% Compile: from LFT_lectures/ run `latexmk -pdf exam_questions.tex` or `xelatex exam_questions.tex`
+
+\documentclass[11pt]{article}
+
+% Encoding and fonts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Math
+\usepackage{amsmath,amssymb,amsthm}
+
+% Graphics and colors
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{placeins}
+
+% TikZ for diagrams
+\usepackage{tikz}
+\usetikzlibrary{calc, decorations.pathreplacing}
+
+% Better typography
+\usepackage{microtype}
+
+% Page layout
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+
+% Hyperlinks
+\usepackage[hidelinks]{hyperref}
+
+% Lists
+\usepackage{enumitem}
+
+% Header: page style
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % clear header and footer
+\lhead{\textit{LFT : Exam Questions}}
+\rhead{\textit{S. Singh}}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyfoot[C]{\thepage} % Add centered page number in footer
+
+% Difficulty tag
+\newcommand{\diff}[1]{\textcolor{blue!60!black}{\footnotesize\textsf{[#1]}}\quad}
+
+% Question environment
+\newtheorem{question}{Question}
+
+% Metadata
+\title{Lattice Field Theory — Exam Questions}
+\author{Simran Singh}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent Each chapter below has three questions of increasing difficulty:
+\textcolor{blue!60!black}{\textsf{[Easy]}}, \textcolor{blue!60!black}{\textsf{[Intermediate]}}, and \textcolor{blue!60!black}{\textsf{[Hard]}}.
+
+\section{Euclidean path integrals and lattice scalar field theory}
+
+\begin{question}
+\diff{Easy} What is a Wick rotation, and why does rotating to Euclidean time make the path integral converge? Contrast the real-time weight $e^{iS/\hbar}$ with the Euclidean weight $e^{-S_E/\hbar}$.
+\end{question}
+
+\begin{question}
+\diff{Intermediate} Write down the discretized Euclidean action for a free scalar field on a hypercubic lattice of spacing $a$, and explain how $a$ acts as an ultraviolet regulator via the Brillouin zone.
+\end{question}
+
+\begin{question}
+\diff{Hard} Derive the Euclidean path integral for a single non-relativistic particle starting from the transition amplitude $\langle x_f | e^{-iH(t_f-t_i)/\hbar} | x_i \rangle$. Show explicitly how the Trotter splitting of $H = p^2/2m + V(x)$ and insertion of complete sets of position and momentum eigenstates produces the discretized action, and state the continuum action recovered in the limit.
+\end{question}
+
+\section{Gauge theories on a lattice}
+
+\begin{question}
+\diff{Easy} Define the link variable $U_\mu(n)$ and state its gauge transformation law. Why is a link variable, rather than the field $A_\mu$ directly, the natural object on the lattice?
+\end{question}
+
+\begin{question}
+\diff{Intermediate} Define the plaquette $U_{\mu\nu}(n)$ and write down the Wilson gauge action. Explain why the plaquette is the smallest gauge-invariant object built from links.
+\end{question}
+
+\begin{question}
+\diff{Hard} By expanding the link variables in powers of the lattice spacing $a$, show that the Wilson gauge action reduces to the continuum Yang--Mills action $\frac{1}{4}\int d^4x\, F_{\mu\nu}^a F^{a\,\mu\nu}$ as $a\to 0$. Identify the leading lattice-artifact correction.
+\end{question}
+
+\section{Fermions on a lattice}
+
+\begin{question}
+\diff{Easy} State the fermion doubling problem. How many doublers does the naive discretization of the Dirac operator produce in $d$ dimensions, and where in the Brillouin zone do they sit?
+\end{question}
+
+\begin{question}
+\diff{Intermediate} Compare Wilson and staggered fermions. What symmetry does each approach sacrifice or preserve, and by what mechanism does each remove (or reduce) the doublers?
+\end{question}
+
+\begin{question}
+\diff{Hard} State the Nielsen--Ninomiya no-go theorem and its assumptions. Explain how the Ginsparg--Wilson relation evades it and what form of lattice chiral symmetry it permits.
+\end{question}
+
+\section{Continuum limit}
+
+\begin{question}
+\diff{Easy} What is the physical correlation length $\xi_{\rm phys}$ in terms of the lattice spacing $a$ and the dimensionless correlation length $\xi$? Why must $\xi \to \infty$ (in lattice units) to reach the continuum?
+\end{question}
+
+\begin{question}
+\diff{Intermediate} Explain why the continuum limit must be taken at a second-order (critical) point of the lattice theory, and why a first-order transition is unsuitable.
+\end{question}
+
+\begin{question}
+\diff{Hard} Using asymptotic freedom and the two-loop beta function of $SU(N)$ gauge theory, derive how the lattice spacing $a$ depends on the bare coupling $g$ near the continuum limit. Explain what "asymptotic scaling" means and how it is used to set the lattice scale.
+\end{question}
+
+\section{Chemical potential and the numerical sign problem}
+
+\begin{question}
+\diff{Easy} How is a quark chemical potential $\mu$ introduced into the lattice action, and why can it not simply multiply the number operator naively? State qualitatively why $\mu \neq 0$ leads to a complex action.
+\end{question}
+
+\begin{question}
+\diff{Intermediate} Explain the origin of the sign problem in terms of $\gamma_5$-Hermiticity of the Dirac operator. Why does reweighting from a positive ensemble fail as the volume grows?
+\end{question}
+
+\begin{question}
+\diff{Hard} Quantify the severity of the sign problem via the expectation value of the phase $\langle e^{i\theta}\rangle_{pq}$ in the phase-quenched ensemble, and show that it is suppressed exponentially in the volume, $\langle e^{i\theta}\rangle \sim e^{-V \Delta f}$. Relate $\Delta f$ to a free-energy difference and explain the resulting cost of a reweighted Monte Carlo estimate.
+\end{question}
+
+\section{Techniques to circumvent the sign problem}
+
+\begin{question}
+\diff{Easy} Distinguish sign quenching from phase quenching. Why is the phase-quenched theory generally not the theory one wants to solve?
+\end{question}
+
+\begin{question}
+\diff{Intermediate} Describe two conventional finite-density approaches (e.g.\ Taylor expansion in $\mu/T$, imaginary chemical potential with analytic continuation, or reweighting). For each, state its domain of validity and its main limitation.
+\end{question}
+
+\begin{question}
+\diff{Hard} Explain the idea of Lefschetz thimbles: how deforming the integration contour into complexified field space onto steepest-descent manifolds tames the sign problem. What new difficulties (e.g.\ residual phase, multiple thimbles, Jacobian) does the method introduce?
+\end{question}
+
+\end{document}

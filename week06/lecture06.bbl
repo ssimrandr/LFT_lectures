@@ -1,0 +1,43 @@
+\begin{thebibliography}{1}
+
+\bibitem{Fodor2002}
+Z.~Fodor and S.~D. Katz.
+\newblock Lattice determination of the critical point of {QCD} at finite {$T$} and {$\mu$}.
+\newblock {\em JHEP}, 03:014, 2002.
+
+\bibitem{deForcrand2002}
+P.~de~Forcrand and O.~Philipsen.
+\newblock The {QCD} phase diagram for small densities from imaginary chemical potential.
+\newblock {\em Nucl. Phys. B}, 642:290, 2002.
+
+\bibitem{DElia2002}
+M.~D'Elia and M.-P. Lombardo.
+\newblock Finite density {QCD} via imaginary chemical potential.
+\newblock {\em Phys. Rev. D}, 67:014505, 2003.
+
+\bibitem{Allton2002}
+C.~R. Allton et~al.
+\newblock The {QCD} thermal phase transition in the presence of a small chemical potential.
+\newblock {\em Phys. Rev. D}, 66:074507, 2002.
+
+\bibitem{Roberge:1986mm}
+Andre Roberge and Nathan Weiss.
+\newblock {Gauge Theories With Imaginary Chemical Potential and the Phases of {QCD}}.
+\newblock {\em Nucl. Phys. B}, 275:734--745, 1986.
+
+\bibitem{Cristoforetti2012}
+M.~Cristoforetti, F.~Di~Renzo, and L.~Scorzato.
+\newblock New approach to the sign problem in quantum field theories: {H}igh density {QCD} on a {L}efschetz thimble.
+\newblock {\em Phys. Rev. D}, 86:074506, 2012.
+
+\bibitem{Fujii2013}
+H.~Fujii, D.~Honda, M.~Kato, Y.~Kikukawa, S.~Komatsu, and T.~Sano.
+\newblock Hybrid {M}onte {C}arlo on {L}efschetz thimbles -- {A} study of the residual sign problem.
+\newblock {\em JHEP}, 10:147, 2013.
+
+\bibitem{Witten2010}
+E.~Witten.
+\newblock Analytic continuation of {C}hern--{S}imons theory.
+\newblock In {\em AMS/IP Studies in Advanced Mathematics}, volume~50, page 347. 2011.
+
+\end{thebibliography}
