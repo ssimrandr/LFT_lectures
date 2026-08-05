@@ -60,6 +60,9 @@
 
 \noindent Each chapter below has three questions of increasing difficulty:
 \textcolor{blue!60!black}{\textsf{[Easy]}}, \textcolor{blue!60!black}{\textsf{[Intermediate]}}, and \textcolor{blue!60!black}{\textsf{[Hard]}}.
+The \textcolor{blue!60!black}{\textsf{[Hard]}} questions have several parts and ask you to \emph{reason}, not to reproduce a
+derivation from the lecture notes or the exercise sheets: a few careful paragraphs (with equations only where they
+carry the argument) is the expected answer for each part.
 
 \section{Euclidean path integrals and lattice scalar field theory}
 
@@ -69,10 +72,16 @@
 
 \begin{question}
 \diff{Intermediate} Write down the discretized Euclidean action for a free scalar field on a hypercubic lattice of spacing $a$, and explain how $a$ acts as an ultraviolet regulator via the Brillouin zone.
+Both the choice $\Box_L = \Delta^b_\mu\Delta^f_\mu$ and the choice $\Box_L = \Delta^s_\mu\Delta^s_\mu$ (symmetric derivative squared) reduce to $\partial_\mu\partial_\mu$ as $a\to 0$. Using their momentum-space forms, explain why the second choice is nevertheless a bad discretization even for a \emph{scalar} field, and name the phenomenon in the fermionic case that it is the direct analogue of.
 \end{question}
 
 \begin{question}
-\diff{Hard} Derive the Euclidean path integral for a single non-relativistic particle starting from the transition amplitude $\langle x_f | e^{-iH(t_f-t_i)/\hbar} | x_i \rangle$. Show explicitly how the Trotter splitting of $H = p^2/2m + V(x)$ and insertion of complete sets of position and momentum eigenstates produces the discretized action, and state the continuum action recovered in the limit.
+\diff{Hard} The lattice weight $e^{-S_E}$ is positive, which is usually summarized as ``a Euclidean lattice field theory is just a classical statistical system''. Consider the free scalar field on an $N_s^3\times N_t$ lattice with periodic boundary conditions, $S_E = \tfrac{1}{2}\sum_{n,m}\hat\phi_n K_{nm}\hat\phi_m$, and recall the identification $Z = \mathrm{Tr}\, e^{-\hat H/T}$ with $1/T = N_t a$.
+\begin{enumerate}[label=(\roman*), leftmargin=*]
+  \item Positivity of the Boltzmann weight is \emph{necessary but not sufficient} for the Euclidean lattice correlators to be interpretable as expectation values of operators in a Hilbert space. State the additional property the lattice action must have, and explain exactly what it buys you --- i.e.\ which statements about masses and about the spectrum would be unjustified without it.
+  \item Explain why the zero-spatial-momentum correlator behaves as $\cosh\!\big[\hat E\,(\tau - N_t/2)\big]$ rather than as a single exponential $e^{-\hat E \tau}$. Identify precisely where the second exponential comes from in the trace formula, and state what happens to it as $N_t\to\infty$ at fixed $a$. Is this structure an artifact of the discretization, or unavoidable at any finite temperature?
+  \item Suppose a lattice action produced a transfer matrix with a \emph{negative} eigenvalue $-|\lambda|$. What would you observe in the measured correlator $C(\tau)$, what ``energy'' would a naive exponential fit return, and what must happen to such a state as $a\to 0$ for the lattice theory to be acceptable?
+\end{enumerate}
 \end{question}
 
 \section{Gauge theories on a lattice}
@@ -82,11 +91,16 @@
 \end{question}
 
 \begin{question}
-\diff{Intermediate} Define the plaquette $U_{\mu\nu}(n)$ and write down the Wilson gauge action. Explain why the plaquette is the smallest gauge-invariant object built from links.
+\diff{Intermediate} Define the plaquette $U_{\mu\nu}(n)$, write down the Wilson gauge action, and explain why the plaquette is the smallest gauge-invariant object built from links. Now confront two facts: (a) the Wilson action reduces to $\tfrac14\int d^4x\, F_{\mu\nu}F_{\mu\nu}$ as $a\to 0$, and (b) \emph{compact} lattice $U(1)$ has a strong-coupling phase in which static charges are confined, whereas continuum QED has no such phase. Explain how both can be true simultaneously, what feature of the lattice formulation is responsible, and what this implies about \emph{where} in coupling space the continuum limit of a lattice gauge theory may be taken.
 \end{question}
 
 \begin{question}
-\diff{Hard} By expanding the link variables in powers of the lattice spacing $a$, show that the Wilson gauge action reduces to the continuum Yang--Mills action $\frac{1}{4}\int d^4x\, F_{\mu\nu}^a F^{a\,\mu\nu}$ as $a\to 0$. Identify the leading lattice-artifact correction.
+\diff{Hard} On the lattice one does not need to fix a gauge, but one may: the standard construction sets the links of a \emph{maximal tree} to the identity.
+\begin{enumerate}[label=(\roman*), leftmargin=*]
+  \item On a $D$-dimensional periodic lattice with $N$ sites there are $DN$ links. How many of them can be set to $\mathbb{1}$ by a gauge transformation, and --- crucially --- why not more? How many links are left to integrate over, and how does that number compare with the naive count ``$DN$ links minus one gauge parameter per site''?
+  \item A Polyakov loop is a product of temporal links winding once around the periodic time direction. Show that no choice of maximal tree can set \emph{all} of its links to $\mathbb{1}$, and state the structural property that distinguishes the loops which can be trivialized from those which cannot. What does this say about which degrees of freedom survive complete gauge fixing?
+  \item Elitzur's theorem states that $\langle U_\mu(n)\rangle = 0$ exactly, with no gauge fixing at all. Yet in the maximal-tree gauge $U_\mu(n)=\mathbb{1}$ on every tree link, so its ``expectation value'' is $1$. Resolve the apparent contradiction. Then state precisely which class of quantities is guaranteed to be independent of the gauge choice, and give the one-line argument for why $\langle U_\mu(n)\rangle$ must vanish in the unfixed theory.
+\end{enumerate}
 \end{question}
 
 \section{Fermions on a lattice}
@@ -96,11 +110,16 @@
 \end{question}
 
 \begin{question}
-\diff{Intermediate} Compare Wilson and staggered fermions. What symmetry does each approach sacrifice or preserve, and by what mechanism does each remove (or reduce) the doublers?
+\diff{Intermediate} Compare Wilson and staggered fermions: by what mechanism does each remove (or reduce) the doublers, and what is the price? In the lecture's statement of the no-go theorem, Wilson fermions were said to break \emph{chiral symmetry} while staggered fermions break \emph{translation invariance}. But staggered fermions are also routinely described as retaining a remnant chiral symmetry, and they are manifestly invariant under translations by $2a$. Reconcile these statements: what exactly is broken, at which scale, and why does the theorem not care that a larger-period translation invariance survives?
 \end{question}
 
 \begin{question}
-\diff{Hard} State the Nielsen--Ninomiya no-go theorem and its assumptions. Explain how the Ginsparg--Wilson relation evades it and what form of lattice chiral symmetry it permits.
+\diff{Hard} Rather than restating the Nielsen--Ninomiya theorem, put its four assumptions (locality, translation invariance, $\{D,\gamma_5\}=0$, correct continuum limit) to work.
+\begin{enumerate}[label=(\roman*), leftmargin=*]
+  \item The naive lattice Dirac operator satisfies locality, translation invariance and exact chiral symmetry. Which assumption does it violate, and how is that visible in the momentum-space operator? Be precise about \emph{why} the failure is a failure --- what goes wrong in the continuum limit of a correlator, as opposed to merely ``there are extra poles''.
+  \item Now define the Dirac operator directly in momentum space by $\tilde D(p) = i\sum_\mu \gamma_\mu p_\mu$ with $p_\mu$ restricted to the first Brillouin zone (the ``SLAC'' derivative). Which of the four assumptions fails now, and how does the failure show up in position space? Explain why it is fatal in an \emph{interacting} theory, rather than merely inelegant --- what does the offending assumption actually protect?
+  \item The $2^d$ species of the naive operator do not all carry the same chirality. Use this to explain why naive lattice fermions, despite possessing an exact chiral symmetry, cannot reproduce the axial anomaly of the continuum theory. Then argue why this makes the no-go theorem look inevitable rather than accidental, and identify what supplies the anomaly in the Wilson formulation.
+\end{enumerate}
 \end{question}
 
 \section{Continuum limit}
@@ -110,11 +129,16 @@
 \end{question}
 
 \begin{question}
-\diff{Intermediate} Explain why the continuum limit must be taken at a second-order (critical) point of the lattice theory, and why a first-order transition is unsuitable.
+\diff{Intermediate} Explain why the continuum limit must be taken at a second-order (critical) point of the lattice theory, and why a first-order transition is unsuitable. Then resolve the following: the deconfinement transition of pure $SU(3)$ gauge theory at finite temperature \emph{is} first order, and it is nevertheless studied on the lattice with a perfectly well-defined continuum limit. Why is this not a contradiction? Distinguish carefully the two transitions involved and the parameter that is tuned in each.
 \end{question}
 
 \begin{question}
-\diff{Hard} Using asymptotic freedom and the two-loop beta function of $SU(N)$ gauge theory, derive how the lattice spacing $a$ depends on the bare coupling $g$ near the continuum limit. Explain what "asymptotic scaling" means and how it is used to set the lattice scale.
+\diff{Hard} The continuum limit is a statement about renormalization-group flow, not about a formula for $a(g)$.
+\begin{enumerate}[label=(\roman*), leftmargin=*]
+  \item Two lattice actions --- the Wilson plaquette action, and an action that additionally includes $2\times 1$ rectangular loops --- give \emph{different} numbers for the same dimensionless ratio at the same lattice spacing. Explain in RG language why they must nonetheless agree in the continuum limit. What roles do the critical surface, the relevant directions and the irrelevant directions play, and what does universality \emph{not} guarantee?
+  \item A student runs simulations at steadily increasing $\beta$ on a fixed $32^4$ lattice and reports that they are approaching the continuum limit. Identify the flaw, state what must be held fixed instead, and express the requirement as a condition relating $\xi$, $N$ and the physical size of the box. Name the two practical costs of doing it correctly, and say which lattice observable would first betray the student's error.
+  \item The pure-gauge Wilson action has leading discretization errors of $\mathcal{O}(a^2)$, whereas Wilson fermions introduce $\mathcal{O}(a)$ errors. Explain this difference from the symmetries of the lattice action and the dimensions of the operators allowed in a Symanzik effective-action analysis --- in particular, why the offending fermionic operator is permitted for Wilson fermions but forbidden for a Ginsparg--Wilson operator. Finally, explain why improvement cannot make discretization errors vanish at finite $a$, only change which power of $a$ dominates.
+\end{enumerate}
 \end{question}
 
 \section{Chemical potential and the numerical sign problem}
@@ -124,11 +148,16 @@
 \end{question}
 
 \begin{question}
-\diff{Intermediate} Explain the origin of the sign problem in terms of $\gamma_5$-Hermiticity of the Dirac operator. Why does reweighting from a positive ensemble fail as the volume grows?
+\diff{Intermediate} Explain the origin of the sign problem in terms of $\gamma_5$-Hermiticity of the Dirac operator, and why reweighting from a positive ensemble fails as the volume grows. Then address a tempting escape route: for two mass-degenerate flavours one may write the measure as $\det M(\mu)\det M(\mu)^\dagger = |\det M(\mu)|^2 \geq 0$, which is manifestly positive and cheap to simulate. What theory has one actually simulated, at what chemical potential for each species, and why does its positivity not constitute a solution?
 \end{question}
 
 \begin{question}
-\diff{Hard} Quantify the severity of the sign problem via the expectation value of the phase $\langle e^{i\theta}\rangle_{pq}$ in the phase-quenched ensemble, and show that it is suppressed exponentially in the volume, $\langle e^{i\theta}\rangle \sim e^{-V \Delta f}$. Relate $\Delta f$ to a free-energy difference and explain the resulting cost of a reweighted Monte Carlo estimate.
+\diff{Hard} Three sharp conceptual points about what the sign problem is and is not.
+\begin{enumerate}[label=(\roman*), leftmargin=*]
+  \item On any single configuration $\det M[U,\mu]$ is complex, yet $Z(\mu)$ is real and moreover even in $\mu$. Identify the two exact properties of the lattice theory responsible for these two statements, and explain why a symmetry that makes $Z$ real does \emph{not} make the integrand real configuration by configuration. Explain why precisely this gap --- cancellation \emph{between} configurations rather than within one --- is what makes the Monte Carlo estimate exponentially expensive.
+  \item Without performing the computation, argue conceptually why the naive coupling $\mu\,\bar\psi\gamma_4\psi$ generates a $\mu^2/a^2$ divergence while multiplying the temporal hoppings by $e^{\pm\mu a}$ does not. Base your argument on the fact that $\mu$ enters as the fourth component of a constant \emph{imaginary} abelian gauge field, on how gauge fields couple to lattice fermions, and on what a quark accumulates when it propagates once around the temporal direction. What would go wrong if one instead chose the arithmetically simpler $f(\mu a) = 1 + \mu a$, which also has the correct $\mu=0$ limit and the correct slope at the origin?
+  \item Using the chain of inequalities $Z_{\rm full} \le Z_{\rm sq} \le Z_{\rm pq}$ established in the lecture, argue that ``the severity of the sign problem'' is not a property of the physical theory alone but of the positive reference ensemble one chooses to sample. What would a representation with no sign problem look like, and how should one therefore interpret a statement such as ``QCD at finite baryon density has an exponentially hard sign problem''?
+\end{enumerate}
 \end{question}
 
 \section{Techniques to circumvent the sign problem}
@@ -138,11 +167,16 @@
 \end{question}
 
 \begin{question}
-\diff{Intermediate} Describe two conventional finite-density approaches (e.g.\ Taylor expansion in $\mu/T$, imaginary chemical potential with analytic continuation, or reweighting). For each, state its domain of validity and its main limitation.
+\diff{Intermediate} Describe the Taylor expansion about $\mu/T=0$ and the analytic continuation from imaginary chemical potential, stating for each its domain of validity and its main limitation. Both reconstruct a function of $\mu/T$ that contains only \emph{even} powers: state the two exact properties of the lattice action that guarantee this, and explain what would go wrong in the analytic continuation if the Roberge--Weiss periodicity of $Z$ at imaginary $\mu$ were ignored when choosing the fit ansatz.
 \end{question}
 
 \begin{question}
-\diff{Hard} Explain the idea of Lefschetz thimbles: how deforming the integration contour into complexified field space onto steepest-descent manifolds tames the sign problem. What new difficulties (e.g.\ residual phase, multiple thimbles, Jacobian) does the method introduce?
+\diff{Hard} What the standard toolbox does and does not achieve.
+\begin{enumerate}[label=(\roman*), leftmargin=*]
+  \item The Taylor-expansion method and analytic continuation from imaginary $\mu$ both end up determining the same coefficients $a_{2n}$ of the same function. In what sense are they therefore the same computation, and in what sense do they carry genuinely different systematic errors? Explain why neither can reliably locate a critical endpoint, and be explicit about which failure is statistical and which is a matter of principle.
+  \item Distinguish the \emph{sign problem} from the \emph{overlap problem}. Using the lecture's toy model $Z(\mu) = \int d\phi\, e^{-\phi^2 + i\mu\phi}$, describe (a) a situation in which the sampled and target distributions overlap essentially perfectly and yet the reweighting factor is still exponentially small, and (b) a situation in which the sampling weight is positive and easy to sample but the overlap is catastrophic. What does this pair of examples tell you about using the average phase as a diagnostic, and about which of the two problems a new method must actually solve?
+  \item On a single Lefschetz thimble the oscillating factor $e^{-iS_I}$ is a constant and can be pulled out of the integral --- yet the sign problem is not solved. Enumerate the residual sources of cancellation and say which of them is a property of the \emph{geometry} of the deformed contour and which is a property of the \emph{parametrization} one chooses for it. Finally, explain why the Stokes phenomenon is a genuine obstruction of the method rather than a numerical nuisance that a better integrator would remove.
+\end{enumerate}
 \end{question}
 
 \end{document}
